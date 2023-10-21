@@ -38,16 +38,16 @@ header {
 }
 
 .navegacion a.hover-activo:hover {
-    color: cadetblue; 
+    color: rgb(66, 135, 137);
 }
 
 .navegacion a.hover-activo::after {
-    background-color: cadetblue;
+    background-color: rgb(66, 135, 137);    
 }
 
 .logo {
     font-size: 1em;
-    color:cadetblue;
+    color:rgb(66, 135, 137);
     pointer-events: none;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
@@ -55,7 +55,7 @@ header {
 
 .navegacion a {
     text-decoration: none;
-    color: cadetblue;
+    color: rgb(66, 135, 137);
     padding: 6px 8px;
     border-radius: 20px;
     margin: 0 10px;
@@ -105,7 +105,7 @@ header {
     position: absolute;
     top: 28%;
     font-size: 5em;
-    color: cadetblue;
+    color: rgb(66, 135, 137);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -137,3 +137,38 @@ header {
     font-weight: 300;
 }
 
+.scroll-downs {
+    position: absolute;
+    top: 80%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    
+    width :34px;
+    height: 55px;
+  }
+  .mousey {
+    width: 3px;
+    padding: 10px 15px;
+    height: 35px;
+    border: 3px solid #fff;
+    border-radius: 25px;
+    opacity: 0.75;
+    box-sizing: content-box;
+  }
+  .scroller {
+    width: 3px;
+    height: 10px;
+    border-radius: 25%;
+    background-color: #fff;
+    animation-name: scroll;
+    animation-duration: 2.2s;
+    animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+    animation-iteration-count: infinite;
+  }
+  @keyframes scroll {
+    0% { opacity: 0; }
+    10% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0;}
+  }
