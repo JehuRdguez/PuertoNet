@@ -19,14 +19,17 @@ let timeline = gsap.timeline();
 // Barra del menú
 const barraSuperior = document.querySelector('.barra-superior');
 const opcionesMenu = document.querySelectorAll('.linea-hover');
+const logo = document.querySelectorAll('.logo');
 
 window.addEventListener('scroll', () => {
     let value = window.scrollY;
     if (value > 50) {
         barraSuperior.style.backgroundColor = '#00132d';
         opcionesMenu.forEach(opcion => opcion.classList.add('hover-activo'));
+        logo.forEach(option => option.classList.add('barra-activa'));
     } else {
         barraSuperior.style.backgroundColor = 'rgba(255, 255, 255, 0)';
         opcionesMenu.forEach(opcion => opcion.classList.remove('hover-activo'));
+        logo.forEach(opcion => opcion.classList.remove('barra-activa'));
     }
 });
