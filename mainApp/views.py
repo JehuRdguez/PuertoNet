@@ -60,9 +60,9 @@ class play_video(View):
         comment_form = CommentForm()
         
         
-
-
-        paginator = Paginator(comments, 3)  # Muestra 3 comentarios por página
+        #  Problema en paginación
+        main_comments = Comment.objects.filter(video_id=vid_id, parent_comment=None).order_by('timestamp')
+        paginator = Paginator(main_comments, 3)
         page = request.GET.get('page')
 
         try:
