@@ -1,0 +1,28 @@
+{% extends 'cursos.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="img-container">
+
+  {% for v in videos %}
+  <div class="gallery">
+    <a href="{% url 'play-video' %}?vid_id={{v.id}}" >
+      <img src="{{v.thumbnail}}" alt="YouTube Video {{v.id}}">
+    </a>
+    <div class="desc">{{v.title_formatted}}</div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}
+

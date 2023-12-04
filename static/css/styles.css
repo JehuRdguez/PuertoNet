@@ -114,7 +114,7 @@ header {
     height: 100vh;
 }
 
-.parallax img {
+.parallaxImg {
     position: absolute;
     top: 0;
     left: 0;
@@ -463,3 +463,141 @@ header {
     background-size: cover;
     background-position: center;
   }
+
+
+  /*CSS cursos*/
+
+.TiposCurso{
+    margin-right: 5%;
+    background-color: transparent;
+    border-color: transparent;
+}
+.TiposCurso:hover{
+    background-color: #428789;
+    color: white;
+    border-color: transparent;
+    border-radius: 5%;
+}
+.form-select-cursos{
+    margin-right: 5%;
+}
+.Restablecer{
+    width: 20%;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.Restablecer:hover{
+    background-color: #428789;
+    color: white;
+    border-color: transparent;
+    border-radius: 5%;
+    width: 21.4%;
+}
+
+.filtros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filter-container {
+    display: flex;
+  }
+  
+  .select-container {
+    margin-right: 15px; 
+  }
+  
+  .select-label {
+    margin-right: 5px; 
+  }
+  
+  .Restablecer,
+  .search-section {
+    display: flex;
+    align-items: center;
+  }
+
+.video-thumbnail {
+    width: 90%;
+    max-width: 90%;
+    height: auto;
+    display: block;
+}
+
+.gallery {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.text-container {
+    flex-grow: 1;
+    padding-left: 8%;
+    box-sizing: border-box; 
+}
+
+.video-title {
+    font-weight: bold;
+    text-align: start;
+}
+
+.video-description {
+    margin-top: 5px;
+    text-align: start;
+}
+.video-link{
+    margin-right: -100px;
+}
+.EspacioVideos{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+}
+.videosExtras {
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* Alinea al contenido al borde derecho */
+}
+
+
+.video-link2 {
+    display: flex;
+    flex-direction: column;  /* Alinea la miniatura y el título en columna */
+    align-items: flex-end;   /* Alinea al contenido al borde derecho */
+    text-decoration: none;  /* Elimina el subrayado predeterminado de los enlaces */
+}
+
+.video-thumbnail2 {
+    max-width: 60%;  /* Ajusta el tamaño máximo de la miniatura al 100% del contenedor */
+    height: auto;
+}
+
+.text-container2 {
+    width: 40%;  /* Ajusta el ancho del contenedor de texto al 100% del contenedor padre */
+    margin-top: 5px;  /* Ajusta el margen entre la miniatura y el título */
+}
+
+.video-title2 {
+    text-align: left;  /* Alinea el título a la izquierda */
+    /* Otras propiedades de estilo según sea necesario */
+}
+.gallery2 {
+    margin-bottom: 20px;
+    display: flex;
+    width: 50%;  /* Establece el ancho del contenedor al 50% del contenedor padre */
+    margin-bottom: 10px;  /* Ajusta el margen entre los videos */
+}
+
+
+.acciones-button {
+    background-color: #428789;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}

@@ -33,3 +33,24 @@ window.addEventListener('scroll', () => {
         logo.forEach(opcion => opcion.classList.remove('barra-activa'));
     }
 });
+
+
+var iframe = document.querySelector('iframe');
+
+// Verificar si el iframe existe
+if (iframe) {
+    // Modificar el tamaño del iframe
+    iframe.width = 900;
+    iframe.height = 500;
+}
+
+
+    var mostrarTextos = document.querySelectorAll('.mostrarTexto');
+
+    mostrarTextos.forEach(function(mostrarTexto) {
+      mostrarTexto.addEventListener('click', function() {
+        var commentId = mostrarTexto.getAttribute('data-target');
+        var contenido = document.getElementById('Mcontenido-' + commentId);
+        contenido.style.display = (contenido.style.display === 'none' || contenido.style.display === '') ? 'block' : 'none';
+      });
+    });

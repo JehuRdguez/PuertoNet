@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+ 
+  }
+
+  .card {
+  
+    max-width: 300px;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #EFEFEF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .cardSignup {
+    max-width: 350px;
+    max-height: 50v0px;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #EFEFEF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .card-title {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .card-content {
+    margin-top: 5px;
+  }
+
+  .card-content p {
+    text-align: center;
+  }
+
+  .card-content form {
+    text-align: center;
+  }
+
+  .card-content button {
+    width: 100%;
+    padding: 5px;
+    background-color: #428789;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    margin-bottom:5px;
+    font-size: 14px;
+  }
+
+  .error-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 100, 100, 0.8);
+
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    z-index: 1000; /* Asegúrate de que esté en la parte superior */
+    max-width: 300px; /* Ancho máximo */
+    width: 100%; /* Ocupa todo el ancho disponible */
+  }
+  
+
+  
+  .primaryAction {
+    width: 100%;
+    padding: 10px;
+    background-color: #428789;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .social-login {
+    text-align: center; 
+  }
+
+  .social-login a {
+    display: inline-block;
+  width: 100%; 
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+  border-radius: 5px;
+  margin-right: 0; 
+  box-sizing: border-box;
+  font-size: 14px;
+  }
+
+  .login-form {
+    margin-top: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+ 
+  p{
+    font-size: 12px;
+  }
+
+  li{
+    font-size: 12px;
+  }
+  hr{
+    padding: 0;
+  }

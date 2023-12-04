@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mainApp',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
 ]
 
 MIDDLEWARE = [
@@ -48,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'PuertoXperience.urls'
@@ -129,3 +137,33 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_API_KEY = "AIzaSyAS47jqjZLvH3UY8K4ZxzCUyJvx2E_hDj0"
+API_SERVICE_NAME = "youtube"
+API_VERSION = "v3"
+CHANNEL_ID = 'UCM5YmCpujHZUitF92CohO0g'
+
+LOGIN_URL = '/signin'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+
+AUTHENTICATION_BACKENDS = [
+    
+    'django.contrib.auth.backends.ModelBackend',
+      'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '489475272632-kfdcu7kgajfte20uanr050ehds2951q4.apps.googleusercontent.com',
+            'secret': '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',
+        }
+    }
+}
+
+
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
