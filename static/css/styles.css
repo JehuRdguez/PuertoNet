@@ -532,7 +532,7 @@ header {
 
   /*CSS cursos*/
 
-.TiposCurso{
+  .TiposCurso{
     margin-right: 5%;
     background-color: transparent;
     border-color: transparent;
@@ -585,7 +585,7 @@ header {
   }
 
 .video-thumbnail {
-    width: 90%;
+    width: 20%;
     max-width: 90%;
     height: auto;
     display: block;
@@ -594,12 +594,17 @@ header {
 .gallery {
     margin-bottom: 20px;
     display: flex;
+    margin-right: 0%;
+    border: 2px solid black;
+
 }
 
+.video-link{
+    text-decoration: none;
+    color: black
+}
 .text-container {
-    flex-grow: 1;
-    padding-left: 8%;
-    box-sizing: border-box; 
+margin-right: auto;
 }
 
 .video-title {
@@ -611,9 +616,7 @@ header {
     margin-top: 5px;
     text-align: start;
 }
-.video-link{
-    margin-right: -100px;
-}
+
 .EspacioVideos{
     position: relative;
     display: flex;

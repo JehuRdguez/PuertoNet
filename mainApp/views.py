@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
+from itertools import chain
 
 class inicio(View):
     def get(self, request):
@@ -20,8 +21,25 @@ class cursos(View):
     def get(self, request):
         videos = YouTube().get_data()
 
-        context = {"videos": videos}
-        return render(request, 'cursos.html', context)
+        # Obtén todas las categorías de todos los videos y conviértelas en una lista plana
+        all_categories = list(chain.from_iterable(v.get('categoria', []) for v in videos))
+
+        # Elimina duplicados manteniendo el orden original
+        unique_categories = sorted(set(all_categories), key=all_categories.index)
+
+        # Implementa la paginación
+        paginator = Paginator(videos, 10)  # Muestra 10 videos por página
+        page = request.GET.get('page', 1)
+
+        try:
+            videos_pagina = paginator.page(page)
+        except PageNotAnInteger:
+            videos_pagina = paginator.page(1)
+        except EmptyPage:
+            videos_pagina = paginator.page(paginator.num_pages)
+
+        context = {"videos": videos_pagina, "unique_categories": unique_categories}
+        return render(request, 'cursos/cursos.html', context)
     
 def videos(request):
 
@@ -80,7 +98,7 @@ class play_video(View):
         }
         
 
-        return render(request, 'play_video.html', contextUno)
+        return render(request, 'cursos/play_video.html', contextUno)
 
     def post(self, request, vid_id):
         comment_form = CommentForm(request.POST)

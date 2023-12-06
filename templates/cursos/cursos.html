@@ -1,0 +1,92 @@
+{% extends '../menu.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="parallax">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <h1>CURSOS</h1>
+            </div>
+            <br>
+
+            <div class="filtros">
+                <div class="filter-container">
+                    <div class="select-container">
+                        <div class="select-label">Ordenar por</div>
+                        <select id="ordenar-por" class="form-select-cursos custom-select" aria-label="Default select example">
+                            <option selected>Todos</option>
+                            <option value="AgregadosRecientemente">Agregados recientemente</option>
+                            <option value="Alfabeticamente">Orden A-Z</option>
+                        </select>
+                    </div>
+                    
+                
+                    <div class="select-container">
+                        <div class="select-label">Filtrar por</div>
+                        <select id="filtro-categorias" class="form-select-cursos custom-select" aria-label="Default select example">
+                            <option selected>Todos</option>
+                            {% for categoria in unique_categories %}
+                                <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                
+                    <button class="Restablecer">Restablecer</button>
+                </div>
+                
+                <div class="search-section" style="display: flex; justify-content: flex-end;">
+                    <input type="text" id="search-input" placeholder="Buscar..." class="form-control" style="width: 60%;">
+                    <button id="search-button" class="search-button btn btn-primary" style="width: 15%;">&#128269;</button>
+                </div>
+                
+            </div>
+            <br>
+
+            {% for v in videos %}
+            <div class="img-container video-item" data-categorias="{{ v.categoria }}">
+                <br><a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
+                    <div class="gallery">
+                        <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail">
+                        <div class="text-container">
+                            <div class="video-title">{{ v.title }}</div>
+                            <div class="video-description">{{ v.description }}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if videos.has_previous %}
+                    <a href="?page=1">&laquo; Inicio</a>
+                    <a href="?page={{ videos.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Página {{ videos.number }} de {{ videos.paginator.num_pages }}.
+                </span>
+        
+                {% if videos.has_next %}
+                    <a href="?page={{ videos.next_page_number }}">siguiente</a>
+                    <a href="?page={{ videos.paginator.num_pages }}">Final &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+            
+          <div class="col-2">
+          </div>
+        </div>
+</section>
+
+
+<!--{% include '../footer.html' %}-->
+
+{% endblock %}

@@ -97,6 +97,10 @@ class YouTube:
 					"description":item["snippet"]["description"],
 					"thumbnail":item["snippet"]["thumbnails"]["medium"]["url"],
 					"iframe":item["player"]["embedHtml"],
+					"categoria":item["snippet"]["tags"],
+					"fecha":item["snippet"]["publishedAt"],
+					"duracion":item["contentDetails"]["duration"],
+
 				}
 
 				data.append(vid_data)
@@ -121,12 +125,14 @@ class YouTube:
 		video_response = video_request.execute()
 
 		item = video_response["items"][0]
-
 		vid_data = {
 			"id": item["id"],
 			"title":item["snippet"]["title"],
 			"description":item["snippet"]["description"],
 			"iframe":item["player"]["embedHtml"],
+			"categoria":item["snippet"]["tags"],
+			"fecha":item["snippet"]["publishedAt"],
+			"duracion":item["contentDetails"]["duration"],
 		}
 
 		return vid_data
