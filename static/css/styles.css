@@ -39,11 +39,11 @@ header {
     transition: background-color 0.5s;
 }
 
-.navegacion a.hover-activo:hover {
+.linea-hover.hover-activo:hover {
     color: rgb(66, 135, 137);
 }
 
-.navegacion a.hover-activo::after {
+.linea-hover.hover-activo::after {
     background-color: rgb(66, 135, 137);    
 }
 
@@ -51,6 +51,7 @@ header {
     font-size: 1em;
     color:#153763;
     pointer-events: none;
+    margin-top: -0.7%;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -61,7 +62,16 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.navegacion {
+    display: flex;
+    align-items: center;
+}
+
 .navegacion a {
+    margin-top: -4.5%;
+}
+
+.linea-hover {
     text-decoration: none;
     color: #153763;
     padding: 6px 8px;
@@ -73,7 +83,7 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.navegacion a.hover-activo {
+.linea-hover.hover-activo {
     text-decoration: none;
     color: rgb(66, 135, 137);
     padding: 6px 8px;
@@ -81,15 +91,16 @@ header {
     margin: 0 10px;
     font-weight: 600;
     position: relative;
+    margin-top: -4.5%;
     transition: 0.3s all;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.navegacion a:hover {
+.linea-hover:hover {
     color: #00132d;
 }
 
-.navegacion a::after {
+.linea-hover::after {
     content: '';
     width: 0;
     height: 2px;
@@ -100,10 +111,47 @@ header {
     transition: width 0.3s;
 }
 
-.navegacion a:hover::after {
+.linea-hover:hover::after {
     width: 100%;
 }
 
+                                                /* Menú hamburguesa */
+
+.hamburguesa {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #153763;
+}
+
+.navegacion.mostrar-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #00132d;
+    z-index: 1000;
+}
+
+@media (max-width: 767px) {
+    .hamburguesa {
+        display: block;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .navegacion {
+        display: none;
+    }
+
+    .navegacion.mostrar-menu {
+        display: flex;
+    }
+}
                                                 /* Efecto parallax */
 
 .parallax {
@@ -122,9 +170,26 @@ header {
     pointer-events: none;
 }
 
+/* #logoTitulo {
+    position: absolute;
+    top: 16%;
+    font-size: 5em;
+    color: rgb(66, 135, 137);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+} */
+
+#logoImg {
+    width: 15%;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    color: rgb(66, 135, 137);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 #titulo {
     position: absolute;
-    top: 28%;
+    top: 32%;
     font-size: 5em;
     color: rgb(66, 135, 137);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
