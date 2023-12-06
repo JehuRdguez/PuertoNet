@@ -268,6 +268,11 @@ header {
     background: #00132d;
 }
 
+.seccionCursos {
+    position: relative;
+    margin-top: 5em;
+}
+
 .tarjeta-container {
     position: relative;
     background: #00132d;
