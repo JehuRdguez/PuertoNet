@@ -8,7 +8,7 @@
 
 <section class="parallax">
     <img class="parallaxImg" src="{% static 'assets/img/inicio/fondo2.png' %}" id="fondo2" style="width: 100%; height: 100%; ">
-    <img id="logoImg" src="{% static 'assets/img/logo/logo.png' %}">
+    <img id="logoImg" class="logoImg" src="{% static 'assets/img/logo/logo.png' %}">
     <h2 id="titulo">
         <span class="puerto">Puerto</span><span class="xperience">Net</span>
     </h2>
@@ -20,30 +20,46 @@
     </div>
 </section>
 
-<section class="bienvenido">
-    <h2>¡Bienvenido!</h2>
-    <p class="textoBienvenida">
-        Nos alegra tenerte en el sitio web de PuertoNet. Un proyecto destinado a difundir el conocimiento del puerto a quienes lo buscan.<br><br>
-    </p>
-    <div class="tarjeta-container">
-        <div class="tarjeta">
-            <i class="fa-solid fa-video"></i>
-            <h3>Cursos online</h3>
-            <p>Aprende a tu ritmo con nuestros diversos cursos en línea</p>
-        </div>
-        <div class="tarjeta">
-            <i class="fa-solid fa-images"></i>
-            <h3>Recursos visuales</h3>
-            <p>Explora nuestra colección de infografías, imágenes y demás material gráfico</p>
-        </div>
-        <div class="tarjeta">
-            <i class="fa-solid fa-timeline"></i>
-            <h3>Historia</h3>
-            <p>Descubre la formación y evolución del puerto de Manzanillo</p>
+<section class="bienvenido d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h2>¡Bienvenido!</h2>
+                <p class="textoBienvenida">
+                    Nos alegra tenerte en el sitio web de PuertoNet. Un proyecto destinado a difundir el conocimiento del puerto a quienes lo buscan.<br><br>
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
+<section class="tarjeta-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+                <div class="tarjeta mb-3 text-center">
+                    <i class="fa-solid fa-video"></i>
+                    <h3>Cursos online</h3>
+                    <p>Aprende a tu ritmo con nuestros diversos cursos en línea</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+                <div class="tarjeta mb-3 text-center">
+                    <i class="fa-solid fa-images"></i>
+                    <h3>Recursos visuales</h3>
+                    <p>Explora nuestra colección de infografías, imágenes y demás material gráfico</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+                <div class="tarjeta mb-3 text-center">
+                    <i class="fa-solid fa-timeline"></i>
+                    <h3>Historia</h3>
+                    <p>Descubre la formación y evolución del puerto de Manzanillo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- <div class="transicion_azul_blanco"></div> -->
 
 <section class="background_container">

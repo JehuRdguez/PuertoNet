@@ -15,14 +15,15 @@
 </head>
 
 <body>
+    <div class="barra-fondo-menu"></div>
 
     <!-- Menú -->
     <div class="barra-superior">
-        <header>
-            <h2 class="logo"><img src="static\assets\img\logo\logoAzul.png" style="height: 8%; width: 8%;"> PuertoNet</h2>
+        <header class="header-flex">
 
+            <h2 class="logo"><img src="static\assets\img\logo\logoAzul.png" class="imagenLogo"> PuertoNet</h2>            
             <div class="hamburguesa" id="menuHamburguesa">&#9776;</div>
-            
+
             <nav class="navegacion">
                 <a href="{% url 'inicio' %}" class="linea-hover">Inicio</a>
                 <a href="{% url 'Cursos' %}" class="linea-hover">Cursos</a>

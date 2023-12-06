@@ -25,6 +25,12 @@ header {
 
                                                 /* Menú */
 
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .barra-superior {
     position: fixed;
     top: 0;
@@ -49,10 +55,17 @@ header {
 
 .logo {
     font-size: 1em;
-    color:#153763;
+    color:#00132d;
     pointer-events: none;
-    margin-top: -0.7%;
+    margin-top: -0.7em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: auto;
+    transition: 0.3 all;
+}
+
+.imagenLogo {
+    height: 3em;
+    width: 3em;
 }
 
 .logo.barra-activa {
@@ -65,15 +78,16 @@ header {
 .navegacion {
     display: flex;
     align-items: center;
+    z-index: 2;
 }
 
 .navegacion a {
-    margin-top: -4.5%;
+    margin-top: -1.45em;
 }
 
 .linea-hover {
     text-decoration: none;
-    color: #153763;
+    color: #00132d;
     padding: 6px 8px;
     border-radius: 20px;
     margin: 0 10px;
@@ -91,7 +105,7 @@ header {
     margin: 0 10px;
     font-weight: 600;
     position: relative;
-    margin-top: -4.5%;
+    margin-top: -1.45em;
     transition: 0.3s all;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -117,11 +131,22 @@ header {
 
                                                 /* Menú hamburguesa */
 
+.barra-fondo-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #00132d;
+    z-index: 1; /* Asegura que la barra esté detrás de las opciones del menú */
+    transition: width 0.3s ease-out; /* Agrega transición para un efecto suave */
+}
+
 .hamburguesa {
     display: none;
     cursor: pointer;
     font-size: 1.5em;
-    color: #153763;
+    color: #00132d;
 }
 
 .navegacion.mostrar-menu {
@@ -131,27 +156,19 @@ header {
     top: 70px;
     left: 0;
     width: 100%;
-    background-color: #00132d;
-    z-index: 1000;
+    background-color: transparent;
+    z-index: 1001;
 }
 
-@media (max-width: 767px) {
-    .hamburguesa {
-        display: block;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .navegacion {
-        display: none;
-    }
-
-    .navegacion.mostrar-menu {
-        display: flex;
-    }
+.barra-fondo-menu.mostrar-fondo {
+    width: 100%;
+    background-color: #00132d; /* Cambia el color de fondo y la opacidad cuando el menú está activo */
 }
+
+.navegacion.mostrar-menu a {
+    margin-bottom: 30px; /* Ajusta el espacio entre elementos según sea necesario */
+}
+
                                                 /* Efecto parallax */
 
 .parallax {
@@ -178,13 +195,13 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 } */
 
-#logoImg {
-    width: 15%;
-    height: auto;
+.logoImg {
+    width: 15em;
     position: absolute;
-    top: 10%;
+    top: 4.5em;
     color: rgb(66, 135, 137);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: 0.3s all;
 }
 
 #titulo {
@@ -192,6 +209,7 @@ header {
     top: 32%;
     font-size: 5em;
     color: rgb(66, 135, 137);
+    transition: 0.3s all;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -248,7 +266,11 @@ header {
 .bienvenido {
     position: relative;
     background: #00132d;
-    padding: 100px;
+}
+
+.tarjeta-container {
+    position: relative;
+    background: #00132d;
 }
 
 .bienvenido h2 {
@@ -668,4 +690,408 @@ margin-right: auto;
     padding: 8px 10px;
     border-radius: 10px;
     cursor: pointer;
+}
+/* @media screen and (max-width: 576px) {
+  }
+  
+  @media screen and (min-width: 577px) and (max-width: 768px) {
+  }
+  
+  @media screen and (min-width: 769px) and (max-width: 992px) {
+  }
+  
+  @media screen and (min-width: 993px) and (max-width: 1200px) {
+  } */
+  
+  /* @media screen and (min-width: 1201px) and (max-width: 1400px) {
+
+  } */
+                                                                                /* CELULAR */
+
+@media screen and (max-width: 380px) {
+    header {
+        position: absolute;
+        top: -20%;
+        left: 0;
+        width: 100%;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .linea-hover:hover {
+        color: rgb(66, 135, 137);
+    }
+
+    .navegacion {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        margin-top: 5%;
+    }
+    
+    .logo {
+        font-size: 1em;
+        color:#00132d;
+        pointer-events: none;
+        margin-top: -1.2%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-right: auto;
+    }
+
+    .hamburguesa {
+        display: block;
+        margin-top: -2.5%;
+    }
+
+    /* .logo {
+        display: none;
+    } */
+
+    .navegacion {
+        display: none;
+        background-color: #00132d;
+        width: 0;
+        transition: width 0.3s ease;
+    }
+
+    .navegacion.mostrar-menu {
+        display: flex;
+        width: 100%; 
+    }
+
+    .navegacion a {
+        color: rgb(66, 135, 137);
+        transition: background-color 0.3s ease; 
+    }
+
+    .navegacion a:hover {
+        background-color: rgba(66, 135, 137, 0.1);
+    }
+
+    .logoImg {
+        width: 12em;
+        position: absolute;
+        top: 6.5em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #titulo {
+        position: absolute;
+        top: 36%;
+        font-size: 3em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .comentario-texto {
+        width: 280px;
+        height: 80px;
+        margin: 0 auto; 
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        margin-bottom: 10px;
+    }
+
+    .textoTituloBienvenida {
+        /* margin-left: -1.2em; */
+    }
+
+    .textoBienvenida {
+        font-size: 1.5em;
+        /* width: 300px; */
+        /* margin-left: -3em; */
+    }
+
+    #cajaBienvenida {
+        width: 300px;
+    }
+    
+    .tarjeta {
+        color: azure;
+        width: 300px;
+        background-color: #00132d;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        margin: 10px;
+        text-align: center;
+        border-radius: 20px;
+        margin-right: 0;
+    }
+
+}
+
+
+@media screen and (min-width: 380px) and (max-width: 577px) {
+    header {
+        position: absolute;
+        top: -20%;
+        left: 0;
+        width: 100%;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .linea-hover:hover {
+        color: rgb(66, 135, 137);
+    }
+
+    .navegacion {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        margin-top: 5%;
+    }
+    
+    .logo {
+        font-size: 1em;
+        color:#00132d;
+        pointer-events: none;
+        margin-top: -1.2%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-right: auto;
+    }
+
+    .hamburguesa {
+        display: block;
+        margin-top: -2.5%;
+    }
+
+    /* .logo {
+        display: none;
+    } */
+
+    .navegacion {
+        display: none;
+        background-color: #00132d;
+        width: 0;
+        transition: width 0.3s ease;
+    }
+
+    .navegacion.mostrar-menu {
+        display: flex;
+        width: 100%; 
+    }
+
+    .navegacion a {
+        color: rgb(66, 135, 137);
+        transition: background-color 0.3s ease; 
+    }
+
+    .navegacion a:hover {
+        background-color: rgba(66, 135, 137, 0.1);
+    }
+
+    .logoImg {
+        width: 12em;
+        position: absolute;
+        top: 8em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #titulo {
+        position: absolute;
+        top: 36%;
+        font-size: 3em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .comentario-texto {
+        width: 280px;
+        height: 80px;
+        margin: 0 auto; 
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        margin-bottom: 10px;
+    }
+
+    .textoTituloBienvenida {
+        /* margin-left: -1.2em; */
+    }
+
+    .textoBienvenida {
+        font-size: 1.5em;
+        /* width: 300px; */
+        /* margin-left: -3em; */
+    }
+
+    #cajaBienvenida {
+        width: 300px;
+    }
+    
+    .tarjeta {
+        color: azure;
+        width: 300px;
+        background-color: #00132d;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        margin: 10px;
+        text-align: center;
+        border-radius: 20px;
+        margin-right: 0;
+    }
+
+}
+
+                                                                                /* TABLET */
+
+@media screen and (min-width: 577px) and (max-width: 767px) {
+    header {
+        position: absolute;
+        top: -20%;
+        left: 0;
+        width: 100%;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .linea-hover:hover {
+        color: rgb(66, 135, 137);
+    }
+
+    .navegacion {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        margin-top: 5%;
+    }
+    
+    .logo {
+        font-size: 1em;
+        color:#00132d;
+        pointer-events: none;
+        margin-top: -1.2%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-right: auto;
+    }
+
+    .hamburguesa {
+        display: block;
+        margin-top: -2.5%;
+    }
+
+    /* .logo {
+        display: none;
+    } */
+
+    .navegacion {
+        display: none;
+        background-color: #00132d;
+        width: 0;
+        transition: width 0.3s ease;
+    }
+
+    .navegacion.mostrar-menu {
+        display: flex;
+        width: 100%; 
+    }
+
+    .navegacion a {
+        color: rgb(66, 135, 137);
+        transition: background-color 0.3s ease; 
+    }
+
+    .navegacion a:hover {
+        background-color: rgba(66, 135, 137, 0.1);
+    }
+
+    .logoImg {
+        width: 12em;
+        position: absolute;
+        top: 6.5em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #titulo {
+        position: absolute;
+        top: 36%;
+        font-size: 3em;
+        color: rgb(66, 135, 137);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+}
+
+                                                                                /* PANTALLA DIVIDIDA */
+
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    header {
+        position: absolute;
+        top: -20%;
+        left: 0;
+        width: 100%;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .linea-hover:hover {
+        color: rgb(66, 135, 137);
+    }
+
+    .navegacion {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        margin-top: 5%;
+    }
+    
+    .logo {
+        font-size: 1em;
+        color:#00132d;
+        pointer-events: none;
+        margin-top: -1.2%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-right: auto;
+    }
+
+    .hamburguesa {
+        display: block;
+        margin-top: -2.5%;
+    }
+
+    /* .logo {
+        display: none;
+    } */
+
+    .navegacion {
+        display: none;
+        background-color: #00132d; /* Color de fondo predeterminado */
+        width: 0;
+        transition: width 0.3s ease; /* Agrega transición para suavizar el desplazamiento */
+    }
+
+    .navegacion.mostrar-menu {
+        display: flex;
+        width: 100%; /* Ancho completo cuando se muestra */
+    }
+
+    .navegacion a {
+        color: rgb(66, 135, 137);
+        transition: background-color 0.3s ease; /* Agrega transición para suavizar el cambio de color de fondo */
+    }
+
+    .navegacion a:hover {
+        background-color: rgba(66, 135, 137, 0.1);
+    }
 }
