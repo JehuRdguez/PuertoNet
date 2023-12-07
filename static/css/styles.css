@@ -1150,3 +1150,26 @@ margin-right: auto;
         background-color: rgba(66, 135, 137, 0.1);
     }
 }
+
+/*  CSS historia */
+.seccionhistoria {
+    position: relative;
+    margin-top: 5em;
+}
+.historia{
+    margin-bottom: 20px;
+    display: flex;
+    margin-right: 0%;
+    text-align: justify;
+}
+
+.imagenManzanillo{
+width: 15em;
+height: 10em;
+}
+.imagenLinea{
+    width: 56em;
+    height: 65em;
+    border-radius: 5%;
+    opacity: 90%;
+}
