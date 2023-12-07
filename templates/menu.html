@@ -34,9 +34,12 @@
                 <a href="{% url 'inicio' %}" class="linea-hover">Inicio</a>
                 <a href="{% url 'Cursos' %}" class="linea-hover">Cursos</a>
                 <a href="{% url 'Historia' %}" class="linea-hover">Historia</a>
-                <a href="#" class="linea-hover">Conócenos</a>
+                <a href="{% url 'Conocenos' %}" class="linea-hover">Conócenos</a>
             
                
+
+
+                {% if user.is_authenticated %}  
                     <a href="#" class="linea-hover" title="Iniciar sesión" id="navbarDropdownUserImage" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </a>
@@ -52,32 +55,21 @@
                         </h6>
                 
                         <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #e0e5ec;"></div>
-                
-                       
-                        {% if user.is_authenticated %}
                         <a class="dropdown-item" onclick="return AlertaSalir(event)" href="/logout">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-box-arrow-right me-2"></i>
                                 Cerrar sesión
                               </div>
                         </a>
-                        {% else %}
-                        <a class="dropdown-item" href="/accounts/login/">
-                            <div class="d-flex align-items-center">
-                             <i class="bi bi-box-arrow-in-right  me-2"></i>
-                             Iniciar sesión
-                         </div>
-                         </a>
-                         <a class="dropdown-item" href="/accounts/signup/">
-                            <div class="d-flex align-items-center">
-                             <i class="bi bi-person-plus  me-2"></i>
-                             Registrarse 
-                         </div>
-                         </a>
 
 
-                         {% endif %}
+
                     </div>
+
+                    {% else %}
+                    <a href="/accounts/login/" class="linea-hover"><i class="fa-solid fa-user"></i></a>
+                    {% endif %}
+
              
             </nav>
             
