@@ -15,4 +15,6 @@ urlpatterns = [
     path('logout/', views.signout, name='logout'),
     path('play-video/<str:vid_id>/', play_video.as_view(), name='play-video'),
     path('reply-comment/<str:vid_id>/<int:comment_id>/', ReplyComment.as_view(), name='reply-comment'),
+    path('conocenos/', views.conocenos, name='Conocenos'),
+    path('ComentarioPagina/', views.comentarioPagina, name='ComentarioPagina'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

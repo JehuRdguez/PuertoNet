@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
-from .models import Comment
+from .models import Comment, ComentariosPagina
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -14,8 +14,9 @@ from django.urls import reverse
 from itertools import chain
 
 class inicio(View):
-    def get(self, request):
-        return render(request, 'inicio.html')
+   def get(self, request):
+        comentarios = ComentariosPagina.objects.all()
+        return render(request, 'inicio.html', {'comentarios': comentarios})
     
 class historia(View):
     def get(self, request):
@@ -172,3 +173,16 @@ def signup(request):
         form = CustomUserCreationForm()
 
     return render(request, 'account/signup.html', {'form': form})
+
+def conocenos(request):
+    context = {}
+    return render(request, 'conocenos.html', context)
+
+def comentarioPagina(request):
+    if request.method == 'POST':
+        comentarioTexto = request.POST.get('comentarioTexto', '')
+        if comentarioTexto:
+            comentario = ComentariosPagina.objects.create(user=request.user, text=comentarioTexto)
+            messages.success(request, '¡Gracias por comentar!')
+            return redirect('/')
+ 
