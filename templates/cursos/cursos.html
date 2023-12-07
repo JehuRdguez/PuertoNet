@@ -5,11 +5,12 @@
 {% block content %}
 
 <section class="seccionCursos">
+    <!-- style="margin-bottom: 15%;" -->
     <div class="container text-center">
         <div class="row">
             <div class="col-2">
             </div>
-            <div class="col-8">
+            <div class="col-8" style="margin-top: 5em;">
                 <h1>CURSOS</h1>
             </div>
             <br>
@@ -39,11 +40,20 @@
                 
                     <button class="Restablecer">Restablecer</button>
                 </div>
-                
-                <div class="search-section" style="display: flex; justify-content: flex-end;">
+                <!-- test -->
+                <div class="input-group">
+                    <div class="form-outline" data-mdb-input-init>
+                    <input type="search" id="form1" class="form-control" />
+                    <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                    <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <!-- <div class="search-section" style="display: flex; justify-content: flex-end;">
                     <input type="text" id="search-input" placeholder="Buscar..." class="form-control" style="width: 60%;">
                     <button id="search-button" class="search-button btn btn-primary" style="width: 15%;">&#128269;</button>
-                </div>
+                </div> -->
                 
             </div>
             <br>
@@ -86,6 +96,12 @@
         </div>
 </section>
 
+<script>
+    import { Input, Ripple, initMDB } from "mdb-ui-kit";
+
+initMDB({ Input, Ripple });
+
+</script>
 
 {% include '../footer.html' %}
 

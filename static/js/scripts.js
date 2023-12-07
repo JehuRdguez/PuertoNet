@@ -1,3 +1,4 @@
+
 // Efecto parallax
 let titulo = document.getElementById('titulo');
 let logoTitulo = document.getElementById('logoImg');
@@ -201,3 +202,4 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.video-container').empty().append(videos);
     }*/
 });
+

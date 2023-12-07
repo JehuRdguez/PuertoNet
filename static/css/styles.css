@@ -138,8 +138,8 @@ header {
     width: 0;
     height: 100%;
     background-color: #00132d;
-    z-index: 1; /* Asegura que la barra esté detrás de las opciones del menú */
-    transition: width 0.3s ease-out; /* Agrega transición para un efecto suave */
+    z-index: 1; 
+    transition: width 0.3s ease-out;
 }
 
 .hamburguesa {
@@ -162,11 +162,11 @@ header {
 
 .barra-fondo-menu.mostrar-fondo {
     width: 100%;
-    background-color: #00132d; /* Cambia el color de fondo y la opacidad cuando el menú está activo */
+    background-color: #00132d;
 }
 
 .navegacion.mostrar-menu a {
-    margin-bottom: 30px; /* Ajusta el espacio entre elementos según sea necesario */
+    margin-bottom: 30px;
 }
 
                                                 /* Efecto parallax */
@@ -269,8 +269,10 @@ header {
 }
 
 .seccionCursos {
-    position: relative;
-    margin-top: 5em;
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .tarjeta-container {
