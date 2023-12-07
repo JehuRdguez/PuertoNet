@@ -201,3 +201,18 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.video-container').empty().append(videos);
     }*/
 });
+
+
+var mostrarAlert = document.querySelectorAll('.mostrarAlerta');
+
+mostrarAlert.forEach(function(mostrarAlert) {
+  mostrarAlert.addEventListener('click', function() {
+    var contenido = document.getElementById('AlertaInicioSesion');
+    contenido.style.display = (contenido.style.display === 'none' || contenido.style.display === '') ? 'block' : 'none';
+    var elementosInicioForzado = document.querySelectorAll('.inicioForzado');
+    elementosInicioForzado.forEach(function(elemento) {
+      elemento.style.display = 'none';
+    });
+});
+
+});

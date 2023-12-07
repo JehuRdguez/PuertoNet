@@ -92,17 +92,33 @@
             <div class="col-md-6 order-md-2">
                 <h2 class="titulo_comentarios" style="margin-top: 5%;">Nos importa tu opinión</h2>
                 <p class="texto_comentarios">A medida que exploras nuestro contenido, nos interesa saber lo que piensas. Comparte tu opinión sobre PuertoNet y echa un vistazo a los comentarios de otros usuarios.</p>
-                <div class="comentario-formulario">
+                
+                             
+                    {% if user.is_authenticated %}  
                     <form  method="post"  action="{% url 'ComentarioPagina' %}">
                         {% csrf_token %}
+                        <div class="comentario-formulario">
                         <textarea id="comentarioTexto" name="comentarioTexto" class="comentario-texto" placeholder="Escribe tu comentario aquí"></textarea>
+                       
                         <button class="comentario-boton">Comentar</button>
+                    </div>
                     </form>
-
+                    {% else %}
+                    <div class="comentario-formulario">
+                    <textarea class="comentario-texto inicioForzado" placeholder="Escribe tu comentario aquí"></textarea>
+                    <button id="mostrarAlerta" class="mostrarAlerta comentario-boton inicioForzado">Comentar</button>
+                    <div class="alert alert-light AlertaInicioSesion" id="AlertaInicioSesion" name="AlertaInicioSesion" style="display: none;" role="alert">
+                        <h6>Se requiere iniciar sesión para realizar comentarios.</h6>
+                    </div>
                 </div>
+                    
+                  
+                    {% endif %}
+                
             </div>
 
             <div class="col-md-6 order-md-1">
+              
                 <div class="card-container">
                     {% for comentario in comentarios %}
                         <div class="card mb-3">
@@ -112,6 +128,7 @@
                         </div>
                     {% endfor %}
                 </div>
+
             </div>
 
         </div>
@@ -165,17 +182,17 @@
     {% if messages%} 
     {% for message in messages %}
     {% if message.tags == "success" %}
-    <div id="box" class="alert alert-success alert-dismissible fade show shadow custom-messages fixed-bottom ">
+    <div id="box" class="alert alerta alert-success alert-dismissible fade show shadow custom-messages fixed-bottom ">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong class="text-dark">{{ message }}</strong>
     </div>
     {% elif message.tags == "error" %}
-    <div id="box" class="alert alert-danger alert-dismissible fade show shadow custom-messages fixed-bottom ">
+    <div id="box" class="alert alerta alert-danger alert-dismissible fade show shadow custom-messages fixed-bottom ">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong class="text-dark">{{ message }}</strong>
     </div>
     {% else %}
-    <div id="box" class="alert alert-warning  alert-dismissible fade show shadow custom-messages fixed-bottom ">
+    <div id="box" class="alert alerta alert-warning  alert-dismissible fade show shadow custom-messages fixed-bottom ">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong class="text-dark">{{ message }}</strong>
     </div>
@@ -186,7 +203,7 @@
 
 <script> 
     window.setTimeout(function () {
-      $(".alert").fadeTo(500, 0).slideUp(500, function () {
+      $(".alerta").fadeTo(500, 0).slideUp(500, function () {
         $(this).remove();
       });
     }, 2000);
