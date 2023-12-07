@@ -81,7 +81,7 @@ header {
     z-index: 2;
 }
 
-.navegacion a {
+.navegacion a.linea-hover {
     margin-top: -1.45em;
 }
 
@@ -580,9 +580,9 @@ header {
 
                                                 /* Elementos extra */
 
-.dropdown-item {
+/* .dropdown-item {
     margin-top: 0.5em !important;
-}
+} */
 
 .transicion_azul_blanco {
     height: 20px;
