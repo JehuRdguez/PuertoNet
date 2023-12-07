@@ -581,7 +581,7 @@ header {
                                                 /* Elementos extra */
 
 .dropdown-item {
-    margin-top: 5% !important;
+    margin-top: 0.5em !important;
 }
 
 .transicion_azul_blanco {
