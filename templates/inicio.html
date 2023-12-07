@@ -65,10 +65,10 @@
 <section class="background_container">
 <section class="cursos_seccion">
     <div class="container">
-        <div class="row" style="margin-top: 10%;">
+        <div class="row" style="margin-top: 8%;">
             <div class="col-md-6 cursos_info">
-                <h2 style="margin-top: 20%;">Sumérgete con nosotros</h2>
-                <p style="margin-bottom: 20%;">Creemos que el nivel y la edad no son un impedimento para comenzar a aprender, por ello, contamos con diferentes categorías.</p>
+                <h2 style="margin-top: 16%;">Sumérgete con nosotros</h2>
+                <p style="margin-bottom: 10%;">Creemos que el nivel y la edad no son un impedimento para comenzar a aprender, por ello, contamos con diferentes categorías.</p>
             </div>
             <div class="col-md-6 cursos_niveles">
                 <div class="niveles" style="background-image: url('../static/assets/img/inicio/general5.jpg'); background-size: cover; background-position: center;">
@@ -86,88 +86,50 @@
 </section>
 
 <section class="comentarios">
-    <h2 class="titulo_comentarios"  style="margin-top: 5%;">Nos importa tu opinión</h2>
+    <div class="container" style="margin-bottom: 15%;">
+        <div class="row" style="margin-top: 5%;">
 
-    <p class="texto_comentarios">A medida que exploras nuestro contenido, nos interesa saber lo que piensas. Comparte tu opinión sobre PuertoNet y echa un vistazo a los comentarios de otros usuarios.</p>
-    <!-- <p class="texto_comentarios">Y descubre lo que opinan otros usuarios.</p> -->
-
-    <div class="comentario-formulario">
-        <textarea class="comentario-texto" placeholder="Escribe tu comentario aquí"></textarea>
-        <button class="comentario-boton">Comentar</button>
-    </div><br><br>
-
-    <!-- <h2 style="color: azure;">Comentarios</h2> -->
-    <div class="comentarios-carrusel">
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 1">
-                <h3>John Doe</h3>
+            <div class="col-md-6 order-md-2">
+                <h2 class="titulo_comentarios" style="margin-top: 5%;">Nos importa tu opinión</h2>
+                <p class="texto_comentarios">A medida que exploras nuestro contenido, nos interesa saber lo que piensas. Comparte tu opinión sobre PuertoNet y echa un vistazo a los comentarios de otros usuarios.</p>
+                <div class="comentario-formulario">
+                    <textarea class="comentario-texto" placeholder="Escribe tu comentario aquí"></textarea>
+                    <button class="comentario-boton">Comentar</button>
+                </div>
             </div>
-            <div class="contenido-comentario">
-                <p>¡Excelente sitio web! Aprendí mucho sobre el puerto. ¡Los cursos son geniales!</p>
+
+            <div class="col-md-6 order-md-1">
+                <div class="card-container">
+                    <div class="card mb-3">
+                        <img src="static\assets\img\inicio\user.png" class="card-img-top mx-auto">
+                        <h3 class="text-center">Jane Smith</h3>
+                        <p>Aprecio la utilidad de los recursos visuales en la aplicación, hacen que el aprendizaje sea más efectivo. ¡Gracias por compartirlos!</p>
+                    </div>
+
+                    <div class="card mb-3">
+                        <img src="static\assets\img\inicio\user.png" class="card-img-top mx-auto">
+                        <h3 class="text-center">Robert Johnson</h3>
+                        <p>Este sitio no solo me proporcionó información valiosa sobre logística en el puerto de Manzanillo, sino que también enriqueció mi comprensión de su historia de manera clara y concisa.</p>
+                    </div>
+
+                    <div class="card">
+                        <img src="static\assets\img\inicio\user.png" class="card-img-top mx-auto">
+                        <h3 class="text-center">Linda Wilson</h3>
+                        <p>El sitio es excelente para aprender, con cursos variados y de calidad que han mejorado significativamente mi conocimiento en logística.</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 2">
-                <h3>Jane Smith</h3>
-            </div>
-            <div class="contenido-comentario">
-                <p>Los recursos visuales son muy útiles. ¡Gracias por compartirlos!</p>
-            </div>
-        </div>
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 3">
-                <h3>Robert Johnson</h3>
-            </div>
-            <div class="contenido-comentario">
-                <p>Este sitio me ayudó a entender mejor la historia del puerto. Muy informativo.</p>
-            </div>
-        </div>
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 4">
-                <h3>Linda Wilson</h3>
-            </div>
-            <div class="contenido-comentario">
-                <p>¡Gran sitio para aprender! Los cursos online son variados y de calidad.</p>
-            </div>
-        </div>
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 5">
-                <h3>Michael Brown</h3>
-            </div>
-            <div class="contenido-comentario">
-                <p>Excelente contenido y recursos para explorar. Aprendí mucho aquí.</p>
-            </div>
-        </div>
-
-        <div class="comentario-tarjeta">
-            <div class="avatar">
-                <img src="{% static 'assets/img/inicio/user.png' %}" alt="Usuario 6">
-                <h3>Mary Davis</h3>
-            </div>
-            <div class="contenido-comentario">
-                <p>Un sitio web muy completo. Los cursos y la información histórica son sobresalientes.</p>
-            </div>
-        </div>
-        
     </div>
-
 </section>
+
+
 </section>
 
 <!-- <div class="transicion_blanco_azul"></div> -->
 
-<section class="footer">
-    <div style="margin-left: 4%;" class="container">
+<section class="footer d-flex align-items-center justify-content-center">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <h3>Contacto</h3>
@@ -203,4 +165,5 @@
         </div>
     </div>
 </section>
+
 {% endblock %}
