@@ -16,7 +16,8 @@ from itertools import chain
 class inicio(View):
    def get(self, request):
         comentarios = ComentariosPagina.objects.all()
-        return render(request, 'inicio.html', {'comentarios': comentarios})
+        YaHaComentado = request.session.pop('YaHaComentado', False)
+        return render(request, 'inicio.html', {'comentarios': comentarios,'YaHaComentado': YaHaComentado})
     
 class historia(View):
     def get(self, request):
@@ -167,7 +168,6 @@ def signup(request):
                 authenticated_user = authenticate(request, username=username, password=form.cleaned_data['password1'])
                 login(request, authenticated_user)
                 
-                messages.success(request, 'Inicio de sesión exitoso')
                 return redirect('/')
     else:
         form = CustomUserCreationForm()
@@ -178,11 +178,25 @@ def conocenos(request):
     context = {}
     return render(request, 'conocenos.html', context)
 
+
+
+
 def comentarioPagina(request):
+    if ComentariosPagina.objects.filter(user=request.user).exists():
+        request.session['YaHaComentado'] = True
+        return redirect('/')
+
     if request.method == 'POST':
         comentarioTexto = request.POST.get('comentarioTexto', '')
-        if comentarioTexto:
+        if comentarioTexto and len(comentarioTexto) <= 220:
             comentario = ComentariosPagina.objects.create(user=request.user, text=comentarioTexto)
             messages.success(request, '¡Gracias por comentar!')
             return redirect('/')
+        elif not comentarioTexto:
+            messages.error(request, 'El comentario no puede estar vacío.')
+        else:
+            messages.error(request, 'El comentario no puede tener más de 220 caracteres.')
+
+    return redirect('/')
+
  
