@@ -17,6 +17,10 @@ class inicio(View):
     def get(self, request):
         return render(request, 'inicio.html')
     
+class historia(View):
+    def get(self, request):
+        return render(request, 'historia/historia.html')
+    
 class cursos(View):
     def get(self, request):
         videos = YouTube().get_data()
