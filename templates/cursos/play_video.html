@@ -8,10 +8,10 @@
 
 {% block content %}
   <section class="EspacioVideos">
-    <div class="container px-lg-4 px-sm-2">
-      <div class="mt-n10">
-        <div class="row">
-          <nav aria-label="breadcrumb">
+    <div class="container px-lg-4 px-sm-2" >
+      <div class="mt-n10" >
+        <div class="row" >
+          <nav aria-label="breadcrumb" style="margin-top: 5em; margin-bottom:-1em; margin-left: 0.9em;">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
                 <a href="{% url 'Cursos' %}" style="color: #333B45;">Cursos</a>
@@ -23,10 +23,10 @@
 
 
 
-          
-          <div class="col-md-6 cursos_info">
+          <!-- elemento 1 -->
+          <div class="col-md-9 cursos_info" >
             <div class="mt-4">
-              <h1 class="display-6 fw-bold mt-4"><i data-feather="globe" class="icon-lg"></i> &nbsp;{{ vid_data.title }}</h1>
+              <h1 class="display-6 fw-bold mt-4" style="color: black;"><i data-feather="globe" class="icon-lg"></i> &nbsp;{{ vid_data.title }}</h1>
             </div>
             <div class="VideoMuestra">{{ vid_data.iframe|safe }}</div>
             
@@ -34,14 +34,15 @@
           </div>
         
       
-        
-          <div class="col-md-6 videosExtras" >
-            <h1>Más contenido...</h1>
+        <!-- elemento 2 -->
+          <div class="col-md-3 videosExtras">
+              <h3>Más contenido...</h3>
+
             <div class="scrollmasContenido">
               {% for v in videos %}
                   {% if v.id != vid_data.id %}
                       <br />
-                      <div class="gallery2">
+                      <div class="gallery2" style="color: black;">
                           <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2">
                               <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2" />
                           </a>
@@ -52,9 +53,10 @@
                   {% endif %}
               {% endfor %}
           </div>
-        </div>
         
         </div>
+      </div>
+
       </div>
 
 
