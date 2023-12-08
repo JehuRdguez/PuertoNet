@@ -549,6 +549,7 @@ header {
     position: relative;
     background: #00132d;
     padding: 100px;
+    /* background-image: url('../assets/img/inicio/difuminadoAzul.png'); */
 }
 
 .footer h3 {
@@ -622,21 +623,28 @@ header {
     border-color: transparent;
     border-radius: 5%;
 }
-.form-select-cursos{
+.form-select{
     margin-right: 5%;
 }
 .Restablecer{
-    width: 20%;
+    width: 40%;
+    color: #333;
+    height: 60%;
+    margin-top: 1em;
+    padding-top: 1%;
+    padding-bottom: 1%;
     background-color: transparent;
+    box-shadow: none;
     border-color: transparent;
+    transition: 0.3s all;
 }
 
 .Restablecer:hover{
     background-color: #428789;
     color: white;
     border-color: transparent;
-    border-radius: 5%;
-    width: 21.4%;
+    border-radius: 1em;
+    /* width: 21.4%; */
 }
 
 .filtros {
@@ -657,11 +665,11 @@ header {
     margin-right: 5px; 
   }
   
-  .Restablecer,
+  /* .Restablecer,
   .search-section {
     display: flex;
     align-items: center;
-  }
+  } */
 
 .video-thumbnail {
     width: 20%;
