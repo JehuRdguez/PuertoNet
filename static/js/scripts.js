@@ -116,8 +116,15 @@ window.addEventListener('resize', () => {
 
 document.addEventListener('DOMContentLoaded', function () {
     // Verifica si la URL actual contiene "cursos.html"
-    // Tu código AJAX aquí
 
+    //restablecer
+    $('.Restablecer').click(function (event) {
+        event.preventDefault(); // Evita que el enlace redireccione directamente
+        location.href = "Cursos"
+
+    });
+
+    // Tu código AJAX aquí
     $(document).ready(function () {
         // Función para realizar la búsqueda
         function realizarBusqueda() {
@@ -143,26 +150,56 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Captura el cambio en el filtro de categorías
-        $('#filtro-categorias').change(function () {
-            var selectedCategoria = $(this).val();
+        // Obtiene la categoría de la URL
+        var categoriaEnUrl = obtenerCategoriaDeUrl();
 
-            // Oculta todos los videos
-            $('.video-item').hide();
+        // Si hay una categoría en la URL, establece el valor del select y activa el filtrado
+        if (categoriaEnUrl) {
+            $('#filtro-categorias').val(categoriaEnUrl);
 
-            // Muestra los videos que tienen la categoría seleccionada o todos si es "Todos"
-            if (selectedCategoria === 'Todos') {
-                $('.video-item').show();
-            } else {
-                // Itera sobre los elementos y muestra aquellos que tienen la categoría seleccionada
-                $('.video-item').each(function () {
-                    var categoriasVideo = $(this).data('categorias');
+            // Aquí puedes agregar la lógica de filtrado directamente o activar el evento 'change'
+            // dependiendo de cómo estés manejando el filtro en tu código actual
+            $('#filtro-categorias').trigger('change');
+        }
 
-                    if (categoriasVideo.includes(selectedCategoria)) {
-                        $(this).show();
-                    }
-                });
-            }
+        // Maneja clics en los enlaces de categoría
+        $('.filtro-link').click(function (event) {
+            event.preventDefault(); // Evita que el enlace redireccione directamente
+
+            var categoria = $(this).data('categoria');
+            window.location.href = $(this).attr('href'); // Redirige a la URL del enlace
+
+            // Aquí puedes ajustar la lógica según tus necesidades, como activar el filtrado directamente
+            // o realizar otras acciones antes de la redirección
         });
+        });
+
+        function obtenerCategoriaDeUrl() {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('categoria');
+        }
+
+        // Resto de tu código de filtrado AJAX
+        $('#filtro-categorias').change(function () {
+        var selectedCategoria = $(this).val();
+
+        // Oculta todos los videos
+        $('.video-item').hide();
+
+        // Muestra los videos que tienen la categoría seleccionada o todos si es "Todos"
+        if (selectedCategoria === 'Todos') {
+            $('.video-item').show();
+        } else {
+            // Itera sobre los elementos y muestra aquellos que tienen la categoría seleccionada
+            $('.video-item').each(function () {
+                var categoriasVideo = $(this).data('categorias');
+
+                if (categoriasVideo.includes(selectedCategoria)) {
+                    $(this).show();
+                }
+            });
+        }
+
 
         // Captura el cambio en el filtro de orden
         $('#ordenar-por').change(function () {
@@ -217,3 +254,41 @@ mostrarAlert.forEach(function(mostrarAlert) {
 });
 
 });
+
+
+var currentPage = 1;
+var commentsPerPage = 3;
+var comments = document.querySelectorAll('.card');
+
+function showPage(page) {
+    var startIndex = (page - 1) * commentsPerPage;
+    var endIndex = startIndex + commentsPerPage;
+
+    comments.forEach(function (comment, index) {
+        comment.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+    });
+
+    // Elimina la clase 'active' de todos los círculos
+    document.querySelectorAll('.page').forEach(function (circle) {
+        circle.classList.remove('active');
+    });
+
+    // Añade la clase 'active' al círculo actual
+    document.querySelector('.page:nth-child(' + page + ')').classList.add('active');
+}
+
+function changePage(action) {
+    if (action === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (action === 'next' && currentPage < Math.ceil(comments.length / commentsPerPage)) {
+        currentPage++;
+    } else if (typeof action === 'number') {
+        currentPage = action;
+    }
+
+    showPage(currentPage);
+}
+
+// Mostrar la primera página al cargar la página
+showPage(currentPage);
+

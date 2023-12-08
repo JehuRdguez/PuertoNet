@@ -10,10 +10,10 @@
             <div class="col-md-3 col-sm-6">
                 <h3>Contenido</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Cursos</a></li>
+                    <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                    <li><a href="{% url 'Cursos' %}">Cursos</a></li>
                     <li><a href="#">Recursos</a></li>
-                    <li><a href="#">Historia</a></li>
+                    <li><a href="{% url 'Historia' %}">Historia</a></li>
                     <li><a href="#">Comentarios</a></li>
                 </ul>
             </div>
@@ -28,8 +28,8 @@
             <div class="col-md-3 col-sm-6">
                 <h3>Privacidad</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Aviso de Privacidad</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="{% url 'AvisoDePrivacidad' %}">Aviso de Privacidad</a></li>
+                    <li><a href="{% url 'TerminosYcondiciones' %}">Términos y Condiciones</a></li>
                 </ul>
             </div>
         </div>

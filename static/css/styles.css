@@ -353,6 +353,7 @@ header {
    }
    
    .card img {
+    display: flex;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -719,7 +720,7 @@ margin-right: auto;
 }
 
 .video-thumbnail2 {
-    max-width: 60%;  /* Ajusta el tamaño máximo de la miniatura al 100% del contenedor */
+    max-width: 50%;  /* Ajusta el tamaño máximo de la miniatura al 100% del contenedor */
     height: auto;
 }
 
@@ -735,11 +736,18 @@ margin-right: auto;
 .gallery2 {
     margin-bottom: 20px;
     display: flex;
-    width: 50%;  /* Establece el ancho del contenedor al 50% del contenedor padre */
+    width: 100%;  /* Establece el ancho del contenedor al 50% del contenedor padre */
     margin-bottom: 10px;  /* Ajusta el margen entre los videos */
+
 }
-
-
+.scrollmasContenido{
+    overflow-y: auto;
+    max-height: 400px;
+}
+.scrollMaterialComplementario{
+    overflow-y: auto;
+    max-height: 300px;
+}
 .acciones-button {
     background-color: #428789;
     color: white;
@@ -1153,6 +1161,7 @@ margin-right: auto;
     }
 }
 
+
 /*  CSS historia */
 .seccionhistoria {
     position: relative;
@@ -1197,4 +1206,89 @@ height: 10em;
 .custom-messages {
     width: 350px;
     left: 72%;
+}
+/* CSS Aviso de privacidad */
+.seccionprivacidad {
+    margin-top: 5em;
+    position: relative;
+}
+.aviso{
+    margin-bottom: 20px;
+    display: flex;
+    margin-right: 0%;
+    text-align: justify;
+}
+.avisoyprivacidad{
+    background-color: #F0F8FF;
+    opacity: 80%;
+    border-radius: 2%;
+}
+.textoaviso{
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+}
+/* CSS Terminos y condiciones */
+.seccionterminos {
+    margin-top: 5em;
+    position: relative;
+}
+.termino{
+    margin-bottom: 20px;
+    display: flex;
+    margin-right: 0%;
+    text-align: justify;
+}
+.terminosycondiciones{
+    background-color: #F0F8FF;
+    opacity: 80%;
+    border-radius: 2%;
+}
+.textoterminos{
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+}
+
+
+/* Comentarios inicio */
+.paginationinicio {
+    padding-top: 0.3em;
+    text-align: center;
+    align-items: center;
+}
+.divpagina{
+    padding-top: 0.3em;
+    background-color: #00132d;
+    height: 2em;
+    width: 10em;    display: inline-block;
+
+}
+.paginationinicio span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #E0E0E0; /* Color de fondo de los círculos */
+    color: #333333; /* Color del texto dentro de los círculos */
+}
+
+.paginationinicio span:hover {
+    background-color: #888888; /* Color de fondo cuando se pasa el ratón sobre los círculos */
+    color: #FFFFFF; /* Cambia el color del texto al pasar el ratón sobre los círculos */
+}
+
+.paginationinicio .arrow {
+    font-weight: bold;
+    background-color: transparent; /* Fondo transparente para las flechas */
+    color: #ffffff; /* Color del texto de las flechas */
+}
+
+.paginationinicio .arrow:hover {
+    background-color: transparent; /* Fondo transparente cuando se pasa el ratón sobre las flechas */
+    color: #888888; /* Cambia el color del texto al pasar el ratón sobre las flechas */
 }

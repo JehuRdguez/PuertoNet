@@ -23,6 +23,14 @@ class historia(View):
     def get(self, request):
         return render(request, 'historia/historia.html')
     
+class avisoprivacidad(View):
+    def get(self, request):
+        return render(request, 'avisoprivacidad/avisoprivacidad.html')
+    
+class terminoscondiciones(View):
+    def get(self, request):
+        return render(request, 'terminos/terminos_condiciones.html')   
+    
 class cursos(View):
     def get(self, request):
         videos = YouTube().get_data()

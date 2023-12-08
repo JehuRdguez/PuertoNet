@@ -35,20 +35,25 @@
         
       
         
-          <div class="col-md-6 videosExtras">
+          <div class="col-md-6 videosExtras" >
             <h1>Más contenido...</h1>
-            {% for v in videos %}
-              {% if v.id != vid_data.id %}
-                <br />
-                <div class="gallery2">
-                  <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2"><img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2" /></a>
-                  <div class="text-container2">
-                    <div class="video-title2">{{ v.title }}</div>
-                  </div>
-                </div>
-              {% endif %}
-            {% endfor %}
+            <div class="scrollmasContenido">
+              {% for v in videos %}
+                  {% if v.id != vid_data.id %}
+                      <br />
+                      <div class="gallery2">
+                          <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2">
+                              <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2" />
+                          </a>
+                          <div class="text-container2">
+                              <div class="video-title2">{{ v.title }}</div>
+                          </div>
+                      </div>
+                  {% endif %}
+              {% endfor %}
           </div>
+        </div>
+        
         </div>
       </div>
 
@@ -213,7 +218,24 @@
         </div>
     
         <div class="tab-pane fade p-3" id="nav-material" role="tabpanel" aria-labelledby="nav-material-tab">
-           <h6>El autor recomienda el siguiente contenido para entender más sobre el tema:</h6>
+            <h6>El autor recomienda el siguiente contenido para entender más sobre el tema:</h6>
+            <div class="scrollMaterialComplementario">
+              {% for v in videos %}
+                {% if v.id != vid_data.id %}
+                    {% if v.categoria == vid_data.categoria %}
+                      <a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
+                        <div class="gallery">
+                            <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail">
+                            <div class="text-container">
+                                <div class="video-title">{{ v.title }}</div>
+                                <div class="video-description">{{ v.description }}</div>
+                            </div>
+                        </div>
+                      </a>
+                    {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
         </div>
     </div>
     </div>
@@ -223,4 +245,3 @@
 {% endblock %}
 
 
-  

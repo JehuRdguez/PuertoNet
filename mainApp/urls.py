@@ -9,6 +9,8 @@ urlpatterns = [
     path('Inicio',inicio.as_view(),name='inicio'),
     path('Cursos',cursos.as_view(),name='Cursos'),
     path('Historia',historia.as_view(),name='Historia'),
+    path('AvisoDePrivacidad',avisoprivacidad.as_view(),name='AvisoDePrivacidad'),
+    path('TerminosYcondiciones',terminoscondiciones.as_view(),name='TerminosYcondiciones'),
 	# path('play-video', views.play_video, name="play-video"),
     path('accounts/',include ('allauth.urls')),
     path('signup/', views.signup, name='signup'),

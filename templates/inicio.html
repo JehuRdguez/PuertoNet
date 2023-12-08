@@ -65,15 +65,24 @@
             <p style="margin-bottom: 10%;">Creemos que el nivel y la edad no son un impedimento para comenzar a aprender, por ello, contamos con diferentes categorías.</p>
           </div>
           <div class="col-md-6 cursos_niveles">
-            <div class="niveles" style="background-image: url('../static/assets/img/inicio/general5.jpg'); background-size: cover; background-position: center;">
-              <h3>General</h3>
-            </div>
-            <div class="niveles" style="background-image: url('../static/assets/img/inicio/principiante.jpg'); background-size: cover; background-position: center;">
-              <h3>Principiante</h3>
-            </div>
-            <div class="niveles" style="background-image: url('../static/assets/img/inicio/kids2.jpg'); background-size: cover; background-position: center;">
-              <h3>Kids</h3>
-            </div>
+            <a href="{% url 'Cursos' %}?categoria=General" class="filtro-link" data-categoria="General">
+              <div class="niveles" style="background-image: url('../static/assets/img/inicio/general5.jpg'); background-size: cover; background-position: center;">
+                <h3>General</h3>
+              </div>
+            </a>
+            
+            <a href="{% url 'Cursos' %}?categoria=Principiante" class="filtro-link" data-categoria="Principiante">
+              <div class="niveles" style="background-image: url('../static/assets/img/inicio/principiante.jpg'); background-size: cover; background-position: center;">
+                <h3>Principiante</h3>
+              </div>
+            </a>
+            
+            <a href="{% url 'Cursos' %}?categoria=Kids" class="filtro-link" data-categoria="Kids">
+              <div class="niveles" style="background-image: url('../static/assets/img/inicio/kids2.jpg'); background-size: cover; background-position: center;">
+                <h3>Kids</h3>
+              </div>
+            </a>
+            
           </div>
         </div>
       </div>
@@ -118,15 +127,27 @@
            
 
           <div class="col-md-6 order-md-1">
-            <div class="card-container">
+            <div id="comments-container" class="card-container">
               {% for comentario in comentarios %}
-                <div class="card mb-3">
-                  <img src="static/assets/img/inicio/user.png" class="card-img-top mx-auto" />
-                  <h3 class="text-center">{{ comentario.user.username }}</h3>
-                  <p>{{ comentario.text }}</p>
-                </div>
+                  <div class="card">
+                      <img src="static/assets/img/inicio/user.png" class="card-img-top mx-auto"/>
+                      <h3 class="text-center">{{ comentario.user.username }}</h3>
+                      <p>{{ comentario.text }}</p>
+                  </div>
               {% endfor %}
+          </div>
+          
+          <div id="pagination-container" class="paginationinicio">
+            <div class="divpagina">
+              <span class="arrow" onclick="changePage('prev')"><i class="fa-solid fa-chevron-left"></i></span>
+              <span class="page active" onclick="changePage(1)"></span>
+              <span class="page" onclick="changePage(2)"></span>
+              <!-- Agrega más círculos según sea necesario -->
+              <span class="arrow" onclick="changePage('next')"><i class="fa-solid fa-chevron-right"></i></span>
             </div>
+          </div>
+          
+            
           </div>
         </div>
       </div>
@@ -147,12 +168,12 @@
             <div class="col-md-3 col-sm-6">
                 <h3>Contenido</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Cursos</a></li>
-                    <li><a href="#">Recursos</a></li>
-                    <li><a href="#">Historia</a></li>
-                    <li><a href="#">Comentarios</a></li>
-                </ul>
+                  <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                  <li><a href="{% url 'Cursos' %}">Cursos</a></li>
+                  <li><a href="#">Recursos</a></li>
+                  <li><a href="{% url 'Historia' %}">Historia</a></li>
+                  <li><a href="#">Comentarios</a></li>
+              </ul>
             </div>
             <div class="col-md-3 col-sm-6">
                 <h3>Redes Sociales</h3>
@@ -165,9 +186,9 @@
             <div class="col-md-3 col-sm-6">
                 <h3>Privacidad</h3>
                 <ul class="list-unstyled">
-                    <li><a href="#">Aviso de Privacidad</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                </ul>
+                  <li><a href="{% url 'AvisoDePrivacidad' %}">Aviso de Privacidad</a></li>
+                  <li><a href="{% url 'TerminosYcondiciones' %}">Términos y Condiciones</a></li>
+              </ul>
             </div>
         </div>
     </div>
