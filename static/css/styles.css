@@ -1225,9 +1225,12 @@ height: auto;
     left: 72%;
 }
 /* CSS Aviso de privacidad */
+
 .seccionprivacidad {
-    margin-top: 5em;
-    position: relative;
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
 }
 .aviso{
     margin-bottom: 20px;
@@ -1247,9 +1250,12 @@ height: auto;
 }
 /* CSS Terminos y condiciones */
 .seccionterminos {
-    margin-top: 5em;
-    position: relative;
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
 }
+
 .termino{
     margin-bottom: 20px;
     display: flex;
