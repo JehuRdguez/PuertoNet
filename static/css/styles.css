@@ -31,6 +31,12 @@ header {
     align-items: center;
 }
 
+.breadcrumbAlineado {
+    margin-top: 5em; 
+    margin-bottom:-1em; 
+    margin-left: 0.9em;
+}
+
 .barra-superior {
     position: fixed;
     top: 0;
@@ -138,7 +144,7 @@ header {
     width: 0;
     height: 100%;
     background-color: #00132d;
-    z-index: 1; 
+    z-index: 2; 
     transition: width 0.3s ease-out;
 }
 
@@ -1468,6 +1474,10 @@ height: auto;
     }
 }
 @media screen and (max-width: 1400px) {
+
+    .breadcrumbAlineado {
+        margin-left: 0em;
+    }
 
     .filtros {
         flex-direction: column; 
