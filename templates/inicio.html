@@ -135,13 +135,12 @@
                       <p>{{ comentario.text }}</p>
                   </div>
               {% endfor %}
-          </div>
+            </div>
           
           <div id="pagination-container" class="paginationinicio">
-            <div class="divpagina">
+            <div class="divpagina" id="pagination-divpagina">
               <span class="arrow" onclick="changePage('prev')"><i class="fa-solid fa-chevron-left"></i></span>
               <span class="page active" onclick="changePage(1)"></span>
-              <span class="page" onclick="changePage(2)"></span>
               <!-- Agrega más círculos según sea necesario -->
               <span class="arrow" onclick="changePage('next')"><i class="fa-solid fa-chevron-right"></i></span>
             </div>
