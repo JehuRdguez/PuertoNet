@@ -80,28 +80,27 @@
             </div>
         {% endfor %}
         
+          
+        </div>
         <div class="pagination">
-            <span class="step-links">
-                {% if videos.has_previous %}
-                    <a href="?page=1">&laquo; Inicio</a>
-                    <a href="?page={{ videos.previous_page_number }}">Anterior</a>
-                {% endif %}
-        
-                <span class="current">
-                    Página {{ videos.number }} de {{ videos.paginator.num_pages }}.
-                </span>
-        
-                {% if videos.has_next %}
-                    <a href="?page={{ videos.next_page_number }}">siguiente</a>
-                    <a href="?page={{ videos.paginator.num_pages }}">Final &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-        
-            
-          <div class="col-2" style="margin-bottom: 15%;">
-          </div>
-        </div>
+          <span class="step-links linkspaginaciones">
+              {% if videos.has_previous %}
+                  <a href="?page={{ videos.previous_page_number }}" class="linkspaginaciones"><i class="fa-solid fa-chevron-left"></i></a>
+              {% endif %}
+      
+              <span class="current">
+                {% for page_number in rango %}
+                <a href="?page={{ page_number }}" class="linkspaginaciones">{{ page_number }}</a>
+                  {% endfor %}
+              
+
+              </span>
+      
+              {% if videos.has_next %}
+                  <a href="?page={{ videos.next_page_number }}" class="linkspaginaciones"><i class="fa-solid fa-chevron-right"></i></a>
+              {% endif %}
+          </span>
+      </div>
 </section>
 
 <script>

@@ -209,6 +209,59 @@ mostrarAlert.forEach(function(mostrarAlert) {
 });
 
 
+window.onload = function () {
+    var currentPage = 1;
+    var commentsPerPage = 3;
+    var comments = document.querySelectorAll('.card');
+
+    function showPage(page) {
+        var startIndex = (page - 1) * commentsPerPage;
+        var endIndex = startIndex + commentsPerPage;
+
+        comments.forEach(function (comment, index) {
+            comment.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+        });
+
+        // Elimina la clase 'active' de todos los círculos
+        document.querySelectorAll('.page').forEach(function (circle) {
+            circle.classList.remove('active');
+        });
+
+        // Añade la clase 'active' al círculo actual
+        document.querySelector('.page:nth-child(' + page + ')').classList.add('active');
+    }
+
+    function changePage(action) {
+        if (action === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (action === 'next' && currentPage < Math.ceil(comments.length / commentsPerPage)) {
+            currentPage++;
+        } else if (typeof action === 'number') {
+            currentPage = action;
+        }
+
+        showPage(currentPage);
+    }
+
+    function updatePagination() {
+        var totalPages = Math.ceil(comments.length / commentsPerPage);
+        var paginationContainer = document.getElementById('pagination-divpagina');
+        var paginationHTML = '<span class="arrow" onclick="changePage(\'prev\')"><i class="fa-solid fa-chevron-left"></i></span>';
+
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHTML += '<span class="page" onclick="changePage(' + i + ')"></span>';
+        }
+
+        paginationHTML += '<span class="arrow" onclick="changePage(\'next\')"><i class="fa-solid fa-chevron-right"></i></span>';
+
+        paginationContainer.innerHTML = paginationHTML;
+    }
+
+    // Actualizar la paginación al cargar la página
+    updatePagination();
+    // Mostrar la primera página al cargar la página
+    showPage(currentPage);
+};
 var currentPage = 1;
 var commentsPerPage = 3;
 var comments = document.querySelectorAll('.card');
@@ -240,7 +293,6 @@ function changePage(action) {
     }
 
     showPage(currentPage);
-    updatePagination();
 }
 
 function updatePagination() {
@@ -253,11 +305,12 @@ function updatePagination() {
     }
 
     paginationHTML += '<span class="arrow" onclick="changePage(\'next\')"><i class="fa-solid fa-chevron-right"></i></span>';
-    
+
     paginationContainer.innerHTML = paginationHTML;
 }
 
+// Actualizar la paginación al cargar la página
+updatePagination();
 // Mostrar la primera página al cargar la página
 showPage(currentPage);
-updatePagination();
 
