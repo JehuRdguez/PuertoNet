@@ -20,7 +20,7 @@
                   <div class="row">
                     <div class="col-md-3" style="margin-bottom: 1em;">
                       <div class="select-container">
-                        <div class="select-label">Ordenar por</div>
+                        <div class="select-label" style="text-align: left; margin-left: 0.2em;">Ordenar por</div>
                         <select id="ordenar-por" class="form-select custom-select">
                             <option value="AgregadosRecientemente" selected>Agregados recientemente</option>
                             <option value="Alfabeticamente">Orden A-Z</option>
@@ -31,7 +31,7 @@
                     <div class="col-md-4" style="margin-bottom: 1.8em;">
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="select-container">
-                          <div class="select-label">Filtrar por</div>
+                          <div class="select-label" style="text-align: left; margin-left: 0.2em;">Filtrar por</div>
                           <select id="filtro-categorias" class="form-select custom-select">
                               <option value="Todos" selected>Todos</option>
                               {% for categoria in unique_categories %}
