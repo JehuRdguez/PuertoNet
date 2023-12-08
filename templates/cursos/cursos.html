@@ -16,9 +16,10 @@
             <br>
 
             <div class="filtros row align-items-center" style="padding-left: 2.5em;">
-                <div class="col-md-9">
+                <div class="col-md-6">
                   <div class="row">
-                    <div class="col-md-3" style="margin-bottom: 1em;">
+                    <!-- elemento 1 -->
+                    <div class="col-md-6" style="margin-bottom: 1em;">
                       <div class="select-container">
                         <div class="select-label" style="text-align: left; margin-left: 0.2em;">Ordenar por</div>
                         <select id="ordenar-por" class="form-select custom-select">
@@ -27,8 +28,8 @@
                         </select>
                     </div>
                     </div>
-              
-                    <div class="col-md-4" style="margin-bottom: 1.8em;">
+              <!-- elemento 2 -->
+                    <div class="col-md-6" style="margin-bottom: 1.8em;">
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="select-container">
                           <div class="select-label" style="text-align: left; margin-left: 0.2em;">Filtrar por</div>
@@ -45,7 +46,7 @@
                     </div>
                   </div>
                 </div>
-              
+              <!-- elemento 3 -->
                 <div class="col-md-3" style="margin-bottom: 1em;">
                   <div class="input-group">
                     <div class="form-outline" data-mdb-input-init>
@@ -66,8 +67,8 @@
                     <button id="search-button" class="search-button btn btn-primary" style="width: 15%;">&#128269;</button>
                 </div> -->
             {% for v in videos %}
-            <div class="img-container video-item" data-categorias="{{ v.categoria }}">
-                <br><a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
+            <div class="img-container video-item" data-categorias="{{ v.categoria }}" >
+                <br><a href="{% url 'play-video' vid_id=v.id %}" class="video-link" >
                     <div class="gallery">
                         <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail">
                         <div class="text-container">

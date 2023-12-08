@@ -24,19 +24,17 @@
 
 
           <!-- elemento 1 -->
-          <div class="col-md-9 cursos_info" >
+          <div class="col-md-9 cursos_info centered-element" >
             <div class="mt-4">
               <h1 class="display-6 fw-bold mt-4" style="color: black;"><i data-feather="globe" class="icon-lg"></i> &nbsp;{{ vid_data.title }}</h1>
             </div>
             <div class="VideoMuestra">{{ vid_data.iframe|safe }}</div>
-            
-
           </div>
         
       
         <!-- elemento 2 -->
           <div class="col-md-3 videosExtras">
-              <h3>Más contenido...</h3>
+              <h3 class="tituloVideosExtras">Más contenido...</h3>
 
             <div class="scrollmasContenido">
               {% for v in videos %}
@@ -44,7 +42,7 @@
                   <br>
                   <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2">
                       <div class="gallery2">
-                          <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2">
+                          <img style="border-radius: 5px;" src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2">
                           <div class="text-container2">
                             <div class="video-title2">{{ v.title }}</div>
                         </div>
@@ -228,7 +226,7 @@
                       <a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
                         <div class="gallery">
                             <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail">
-                            <div class="text-container">
+                            <div class="text-container" >
                                 <div class="video-title">{{ v.title }}</div>
                                 <div class="video-description">{{ v.description }}</div>
                             </div>
@@ -242,6 +240,8 @@
     </div>
     </div>
   </section>
+
+{% include '../footer.html' %}
 
 
 {% endblock %}
