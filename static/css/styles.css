@@ -743,18 +743,19 @@ margin-right: auto;
 }
 
 .video-thumbnail2 {
-    max-width: 50%;  /* Ajusta el tamaño máximo de la miniatura al 100% del contenedor */
+    max-width: 35%;  /* Ajusta el tamaño máximo de la miniatura al 100% del contenedor */
     height: auto;
 }
 
 .text-container2 {
-    width: 40%;  /* Ajusta el ancho del contenedor de texto al 100% del contenedor padre */
+    width: 100%;  /* Ajusta el ancho del contenedor de texto al 100% del contenedor padre */
     margin-top: 5px;  /* Ajusta el margen entre la miniatura y el título */
+    margin-left: 0.3em;
 }
 
 .video-title2 {
-    text-align: left;  /* Alinea el título a la izquierda */
-    /* Otras propiedades de estilo según sea necesario */
+    text-decoration: none;
+    color: black
 }
 .gallery2 {
     margin-bottom: 20px;
