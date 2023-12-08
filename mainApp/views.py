@@ -30,7 +30,11 @@ class avisoprivacidad(View):
 class terminoscondiciones(View):
     def get(self, request):
         return render(request, 'terminos/terminos_condiciones.html')   
-    
+
+class soporte(View):
+    def get(self, request):
+        return render(request, 'soporte/soporte.html')  
+     
 class cursos(View):
     def get(self, request):
         videos = YouTube().get_data()
