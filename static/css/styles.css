@@ -1170,11 +1170,14 @@ margin-right: auto;
 }
 
 
-/*  CSS historia */
+
 .seccionhistoria {
-    position: relative;
-    margin-top: 5em;
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
 }
+
 .historia{
     margin-bottom: 20px;
     display: flex;
@@ -1195,9 +1198,13 @@ height: 10em;
 
 
 /* conócenos */
-.seccionConocenos{
-    position: relative;
-    margin-top: 5em; 
+
+
+.seccionConocenos {
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .cardConocenos {
