@@ -35,13 +35,13 @@ window.addEventListener('scroll', () => {
             barraSuperior.style.backgroundColor = '#00132d';
             opcionesMenu.forEach(opcion => opcion.classList.add('hover-activo'));
             logo.forEach(option => option.classList.add('barra-activa'));
-            logoImg.src = 'static/assets/img/logo/logo.png';
+            logoImg.src = '/static/assets/img/logo/logo.png';
             iconoHamburguesa.style.color = 'rgb(66, 135, 137)';
         } else {
             barraSuperior.style.backgroundColor = 'rgba(255, 255, 255, 0)';
             opcionesMenu.forEach(opcion => opcion.classList.remove('hover-activo'));
             logo.forEach(opcion => opcion.classList.remove('barra-activa'));
-            logoImg.src = 'static/assets/img/logo/logoAzul.png';
+            logoImg.src = '/static/assets/img/logo/logoAzul.png';
             iconoHamburguesa.style.color = '';
         }
     }
@@ -80,11 +80,11 @@ function toggleMenu() {
     if (navegacion.classList.contains('mostrar-menu')) {
         menuHamburguesa.style.color = 'rgb(66, 135, 137)';
         logo.forEach(option => option.classList.add('barra-activa'));
-        logoImg.src = 'static/assets/img/logo/logo.png';
+        logoImg.src = '/static/assets/img/logo/logo.png';
     } else if (value === 0) { 
         menuHamburguesa.style.color = '';
         logo.forEach(opcion => opcion.classList.remove('barra-activa'));
-        logoImg.src = 'static/assets/img/logo/logoAzul.png';
+        logoImg.src = '/static/assets/img/logo/logoAzul.png';
     }
 }
 
@@ -94,7 +94,7 @@ function closeMenu() {
     barraFondoMenu.classList.remove('mostrar-fondo');
     menuHamburguesa.style.color = '';
     logo.forEach(opcion => opcion.classList.remove('barra-activa'));
-    logoImg.src = 'static/assets/img/logo/logoAzul.png';
+    logoImg.src = '/static/assets/img/logo/logoAzul.png';
 }
 
 const menuHamburguesa = document.getElementById('menuHamburguesa');

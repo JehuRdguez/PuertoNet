@@ -187,8 +187,7 @@ def signup(request):
     return render(request, 'account/signup.html', {'form': form})
 
 def conocenos(request):
-    context = {}
-    return render(request, 'conocenos.html', context)
+    return render(request, 'conocenos/conocenos.html')
 
 
 
