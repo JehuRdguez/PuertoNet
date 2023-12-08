@@ -20,26 +20,25 @@
                   <div class="row">
                     <div class="col-md-3" style="margin-bottom: 1em;">
                       <div class="select-container">
-                        <div class="select-label text-start" style="color: black;">Ordenar por</div>
+                        <div class="select-label">Ordenar por</div>
                         <select id="ordenar-por" class="form-select custom-select">
-                          <option selected>Todos</option>
-                          <option value="AgregadosRecientemente">Agregados recientemente</option>
-                          <option value="Alfabeticamente">Orden A-Z</option>
+                            <option value="AgregadosRecientemente" selected>Agregados recientemente</option>
+                            <option value="Alfabeticamente">Orden A-Z</option>
                         </select>
-                      </div>
+                    </div>
                     </div>
               
                     <div class="col-md-4" style="margin-bottom: 1.8em;">
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="select-container">
-                          <div class="select-label text-start" style="color: black;">Filtrar por</div>
+                          <div class="select-label">Filtrar por</div>
                           <select id="filtro-categorias" class="form-select custom-select">
-                            <option selected>Todos</option>
-                            {% for categoria in unique_categories %}
-                            <option value="{{ categoria }}">{{ categoria }}</option>
-                            {% endfor %}
+                              <option value="Todos" selected>Todos</option>
+                              {% for categoria in unique_categories %}
+                                  <option value="{{ categoria }}">{{ categoria }}</option>
+                              {% endfor %}
                           </select>
-                        </div>
+                      </div>
               
                         <a class="Restablecer" href="{% url 'Cursos' %}">Restablecer</a>
                       </div>

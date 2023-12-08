@@ -46,7 +46,7 @@ class cursos(View):
         unique_categories = sorted(set(all_categories), key=all_categories.index)
 
         # Implementa la paginación
-        paginator = Paginator(videos, 10)  # Muestra 10 videos por página
+        paginator = Paginator(videos, 9)  # Muestra 10 videos por página
         page = request.GET.get('page', 1)
 
         try:
@@ -55,10 +55,30 @@ class cursos(View):
             videos_pagina = paginator.page(1)
         except EmptyPage:
             videos_pagina = paginator.page(paginator.num_pages)
-
+        
         context = {"videos": videos_pagina, "unique_categories": unique_categories}
         return render(request, 'cursos/cursos.html', context)
     
+def ordenar_videos(request):
+    opcion = request.GET.get('opcion', 'AgregadosRecientemente')
+    categoria = request.GET.get('categoria', 'Todos')
+
+    # Lógica de ordenación según la opción y la categoría
+    videos = Video.objects.all()
+
+    if categoria != 'Todos':
+        videos = videos.filter(categoria__nombre=categoria)
+
+    if opcion == 'AgregadosRecientemente':
+        videos = videos.order_by('-fecha_agregado')
+    elif opcion == 'Alfabeticamente':
+        videos = videos.order_by('titulo')
+
+    # Renderiza la lista de videos ordenada y devuélvela como JSON
+    data = render(request, 'cursos/lista_videos.html', {'videos': videos})
+    return JsonResponse({'html': data.content})
+
+
 def videos(request):
 
 	videos = YouTube().get_data()
