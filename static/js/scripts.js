@@ -51,11 +51,26 @@ window.addEventListener('scroll', () => {
 var iframe = document.querySelector('iframe');
 
 // Verificar si el iframe existe
-if (iframe) {
-    // Modificar el tamaño del iframe
-    iframe.width = 900;
-    iframe.height = 500;
+
+function ajustarTamanoIframe() {
+    var anchoVentana = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Ajustar el tamaño del iframe en función del ancho de la ventana
+    if (anchoVentana >= 768) { // Ajusta este valor según tus necesidades
+        iframe.width = 900;
+        iframe.height = 500;
+    } else {
+        // Puedes establecer diferentes dimensiones para pantallas más pequeñas
+        iframe.width = 380;
+        iframe.height = 310;
+    }
 }
+
+// Llamar a la función inicialmente
+ajustarTamanoIframe();
+
+// Vincular la función al evento de cambio de tamaño de ventana
+window.addEventListener('resize', ajustarTamanoIframe);
 
 
     var mostrarTextos = document.querySelectorAll('.mostrarTexto');
