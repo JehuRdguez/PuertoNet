@@ -728,6 +728,7 @@ margin-right: auto;
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
     background-size: cover;
     background-position: center;
+    padding-bottom: 3%;
 }
 
 
@@ -979,6 +980,36 @@ height: auto;
     object-fit: cover;
     margin-bottom: 10px;  
    }
+}
+
+                                                /* caja de comentarios de videos */
+
+.nav-tabs .nav-link.active {
+    background-color: #00132dda;
+    font-size: medium;
+    color: #ffffff; 
+    border-radius: 15px;
+    transition: 0.3s all;
+    box-shadow: none;
+    border: none;
+}
+
+.nav-tabs .nav-link {
+    background-color: #ffffffb0;
+    color: black; 
+    font-size: medium;
+    box-shadow: none;
+    border-radius: 10px;
+    transition: 0.3s all;
+}
+
+.tab-pane.fade.show.active {
+    background-color: #00132dda;
+    /* font-size: medium; */
+    color: #ffffff; 
+    border-radius: 15px;
+    box-shadow: none;
+    transition: 0.3s all;
 }
 
 /* @media screen and (max-width: 576px) {
