@@ -38,6 +38,8 @@ class soporte(View):
      
 class cursos(View):
     def get(self, request):
+        categoria = request.GET.get('categoria', None)
+
         videos = YouTube().get_data()
 
         # Ordena los videos por el título
@@ -50,7 +52,7 @@ class cursos(View):
         unique_categories = sorted(set(all_categories), key=all_categories.index)
 
         # Implementa la paginación
-        paginator = Paginator(videos, 9)  # Muestra 10 videos por página
+        paginator = Paginator(videos, 10)  # Muestra 10 videos por página
         page = request.GET.get('page', 1)
 
         try:
@@ -59,12 +61,13 @@ class cursos(View):
             videos_pagina = paginator.page(1)
         except EmptyPage:
             videos_pagina = paginator.page(paginator.num_pages)
-        
-        context = {"videos": videos_pagina, "unique_categories": unique_categories}
+        context = {"videos": videos_pagina, "unique_categories": unique_categories, "categoria_seleccionada": categoria, "rango": range(1, paginator.num_pages + 1)}
         return render(request, 'cursos/cursos.html', context)
     
 class cursosOrden(View):
     def get(self, request):
+        categoria = request.GET.get('categoria', None)
+
         videos = YouTube().get_data()
 
         # Ordena los videos por el título
@@ -87,7 +90,7 @@ class cursosOrden(View):
         except EmptyPage:
             videos_pagina = paginator.page(paginator.num_pages)
         
-        context = {"videos": videos_pagina, "unique_categories": unique_categories}
+        context = {"videos": videos_pagina, "unique_categories": unique_categories, "categoria_seleccionada": categoria, "rango": range(1, paginator.num_pages + 1)}
         return render(request, 'cursos/cursos.html', context)
 
 def videos(request):

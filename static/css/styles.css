@@ -614,10 +614,30 @@ header {
 
   /*CSS cursos*/
 
-  .TiposCurso{
+.TiposCurso{
     margin-right: 5%;
     background-color: transparent;
     border-color: transparent;
+}
+
+.pagination{
+    margin-top: 2em;
+    padding-top: 0.3em;
+    text-align: center;
+    align-items: center;
+    background-color: #428789;
+    height: 2em;
+    width: 10em;    
+    display: inline-block;
+    border-radius: 20px;
+}
+.linkspaginaciones{
+    margin-left: auto;
+    color: white;
+    text-decoration: none;
+}
+.linkspaginaciones:hover{
+    color: #888888;
 }
 .TiposCurso:hover{
     background-color: #428789;
