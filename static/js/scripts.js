@@ -287,8 +287,23 @@ function changePage(action) {
     }
 
     showPage(currentPage);
+    updatePagination();
+}
+
+function updatePagination() {
+    var totalPages = Math.ceil(comments.length / commentsPerPage);
+    var paginationContainer = document.getElementById('pagination-divpagina');
+    var paginationHTML = '<span class="arrow" onclick="changePage(\'prev\')"><i class="fa-solid fa-chevron-left"></i></span>';
+
+    for (var i = 1; i <= totalPages; i++) {
+        paginationHTML += '<span class="page" onclick="changePage(' + i + ')"></span>';
+    }
+
+    paginationHTML += '<span class="arrow" onclick="changePage(\'next\')"><i class="fa-solid fa-chevron-right"></i></span>';
+    
+    paginationContainer.innerHTML = paginationHTML;
 }
 
 // Mostrar la primera página al cargar la página
 showPage(currentPage);
-
+updatePagination();

@@ -1187,13 +1187,15 @@ margin-right: auto;
 
 .imagenManzanillo{
 width: 15em;
-height: 10em;
+height: 15em;
 }
 .imagenLinea{
     width: 56em;
     height: 65em;
     border-radius: 5%;
     opacity: 90%;
+    width: 100%;
+height: auto;
 }
 
 
@@ -1318,7 +1320,6 @@ height: 10em;
 .seccionSoporte {
     margin-top: 5em;
     position: relative;
-    background-color: #00132d;
 }
 
 .soporte{
