@@ -1300,3 +1300,31 @@ height: 10em;
     background-color: transparent; /* Fondo transparente cuando se pasa el ratón sobre las flechas */
     color: #888888; /* Cambia el color del texto al pasar el ratón sobre las flechas */
 }
+
+/* Css soporte*/
+.seccionSoporte {
+    margin-top: 5em;
+    position: relative;
+    background-color: #00132d;
+}
+
+.soporte{
+    background-color: #F0F8FF;
+    opacity: 80%;
+    border-radius: 2em;
+}
+.soporte{
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+}
+.btn-Enviar{
+    text-align: center;
+    background-color: #428789;
+    width: 10em;
+    height: 2.5em;
+    color: white;
+    border-color: transparent;
+    border-radius: 1em;
+    text-align: center;
+}

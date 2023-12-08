@@ -1,0 +1,52 @@
+{% extends '../menu.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="seccionSoporte">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="soporte">
+                    <h1>Soporte</h1>
+                </div>
+                <br>
+                <div class="soporte">
+                    <p class="textosoporte">
+                        <h3><strong>¿Cómo podemos ayudarte?</strong><br></h3>
+                        Estamos aquí para asistirte en cualquier inconveniente que puedas estar experimentando con PuertoNet. Para brindarte la mejor atención, por favor, proporciona tu dirección de correo electrónico para que podamos ponernos en contacto contigo. Asimismo, te solicitamos una descripción detallada del problema y, si es posible, algún tipo de evidencia que nos ayude a comprender mejor la situación. Nuestro equipo de soporte se esforzará por responder a tu solicitud en el menor tiempo posible. ¡Gracias por confiar en nosotros!
+                    </p>
+                    <div class="formularioSoporte col-6 mx-auto">
+                        <form>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Correo eléctronico</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Evidencia (opcional)</label><br>
+                                <input type="file" name="imagen" />
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn-Enviar ">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>       
+          <div class="col-2">
+          </div>
+        </div>
+</section>
+
+
+{% include '../footer.html' %}
+
+{% endblock %}
