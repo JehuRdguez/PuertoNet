@@ -160,27 +160,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Captura el cambio en el filtro de orden
-        $('#ordenar-por').change(function () {
-            var opcionSeleccionada = $(this).val();
 
-            // Realiza una nueva solicitud AJAX al servidor para obtener datos ordenados
-            $.ajax({
-                type: 'GET',
-                url: '/ordenar-videos/',  // Ajusta la ruta a tu endpoint de ordenar
-                data: {
-                    opcion: opcionSeleccionada,
-                    categoria: $('#filtro-categorias').val()  // Agrega la categoría seleccionada
-                },
-                success: function (data) {
-                    // Actualiza la interfaz de usuario con los datos ordenados
-                    $('.video-container').html(data);
-                },
-                error: function (error) {
-                    console.error('Error al obtener datos ordenados:', error);
-                }
-            });
+        document.getElementById("ordenar-por").addEventListener("change", function() {
+            var selectedValue = this.value;
+            var redirectUrl = (selectedValue === "AgregadosRecientemente") ? "/Cursos" : "/cursosOrden";
+            window.location.href = redirectUrl;
         });
+
     });
 });
 
@@ -252,3 +238,4 @@ function updatePagination() {
 // Mostrar la primera página al cargar la página
 showPage(currentPage);
 updatePagination();
+

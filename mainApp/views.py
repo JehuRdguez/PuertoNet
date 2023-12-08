@@ -12,6 +12,7 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from itertools import chain
+from operator import itemgetter
 
 class inicio(View):
    def get(self, request):
@@ -39,6 +40,9 @@ class cursos(View):
     def get(self, request):
         videos = YouTube().get_data()
 
+        # Ordena los videos por el título
+        videos = sorted(videos, key=itemgetter('fecha'), reverse=True)
+
         # Obtén todas las categorías de todos los videos y conviértelas en una lista plana
         all_categories = list(chain.from_iterable(v.get('categoria', []) for v in videos))
 
@@ -59,25 +63,32 @@ class cursos(View):
         context = {"videos": videos_pagina, "unique_categories": unique_categories}
         return render(request, 'cursos/cursos.html', context)
     
-def ordenar_videos(request):
-    opcion = request.GET.get('opcion', 'AgregadosRecientemente')
-    categoria = request.GET.get('categoria', 'Todos')
+class cursosOrden(View):
+    def get(self, request):
+        videos = YouTube().get_data()
 
-    # Lógica de ordenación según la opción y la categoría
-    videos = Video.objects.all()
+        # Ordena los videos por el título
+        videos = sorted(videos, key=itemgetter('title'))
 
-    if categoria != 'Todos':
-        videos = videos.filter(categoria__nombre=categoria)
+        # Obtén todas las categorías de todos los videos y conviértelas en una lista plana
+        all_categories = list(chain.from_iterable(v.get('categoria', []) for v in videos))
 
-    if opcion == 'AgregadosRecientemente':
-        videos = videos.order_by('-fecha_agregado')
-    elif opcion == 'Alfabeticamente':
-        videos = videos.order_by('titulo')
+        # Elimina duplicados manteniendo el orden original
+        unique_categories = sorted(set(all_categories), key=all_categories.index)
 
-    # Renderiza la lista de videos ordenada y devuélvela como JSON
-    data = render(request, 'cursos/lista_videos.html', {'videos': videos})
-    return JsonResponse({'html': data.content})
+        # Implementa la paginación
+        paginator = Paginator(videos, 9)  # Muestra 10 videos por página
+        page = request.GET.get('page', 1)
 
+        try:
+            videos_pagina = paginator.page(page)
+        except PageNotAnInteger:
+            videos_pagina = paginator.page(1)
+        except EmptyPage:
+            videos_pagina = paginator.page(paginator.num_pages)
+        
+        context = {"videos": videos_pagina, "unique_categories": unique_categories}
+        return render(request, 'cursos/cursos.html', context)
 
 def videos(request):
 

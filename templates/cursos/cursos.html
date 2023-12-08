@@ -22,9 +22,9 @@
                       <div class="select-container">
                         <div class="select-label">Ordenar por</div>
                         <select id="ordenar-por" class="form-select custom-select">
-                            <option value="AgregadosRecientemente" selected>Agregados recientemente</option>
-                            <option value="Alfabeticamente">Orden A-Z</option>
-                        </select>
+                          <option value="AgregadosRecientemente" {% if request.path == '/Cursos' %}selected{% endif %}>Agregados recientemente</option>
+                          <option value="Alfabeticamente" {% if request.path == '/cursosOrden' %}selected{% endif %}>Orden A-Z</option>
+                      </select>
                     </div>
                     </div>
               
