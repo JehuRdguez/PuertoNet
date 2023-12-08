@@ -48,29 +48,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-var iframe = document.querySelector('iframe');
 
-// Verificar si el iframe existe
-
-function ajustarTamanoIframe() {
-    var anchoVentana = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    
-    // Ajustar el tamaño del iframe en función del ancho de la ventana
-    if (anchoVentana >= 768) { // Ajusta este valor según tus necesidades
-        iframe.width = 900;
-        iframe.height = 500;
-    } else {
-        // Puedes establecer diferentes dimensiones para pantallas más pequeñas
-        iframe.width = 380;
-        iframe.height = 310;
-    }
-}
-
-// Llamar a la función inicialmente
-ajustarTamanoIframe();
-
-// Vincular la función al evento de cambio de tamaño de ventana
-window.addEventListener('resize', ajustarTamanoIframe);
 
 
     var mostrarTextos = document.querySelectorAll('.mostrarTexto');
@@ -175,6 +153,31 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
+        var categoriaEnUrl = obtenerCategoriaDeUrl();
+
+        // Si hay una categoría en la URL, establece el valor del select y activa el filtrado
+        if (categoriaEnUrl) {
+            $('#filtro-categorias').val(categoriaEnUrl);
+
+            // Aquí puedes agregar la lógica de filtrado directamente o activar el evento 'change'
+            // dependiendo de cómo estés manejando el filtro en tu código actual
+            $('#filtro-categorias').trigger('change');
+        }
+
+        // Maneja clics en los enlaces de categoría
+        $('.filtro-link').click(function (event) {
+            event.preventDefault(); // Evita que el enlace redireccione directamente
+
+            var categoria = $(this).data('categoria');
+            window.location.href = $(this).attr('href'); // Redirige a la URL del enlace
+
+            // Aquí puedes ajustar la lógica según tus necesidades, como activar el filtrado directamente
+            // o realizar otras acciones antes de la redirección
+        });
+
+
+
+
 
         document.getElementById("ordenar-por").addEventListener("change", function() {
             var selectedValue = this.value;
@@ -183,6 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     });
+    function obtenerCategoriaDeUrl() {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('categoria');
+        }
 });
 
 

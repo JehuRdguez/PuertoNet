@@ -38,6 +38,8 @@ class soporte(View):
      
 class cursos(View):
     def get(self, request):
+        categoria = request.GET.get('categoria', None)
+
         videos = YouTube().get_data()
 
         # Ordena los videos por el título
@@ -60,7 +62,7 @@ class cursos(View):
         except EmptyPage:
             videos_pagina = paginator.page(paginator.num_pages)
         
-        context = {"videos": videos_pagina, "unique_categories": unique_categories}
+        context = {"videos": videos_pagina, "unique_categories": unique_categories, "categoria_seleccionada": categoria}
         return render(request, 'cursos/cursos.html', context)
     
 class cursosOrden(View):
