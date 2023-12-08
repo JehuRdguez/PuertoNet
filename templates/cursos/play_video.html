@@ -41,15 +41,15 @@
             <div class="scrollmasContenido">
               {% for v in videos %}
                   {% if v.id != vid_data.id %}
-                      <br />
-                      <div class="gallery2" style="color: black;">
-                          <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2">
-                              <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2" />
-                          </a>
+                  <br>
+                  <a href="{% url 'play-video' vid_id=v.id %}" class="video-link2">
+                      <div class="gallery2">
+                          <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail2">
                           <div class="text-container2">
-                              <div class="video-title2">{{ v.title }}</div>
-                          </div>
+                            <div class="video-title2">{{ v.title }}</div>
+                        </div>
                       </div>
+                  </a>
                   {% endif %}
               {% endfor %}
           </div>
