@@ -637,6 +637,18 @@ header {
     display: inline-block;
     border-radius: 20px;
 }
+.pagination2 {
+    margin-top: 2em;
+    padding-top: 0.3em;
+    text-align: center;
+    background-color: #428789;
+    height: 2em;
+    width: 10em;
+    align-items: center;
+    justify-content: center; /* Añadido para centrar horizontalmente */
+    border-radius: 20px;
+    margin: auto; /* Añadido para centrar verticalmente y horizontalmente */
+}
 .linkspaginaciones{
     margin-left: auto;
     color: white;
