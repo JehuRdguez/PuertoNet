@@ -1085,6 +1085,10 @@ height: auto;
     margin-top:10px
 }
 
+.contenedorOpcionesMenuLateral {
+    text-align: start;
+}
+
 .opcionesMenu {
     text-decoration: none;
     color: #00132d;
@@ -1663,4 +1667,20 @@ height: auto;
         margin-bottom: 2em;
         max-height: 15em;
     }
+}
+
+@media screen and (max-width: 1000px) {
+
+    .opcionesMenu span {
+        display: none;
+    }
+
+    .nombreUsuario {
+        display: none;
+    }
+
+    .contenedorOpcionesMenuLateral {
+        text-align: center;
+    }
+
 }

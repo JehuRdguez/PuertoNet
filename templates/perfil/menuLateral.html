@@ -2,28 +2,28 @@
     <div class="menuLateral">
         <div class="text-center">
             <img src="../../static/assets/img/inicio/user.png" class="mx-auto" style="width: 50%;"/>
-            <h3>{{request.user.username}}</h3>
+            <h3 style="word-wrap: break-word;" class="nombreUsuario">{{request.user.username}}</h3>
         </div>
-        <ul class="nav flex-column" style="text-align: start;">
+        <ul class="contenedorOpcionesMenuLateral nav flex-column">
             <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #000000;"></div>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'editarUsuario' %}"><i class="fa-solid fa-user-pen me-2"></i>Mi perfil</a>
+                <a class="opcionesMenu" href="{% url 'editarUsuario' %}"><i class="fa-solid fa-user-pen me-2"></i><span>Mi perfil</span></a>
             </li>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'subirVideoImagen' %}"><i class="fa-solid fa-photo-film me-2"></i>Subir video / imagen</a>
+                <a class="opcionesMenu" href="{% url 'subirVideoImagen' %}"><i class="fa-solid fa-photo-film me-2"></i><span>Subir video / imagen</span></a>
             </li>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'subirBlog' %}"><i class="fa-solid fa-file-lines me-2"></i>Subir blog</a>
+                <a class="opcionesMenu" href="{% url 'subirBlog' %}"><i class="fa-solid fa-file-lines me-2"></i><span>Subir blog</span></a>
             </li>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'administrarContenido' %}"><i class="fa-solid fa-list me-2"></i>Administrar contenido</a>
+                <a class="opcionesMenu" href="{% url 'administrarContenido' %}"><i class="fa-solid fa-list me-2"></i><span>Administrar contenido</span></a>
             </li>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'notificaciones' %}"><i class="fa-solid fa-bell me-2"></i>Notificaciones</a>
+                <a class="opcionesMenu" href="{% url 'notificaciones' %}"><i class="fa-solid fa-bell me-2"></i><span>Notificaciones</span></a>
             </li>
             <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #000000; margin-top: 20px;"></div>
             <li class="itemMenu">
-                <a class="opcionesMenu" href="{% url 'Soporte' %}"><i class="fa-solid fa-wrench me-2"></i>Soporte</a>
+                <a class="opcionesMenu" href="{% url 'Soporte' %}"><i class="fa-solid fa-wrench me-2"></i><span>Soporte</span></a>
             </li>
         </ul>
     </div>
