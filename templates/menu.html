@@ -33,6 +33,7 @@
             <nav class="navegacion">
                 <a href="{% url 'inicio' %}" class="linea-hover">Inicio</a>
                 <a href="{% url 'Cursos' %}" class="linea-hover">Cursos</a>
+                <a href="{% url 'Blogs' %}" class="linea-hover">Blogs</a>
                 <a href="{% url 'Historia' %}" class="linea-hover">Historia</a>
                 <a href="{% url 'Conocenos' %}" class="linea-hover">Conócenos</a>
             
@@ -55,6 +56,43 @@
                         </h6>
                 
                         <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #e0e5ec;"></div>
+                        <a class="dropdown-item" href="{% url 'editarUsuario' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-user-pen me-2"></i>
+                                Mi perfil
+                              </div>
+                        </a>
+                        <a class="dropdown-item" href="{% url 'subirVideoImagen' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-photo-film me-2"></i>
+                                Subir video / imagen
+                              </div>
+                        </a>
+                        <a class="dropdown-item" href="{% url 'subirBlog' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-file-lines me-2"></i>
+                                Subir blog
+                              </div>
+                        </a>
+                        <a class="dropdown-item" href="{% url 'administrarContenido' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-list me-2"></i>
+                                Administrar contenido
+                              </div>
+                        </a>
+                        <a class="dropdown-item" href="{% url 'notificaciones' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-bell me-2"></i>
+                                Notificaciones
+                              </div>
+                        </a>
+                        <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #e0e5ec;"></div>
+                        <a class="dropdown-item" href="{% url 'Soporte' %}">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-regular fa-comment-dots me-2"></i>
+                                Soporte
+                              </div>
+                        </a>
                         <a class="dropdown-item" onclick="return AlertaSalir(event)" href="/logout">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-box-arrow-right me-2"></i>

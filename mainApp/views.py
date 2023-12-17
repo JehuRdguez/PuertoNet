@@ -35,6 +35,10 @@ class terminoscondiciones(View):
 class soporte(View):
     def get(self, request):
         return render(request, 'soporte/soporte.html')  
+
+class Blogs(View):
+    def get(self, request):
+        return render(request, 'blogs/blogs.html')
      
 class cursos(View):
     def get(self, request):
@@ -244,4 +248,19 @@ def comentarioPagina(request):
 
     return redirect('/')
 
- 
+
+# Perfil
+def editarUsuario(request):
+    return render(request, 'perfil/editarUsuario/editarUsuario.html')
+
+def subirVideoImagen(request):
+    return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html')
+
+def subirBlog(request):
+    return render(request, 'perfil/subirBlog/subirBlog.html')
+
+def administrarContenido(request):
+    return render(request, 'perfil/administrarContenido/administrarContenido.html')
+
+def notificaciones(request):
+    return render(request, 'perfil/notificaciones/notificaciones.html')

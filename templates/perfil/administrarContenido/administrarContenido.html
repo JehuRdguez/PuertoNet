@@ -1,0 +1,30 @@
+{% extends '../../menu.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="seccionPerfil">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Menú lateral -->
+            {% include '../menuLateral.html' %}
+
+            <!-- Contenido -->
+            <div class="col-10">
+                <div class="tituloPerfil text-center">
+                    <h1 style="color: #357678;">Administrar contenido</h1>
+                </div>
+                <br>
+                <div class="contenidoAdministrarContenido">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus soluta quam repellendus dolor obcaecati nam? Id molestias, dolorem quas in quo consectetur quisquam praesentium commodi officia facilis explicabo tempora itaque?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '../../footer.html' %}
+
+{% endblock %}

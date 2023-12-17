@@ -851,6 +851,14 @@ height: 15em;
 height: auto;
 }
 
+                                                                /* Blogs */
+
+.seccionBlogs {
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
+}
 
 /* conócenos */
 
@@ -1038,9 +1046,123 @@ height: auto;
     transition: 0.3s all;
 }
 
+                                                        /* Perfil */
+
+.seccionPerfil {
+    background-image: url('../assets/img/cursos/Marfondogeneral.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.menuLateral {
+    margin-top: 5em;    
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 1.5em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
+.itemMenu {
+    margin-top: 20px;
+}
+
+.itemMenu:last-child {
+    margin-top:10px
+}
+
+.opcionesMenu {
+    text-decoration: none;
+    color: #00132d;
+    /* padding: 30px; */
+    border-radius: 20px;
+    margin-bottom: 5%;
+    font-weight: 450;
+    position: relative;
+    transition: 0.3s all;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: 0;
+}
+
+.opcionesMenu:hover {
+    color: #357678;
+}
+
+.tituloPerfil{
+    margin-top: 5em;
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+}
+
+                                                      /* Editar Usuario */
+
+.contenidoEditarUsuario {
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
+                                                      /* Subir video/imagen */
+
+.contenidoSubirVideoImagen {
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
+                                                      /* Subir blog */
+
+.contenidoSubirBlog {
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
+                                                      /* Administrar contenido */
+
+.contenidoAdministrarContenido {
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
+                                                      /* Notificaciones */
+
+.contenidoNotificaciones {
+    background-color: #F0F8FF;
+    opacity: 90%;
+    border-radius: 2em;
+    padding: 2em;
+    text-align: justify;    
+    position: relative;
+    margin-bottom: 5em;
+}
+
 /* @media screen and (max-width: 576px) {
   }
-  
+            
   @media screen and (min-width: 577px) and (max-width: 768px) {
   }
   
@@ -1051,7 +1173,7 @@ height: auto;
   } */
   
   /* @media screen and (min-width: 1201px) and (max-width: 1400px) {
-
+    
   } */
                                                                                 /* CELULAR */
 
