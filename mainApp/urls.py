@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('', inicio.as_view(), name="inicio"),
     path('Inicio',inicio.as_view(),name='inicio'),
-    path('Blogs',Blogs.as_view(),name='Blogs'),
+    path('Blogs',BlogsPagina.as_view(),name='Blogs'),
     path('Cursos',cursos.as_view(),name='Cursos'),
     path('cursosOrden',cursosOrden.as_view(),name='cursosOrden'),
     path('Historia',historia.as_view(),name='Historia'),
@@ -27,5 +27,8 @@ urlpatterns = [
     path('subirBlog/', views.subirBlog, name='subirBlog'),
     path('administrarContenido/', views.administrarContenido, name='administrarContenido'),
     path('notificaciones/', views.notificaciones, name='notificaciones'),
+    path('tinymce/', include('tinymce.urls')),
+    path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
+    
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

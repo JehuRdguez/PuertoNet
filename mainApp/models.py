@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,3 +19,11 @@ class ComentariosPagina(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.timestamp}'
+    
+class Blogs(models.Model):
+    titulo = models.TextField()
+    imagenPortada = models.ImageField(upload_to='static/assets/img/blogs/')  # Ruta relativa a tu directorio de aplicaciones
+    introduccion = models.TextField()
+    contenido = models.TextField()
+    autor = models.TextField(null=True, blank=True)  # Permitir nulo o configurar un valor predeterminado
+    fecha = models.DateTimeField(default=datetime.now)

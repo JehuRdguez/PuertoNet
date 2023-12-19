@@ -6,13 +6,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
-from .models import Comment, ComentariosPagina
+from .models import Comment, ComentariosPagina, Blogs
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from itertools import chain
 from operator import itemgetter
+from .forms import BlogForm
+from django.contrib.auth.models import User
 
 class inicio(View):
    def get(self, request):
@@ -36,9 +38,17 @@ class soporte(View):
     def get(self, request):
         return render(request, 'soporte/soporte.html')  
 
-class Blogs(View):
+class BlogsPagina(View):
     def get(self, request):
-        return render(request, 'blogs/blogs.html')
+        blogs = Blogs.objects.all()
+        return render(request, 'blogs/blogs.html',{'datos':blogs})
+    
+class TemplateBlog(View):
+    def get(self, request, blog_id):
+        blog_id = request.GET.get("blog_id")
+        blogs = Blogs.objects.all()
+        return render(request, 'blogs/template_blogs.html',{'datos':blogs})
+
      
 class cursos(View):
     def get(self, request):
@@ -257,7 +267,40 @@ def subirVideoImagen(request):
     return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html')
 
 def subirBlog(request):
-    return render(request, 'perfil/subirBlog/subirBlog.html')
+    blogs = Blogs.objects.all()
+    usuario_autenticado = request.user
+    # Filtra la consulta para obtener solo el usuario autenticado
+    usuario = User.objects.get(username=usuario_autenticado.username)
+    # Asocia el usuario autenticado al blog antes de guardar
+    usuario = f"{usuario.first_name} {usuario.last_name}"
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            blog = form.save()
+
+            messages.success(request, "Blog subido exitosamente.")
+            return redirect('subirBlog')  # Ajusta según tu aplicación
+        else:
+            print(form.errors)
+            messages.error(request, "Error al subir blog. Verifica los datos.")
+    else:
+        form = BlogForm()
+
+    return render(request, 'perfil/subirBlog/subirBlog.html', {'form': form, 'datos': blogs,'user':usuario})
+
+
+#def subirBlog(request):    
+#    if request.method == 'POST':
+#        try:
+#            titulo = request.POST.get('titulo')
+#            print(titulo)
+#            return render(request, 'perfil/subirBlog/subirBlog.html')
+#        except Exception as e:
+#            messages.error(request, "Error al subir blog")
+#            return render(request, 'perfil/subirBlog/subirBlog.html')
+#    return render(request, 'perfil/subirBlog/subirBlog.html')
+#
 
 def administrarContenido(request):
     return render(request, 'perfil/administrarContenido/administrarContenido.html')
