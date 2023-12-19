@@ -22,12 +22,16 @@ from django.db import IntegrityError
 from django.core.files.storage import default_storage
 from django.conf import settings
 import os
+from django.core.mail import EmailMultiAlternatives
+from django.core.exceptions import ValidationError
+from django.template.loader import get_template
+import uuid
+from django.core.files.storage import default_storage
 from moviepy.editor import VideoFileClip
 from PIL import Image
 from io import BytesIO
 from django.core.exceptions import ValidationError
 from django.core.files import File
-import magic
 from django.shortcuts import render, redirect
 from .forms import LogMultimediaForm
 from django.conf import settings
@@ -110,12 +114,75 @@ class terminoscondiciones(View):
 class soporte(View):
     def get(self, request):
         return render(request, 'soporte/soporte.html')  
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            subject = 'Soporte PuertoNet'
+            template = get_template('soporte/templateCorreo.html')
+            correo = request.POST['correo']
+            descripcion = request.POST['descripcion']
+            imagen = request.FILES.get('imagen')
+
+            # Inicializar la variable de la URL de la imagen
+            imagen_url = None
+
+            # Verificar si se proporcionó una imagen
+            if imagen:
+                # Define el nombre único del archivo (por ejemplo, utilizando UUID)
+                nombre_archivo = f"{uuid.uuid4()}.{imagen.name.split('.')[-1]}"
+
+                # Guarda la imagen en la carpeta designada
+                ruta_archivo = default_storage.save(f'tu_carpeta/{nombre_archivo}', imagen)
+
+                # Obtén la URL de la imagen guardada
+                imagen_url = default_storage.url(ruta_archivo)
+
+            content = template.render(
+                {'problema': descripcion, 'imagen_url': imagen_url}
+            )
+            message = EmailMultiAlternatives(
+                subject,
+                '',  # Dejé el campo en blanco porque estás adjuntando HTML
+                settings.EMAIL_HOST_USER,
+                [correo]
+            )
+
+            # Adjunta la imagen al correo si se proporcionó
+            if imagen_url:
+                message.attach_file(default_storage.path(ruta_archivo))
+
+            message.attach_alternative(content, 'text/html')
+            message.send()
+
+            # Borra la imagen del servidor si se proporcionó
+            if imagen_url:
+                default_storage.delete(ruta_archivo)
+            messages.success(request, "Correo enviado con éxito.")
+            return redirect('Soporte')  # Redirigir a una página de éxito después de enviar el correo
+        except ValidationError as e:
+            # Manejar errores de validación
+            messages.error(request, "Error de validación al enviar el correo")
+            return render(request, 'soporte/soporte.html', {'error': 'Error de validación al enviar el correo'})
+        except Exception as e:
+            # Manejar otros errores
+            messages.error(request, "Error al enviar el correo")
+            return render(request, 'soporte/soporte.html', {'error': 'Error al enviar el correo'})
 
 class BlogsPagina(View):
     def get(self, request):
         blogs = Blogs.objects.all()
-        return render(request, 'blogs/blogs.html',{'datos':blogs})
-    
+
+        paginator = Paginator(blogs, 3)  # Muestra 10 videos por página
+        page = request.GET.get('page', 1)
+        try:
+            blogs  = paginator.page(page)
+        except PageNotAnInteger:
+            blogs = paginator.page(1)
+        except EmptyPage:
+            blogs = paginator.page(paginator.num_pages)
+
+        return render(request, 'blogs/blogs.html',{'datos':blogs,"rango": range(1, paginator.num_pages + 1)})
+
 class TemplateBlog(View):
     def get(self, request, blog_id):
         blogs = Blogs.objects.get(id=blog_id)

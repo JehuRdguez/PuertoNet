@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages 
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -179,3 +180,14 @@ TINYMCE_API_KEY = '6cjbryyi360nr4x12yj6l7qwniq2jgw28lyln45h85b63dg1'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Configuración del servidor SMTP de Gmail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Configura la cuenta de correo electrónico de Gmail desde la que enviarás los correos
+EMAIL_HOST_USER = 'PuertoNet001@gmail.com'
+EMAIL_HOST_PASSWORD = 'fiot uizh ovsr oiuu'

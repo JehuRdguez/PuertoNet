@@ -23,14 +23,14 @@ urlpatterns = [
     path('conocenos/', views.conocenos, name='Conocenos'),
     path('ComentarioPagina/', views.comentarioPagina, name='ComentarioPagina'),
     
-     path('editarUsuario/',views.editarUsuario, name='editarUsuario'),
+    path('editarUsuario/',views.editarUsuario, name='editarUsuario'),
 
     path('subirVideoImagen/', views.subirVideoImagen, name='subirVideoImagen'),
     path('subirBlog/', views.subirBlog, name='subirBlog'),
     path('administrarContenido/', views.administrarContenido, name='administrarContenido'),
     path('notificaciones/', views.notificaciones, name='notificaciones'),
     path('infografias/', views.infografias, name='Infografias'),
-     path('detallesInfografias/<int:id>', views.DetallesInfografias.as_view(), name='detallesInfografia'),
+    path('detallesInfografias/<int:id>', views.DetallesInfografias.as_view(), name='detallesInfografia'),
     path('reply-comment-info/<int:id>/<int:comment_id>/', ReplyCommentInfo.as_view(), name='reply-comment-info'),    path('tinymce/', include('tinymce.urls')),
     path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
     path('tinymce/', include('tinymce.urls')),

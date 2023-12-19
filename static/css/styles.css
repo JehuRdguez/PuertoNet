@@ -1726,6 +1726,10 @@ height: auto;
 
 
 
+.imagenBlog{
+    width: 5px;
+    height: 5px;
+}
 
 .card-contenidoComplementario {
     max-height: 200px;  /* Ajusta esta altura según tus necesidades */
