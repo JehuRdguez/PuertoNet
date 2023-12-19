@@ -1684,3 +1684,8 @@ height: auto;
     }
 
 }
+
+.card-contenidoComplementario {
+    max-height: 200px;  /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto;
+}
