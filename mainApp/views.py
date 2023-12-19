@@ -32,7 +32,6 @@ from PIL import Image
 from io import BytesIO
 from django.core.exceptions import ValidationError
 from django.core.files import File
-import magic
 from django.shortcuts import render, redirect
 from .forms import LogMultimediaForm
 from django.conf import settings

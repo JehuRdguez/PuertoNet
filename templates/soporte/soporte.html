@@ -44,8 +44,31 @@
           <div class="col-2">
           </div>
         </div>
+        {% if messages %}
+        <div class="message-container">
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Selecciona todos los elementos con la clase 'message-container'
+        var messageContainers = document.querySelectorAll('.message-container');
 
+        // Itera sobre cada contenedor de mensajes
+        messageContainers.forEach(function(container) {
+            // Oculta el contenedor después de 10 segundos
+            setTimeout(function() {
+                container.style.display = 'none';
+            }, 4000); // 10000 milisegundos = 10 segundos
+        });
+    });
+
+</script>
 
 {% include '../footer.html' %}
 
