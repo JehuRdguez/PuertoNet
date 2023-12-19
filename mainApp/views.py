@@ -6,20 +6,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
-<<<<<<< HEAD
 from .models import Comment, ComentariosPagina, Blogs
-=======
 from .models import Comment, ComentariosPagina,Profile
->>>>>>> e9872931c88987ba409439a8467c20b623eedacf
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 from operator import itemgetter
-<<<<<<< HEAD
 from .forms import BlogForm
 from django.contrib.auth.models import User
-=======
 from django.views.generic.edit import  UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -83,7 +78,6 @@ def editarUsuario(request):
     return render(request, 'perfil/editarUsuario/editarUsuario.html')
 
 
->>>>>>> e9872931c88987ba409439a8467c20b623eedacf
 
 class inicio(View):
    def get(self, request):
@@ -114,8 +108,7 @@ class BlogsPagina(View):
     
 class TemplateBlog(View):
     def get(self, request, blog_id):
-        blog_id = request.GET.get("blog_id")
-        blogs = Blogs.objects.all()
+        blogs = Blogs.objects.get(id=blog_id)
         return render(request, 'blogs/template_blogs.html',{'datos':blogs})
 
      

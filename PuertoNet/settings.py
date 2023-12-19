@@ -167,7 +167,6 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 
-<<<<<<< HEAD
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -177,8 +176,6 @@ MESSAGE_TAGS = {
 
 }
 TINYMCE_API_KEY = '6cjbryyi360nr4x12yj6l7qwniq2jgw28lyln45h85b63dg1'
-=======
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
->>>>>>> e9872931c88987ba409439a8467c20b623eedacf

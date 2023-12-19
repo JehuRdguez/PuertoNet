@@ -10,23 +10,20 @@
             <div class="col-2">
             </div>
             <div class="col-12">
-                {% for blog in datos %}
-
                 <div class="soporte text-center" style="margin-top: 5em;">
-                    <h1 style="color: #357678;">{{ blog.titulo }}</h1>
+                    <h1 style="color: #357678;">{{ datos.titulo }}</h1>
                 </div>
                 <br>
                 <div class="soporte"  style="margin-bottom: 15%;">
                     <p class="textosoporte">
                         <p>
-                            Autor: {{blog.autor}}<br>
-                            Fecha: {{blog.fecha |date}}<br>
+                            Autor: {{datos.autor}}<br>
+                            Fecha: {{datos.fecha |date}}<br>
                         </p>
-                        {{ blog.introduccion }}
-                        {{ blog.contenido|safe }}
+                        {{ datos.introduccion }}
+                        {{ datos.contenido|safe }}
                     </p>
                 </div>
-                {% endfor %}
             </div>
             <br>       
           <div class="col-2">
