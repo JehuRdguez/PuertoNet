@@ -46,8 +46,8 @@ class Infographics(models.Model):
         format = models.IntegerField(choices=FormatCategory, default="0")
         file = models.FileField(upload_to='files/')
         category = models.IntegerField(choices=CourseCategory, default="0")
-        supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True, null=True)
-        supplementary_Infographics = models.ManyToManyField('Infographics', blank=True, null=True)
+        supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True)
+        supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
         timestamp = models.DateTimeField(auto_now_add=True)
         def __str__(self):
             return f'{self.title} '
@@ -78,8 +78,8 @@ class LogMultimedia(models.Model):
     video_id = models.CharField(max_length=20)
     category = models.IntegerField(choices=CourseCategory, default="0")
     timestamp = models.DateTimeField(auto_now_add=True)
-    supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True, null=True)
-    supplementary_Infographics = models.ManyToManyField('Infographics', blank=True, null=True)
+    supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True)
+    supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
     format = models.IntegerField(choices=FormatCategory, default="1")
     def __str__(self):
         return f'{self.title}'
