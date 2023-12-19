@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Blogs, Profile
+from tinymce.widgets import TinyMCE
 from .models import Profile, LogMultimedia
 
 class CommentForm(forms.Form):
@@ -11,6 +13,18 @@ class CommentForm(forms.Form):
             'aria-label': 'With textarea',
             'rows': 2, 'cols': 30
         }))
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Blogs
+        fields = ['titulo', 'imagenPortada', 'introduccion', 'contenido','autor']
+
+    widgets = {
+        'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+        'imagenPortada': forms.FileInput(attrs={'class': 'form-control'}),
+        'introduccion': forms.TextInput(attrs={'class': 'form-control'}),
+        'contenido': TinyMCE(attrs={'class': 'form-control', 'rows': 10}),
+        'autor': forms.TextInput(attrs={'class': 'form-control'}),
+    }
     
 
 class CustomUserCreationForm(UserCreationForm):

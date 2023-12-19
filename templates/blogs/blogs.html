@@ -11,17 +11,19 @@
             <div class="col-lg-8 col-md-10 col-sm-12" style="margin-top: 5em;">
                 <h1 style="color: #357678;">BLOGS</h1>
                 <br>
-
-                <div class="historia d-flex flex-column flex-sm-row">
-                    <img src="../../static/assets/img/historia/manzanillo.png" class="imagenManzanillo img-fluid mx-auto">
-                    <h4 class="mt-3">Manzanillo, ubicado en el estado de Colima, es un lugar clave gracias a su puerto comercial que conecta con el comercio nacional e internacional. Además, es un atractivo destino turístico con hermosas playas bañadas por las cristalinas aguas del Pacífico. Este paraíso costero se encuentra a 4 escasos metros sobre el nivel del mar a lo largo de su malecón.</h4>
-                </div>
-
-                <br>
-
-                <div class="lineaTiempo" style="margin-bottom: 15%;">
-                    <img src="../../static/assets/img/historia/lineaTiempo.jpeg" class="imagenLinea img-fluid mx-auto">
-                </div>
+                {% for blog in datos %}
+                <div class="img-container video-item">
+                    <br><a href="{% url 'Blog' blog_id=blog.id %}" class="video-link">
+                    <div class="gallery">
+                                <img src="{{ blog.imagenPortada.url }}" class="video-thumbnail">
+                                <div class="text-container">
+                                    <div class="video-title">{{ blog.titulo }}</div>
+                                    <div class="video-description">{{ blog.introduccion }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
 
             <div class="col-lg-2 col-md-1"></div>

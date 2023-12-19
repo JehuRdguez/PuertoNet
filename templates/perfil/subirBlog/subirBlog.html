@@ -18,13 +18,68 @@
                 </div>
                 <br>
                 <div class="contenidoSubirBlog">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus soluta quam repellendus dolor obcaecati nam? Id molestias, dolorem quas in quo consectetur quisquam praesentium commodi officia facilis explicabo tempora itaque?</p>
+                    <form method="post" enctype="multipart/form-data">{% csrf_token %} 
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Título</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="titulo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Imagen de portada</label><br>
+                            <input type="file" class="form-control" id="imagenPortada"name="imagenPortada">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea3" class="form-label">Introducción</label>
+                            <textarea class="form-control" id="introduccion" rows="2" name="introduccion"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea2" class="form-label">Contenido</label>
+                            <textarea class="form-control" id="contenido" rows="100" name="contenido"></textarea>
+                        </div>
+                        <input type="text" class="form-control" id="autor" aria-describedby="emailHelp" name="autor" value="{{user}}" style="display: none;">
+                        <div class="mx-auto text-center">
+                            <button type="submit" class="btn-Enviar ">Publicar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    
+    {% if messages %}
+        <div class="message-container">
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </section>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Selecciona todos los elementos con la clase 'message-container'
+        var messageContainers = document.querySelectorAll('.message-container');
+
+        // Itera sobre cada contenedor de mensajes
+        messageContainers.forEach(function(container) {
+            // Oculta el contenedor después de 10 segundos
+            setTimeout(function() {
+                container.style.display = 'none';
+            }, 4000); // 10000 milisegundos = 10 segundos
+        });
+    });
+    tinymce.init({
+    selector: '#contenido',
+    height: 500,
+    plugins: "advcode advlist advtable anchor autocorrect autolink autosave casechange charmap checklist codesample directionality editimage emoticons export footnotes formatpainter help image insertdatetime link linkchecker lists media mediaembed mergetags nonbreaking pagebreak permanentpen powerpaste searchreplace table tableofcontents tinymcespellchecker typography visualblocks visualchars wordcount",
+    toolbar: "undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography",
+    images_file_types: 'jpg, svg, webp, png',
+    file_picker_types: 'file image media',
+    language: 'es_MX',  // Configura el idioma a español (México)
+});
+
+</script>
 {% include '../../footer.html' %}
 
 {% endblock %}

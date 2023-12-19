@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('', inicio.as_view(), name="inicio"),
     path('Inicio',inicio.as_view(),name='inicio'),
-    path('Blogs',Blogs.as_view(),name='Blogs'),
+    path('Blogs',BlogsPagina.as_view(),name='Blogs'),
     path('Cursos',cursos.as_view(),name='Cursos'),
     path('cursosOrden',cursosOrden.as_view(),name='cursosOrden'),
     path('Historia',historia.as_view(),name='Historia'),
@@ -31,5 +31,8 @@ urlpatterns = [
     path('notificaciones/', views.notificaciones, name='notificaciones'),
     path('infografias/', views.infografias, name='Infografias'),
      path('detallesInfografias/<int:id>', views.DetallesInfografias.as_view(), name='detallesInfografia'),
-    path('reply-comment-info/<int:id>/<int:comment_id>/', ReplyCommentInfo.as_view(), name='reply-comment-info'),
+    path('reply-comment-info/<int:id>/<int:comment_id>/', ReplyCommentInfo.as_view(), name='reply-comment-info'),    path('tinymce/', include('tinymce.urls')),
+    path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
+    path('tinymce/', include('tinymce.urls')),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
