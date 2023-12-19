@@ -77,6 +77,15 @@
     images_file_types: 'jpg, svg, webp, png',
     file_picker_types: 'file image media',
     language: 'es_MX',  // Configura el idioma a español (México)
+    setup: function (editor) {
+    editor.on('NodeChange', function (e) {
+      // Verifica si el nodo actual es una imagen
+      if (e && e.element.nodeName === 'IMG') {
+        // Aplica la clase 'imagenBlog' a la imagen automáticamente
+        editor.dom.addClass(e.element, 'imagenBlog');
+      }
+    });
+  }
 });
 
 </script>

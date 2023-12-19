@@ -25,8 +25,26 @@
                     </div>
                 {% endfor %}
             </div>
-
             <div class="col-lg-2 col-md-1"></div>
+        </div>
+        <div class="pagination">
+            <span class="step-links linkspaginaciones">
+                {% if videos.has_previous %}
+                    <a href="?page={{ videos.previous_page_number }}" class="linkspaginaciones"><i class="fa-solid fa-chevron-left"></i></a>
+                {% endif %}
+        
+                <span class="current">
+                  {% for page_number in rango %}
+                  <a href="?page={{ page_number }}" class="linkspaginaciones">{{ page_number }}</a>
+                    {% endfor %}
+                
+  
+                </span>
+        
+                {% if videos.has_next %}
+                    <a href="?page={{ videos.next_page_number }}" class="linkspaginaciones"><i class="fa-solid fa-chevron-right"></i></a>
+                {% endif %}
+            </span>
         </div>
     </div>
 </section>

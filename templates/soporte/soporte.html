@@ -20,14 +20,14 @@
                         Estamos aquí para asistirte en cualquier inconveniente que puedas estar experimentando con PuertoNet. Para brindarte la mejor atención, por favor, proporciona tu dirección de correo electrónico para que podamos ponernos en contacto contigo. Asimismo, te solicitamos una descripción detallada del problema y, si es posible, algún tipo de evidencia que nos ayude a comprender mejor la situación. Nuestro equipo de soporte se esforzará por responder a tu solicitud en el menor tiempo posible. ¡Gracias por confiar en nosotros!
                     </p>
                     <div class="formularioSoporte col-6 mx-auto">
-                        <form>
+                        <form method="post" enctype="multipart/form-data">{% csrf_token %} 
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Correo eléctronico</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" name="correo">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Evidencia (opcional)</label><br>
