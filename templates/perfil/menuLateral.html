@@ -1,7 +1,15 @@
 <div class="col-2">
     <div class="menuLateral">
         <div class="text-center">
-            <img src="../../static/assets/img/inicio/user.png" class="mx-auto" style="width: 50%;"/>
+            
+            
+          
+            {% if  user.profile_set.first.image %}
+            <img src="{{ user.profile_set.first.image.url}}" alt="Foto de perfil" class="mx-auto" style="width: 50%;">
+        {% else %}
+        <img src="../../static/assets/img/inicio/user.png" class="mx-auto" style="width: 50%;"/>
+        {% endif %}
+
             <h3 style="word-wrap: break-word;" class="nombreUsuario">{{request.user.username}}</h3>
         </div>
         <ul class="contenedorOpcionesMenuLateral nav flex-column">
@@ -9,6 +17,7 @@
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'editarUsuario' %}"><i class="fa-solid fa-user-pen me-2"></i><span>Mi perfil</span></a>
             </li>
+            {% if  user.profile_set.first.type_user == 0%} 
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'subirVideoImagen' %}"><i class="fa-solid fa-photo-film me-2"></i><span>Subir video / imagen</span></a>
             </li>
@@ -21,10 +30,13 @@
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'notificaciones' %}"><i class="fa-solid fa-bell me-2"></i><span>Notificaciones</span></a>
             </li>
+            {% endif %}
             <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #000000; margin-top: 20px;"></div>
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'Soporte' %}"><i class="fa-solid fa-wrench me-2"></i><span>Soporte</span></a>
             </li>
+
+
         </ul>
     </div>
 </div>

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +39,7 @@
                
 
 
-                {% if user.is_authenticated %}  
+                {% if user.is_authenticated and user.id  %}  
                     <a href="#" class="linea-hover" title="Iniciar sesión" id="navbarDropdownUserImage" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </a>
@@ -48,7 +47,16 @@
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                 
                         <h6 class="dropdown-header d-flex align-items-center" style="display: block; padding: 0.5rem 1rem; margin-bottom: 0; font-size: 0.875rem; color: #69707a; white-space: nowrap;">
+                           
                             <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 3%;"></i>
+                            {% comment %} {% if  user.profile_set.all %}
+                            <img src="{{ user.profile_set.first.image.url}}" alt="Foto de perfil" style="width: 5%;" style=" margin-right: 3%;">
+                        {% else %}
+                        <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 3%;"></i>
+                        {% endif %} {% endcomment %}
+                            
+
+
                             <div class="dropdown-user-details">
                                 <div class="dropdown-user-details-name">{{request.user.username}}</div>
                                 <div class="dropdown-user-details-email">{{request.user.email}}</div>
@@ -62,6 +70,7 @@
                                 Mi perfil
                               </div>
                         </a>
+                        {% if  user.profile_set.first.type_user == 0%} 
                         <a class="dropdown-item" href="{% url 'subirVideoImagen' %}">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-photo-film me-2"></i>
@@ -86,6 +95,8 @@
                                 Notificaciones
                               </div>
                         </a>
+
+                        {% endif %}
                         <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #e0e5ec;"></div>
                         <a class="dropdown-item" href="{% url 'Soporte' %}">
                             <div class="d-flex align-items-center">

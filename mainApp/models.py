@@ -18,3 +18,13 @@ class ComentariosPagina(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.timestamp}'
+    
+category=[0,'Admin'],[1,'Usuario']
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(null=True,blank=True)
+    type_user=models.IntegerField(choices=category, default="1")
+    def __str__(self):
+        mapping_tipo_usuario = dict(category)
+        tipo_usuario_str = mapping_tipo_usuario.get(self.type_user, 'Desconocido')
+        return f'{self.user.username} - {tipo_usuario_str}'
