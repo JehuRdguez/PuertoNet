@@ -1,12 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Blogs
+from .models import Blogs, Profile
 from tinymce.widgets import TinyMCE
-from .models import Profile
-from django.forms.models import inlineformset_factory
-from django.contrib.auth.forms import PasswordChangeForm
-
+from .models import Profile, LogMultimedia
 
 class CommentForm(forms.Form):
     text = forms.CharField( widget=forms.Textarea(attrs={
@@ -47,3 +44,15 @@ class ProfileForm(forms.ModelForm):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Selecciona una imagen'})
         
+class LogMultimediaForm(forms.ModelForm):
+    title = forms.CharField(max_length=255)
+    description = forms.CharField(widget=forms.Textarea)
+    file = forms.FileField()
+
+    class Meta:
+        model = LogMultimedia
+        fields = [ 'format', 'file', 'category', 'supplementary_videos', 'supplementary_Infographics']
+        widgets = {
+                'supplementary_videos': forms.CheckboxSelectMultiple(),
+                'supplementary_Infographics': forms.CheckboxSelectMultiple(),
+            }

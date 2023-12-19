@@ -107,9 +107,52 @@ window.addEventListener('resize', () => {
     }
 });
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     $(document).ready(function () {
+
+       
         // Función para realizar la búsqueda
+        function realizarBusquedaInfografias() {
+            var query = $('#search-input-info').val().toLowerCase();
+
+            // Oculta todos los videos
+            $('.infografia-container').hide();
+
+            // Muestra los videos que contienen la consulta en el título o descripción
+            $('.infografia-container').each(function () {
+                var tituloInfografia = $(this).find('.infografia-title').text().toLowerCase();
+                var descripcionInfografia = $(this).find('.infografia-description').text().toLowerCase();
+                
+
+                if (tituloInfografia.includes(query)) {
+                    $(this).show();
+                }
+            });
+        }
+
+
+
+        $(document).ready(function() {
+            $('#filtro-categorias-Info').on('change', function() {
+                var categoriaSeleccionada = $(this).val().toLowerCase();
+                
+                // Muestra todas las infografías si la categoría seleccionada es "Todos"
+                if (categoriaSeleccionada === 'todos') {
+                    $('.infografia-container').show();
+                } else {
+                    // Oculta todas las infografías
+                    $('.infografia-container').hide();
+                    
+                    // Muestra solo las infografías con la categoría seleccionada
+                    $('.infografia-container[data-categoria="' + categoriaSeleccionada + '"]').show();
+                }
+            });
+        });
+
+        
+
         function realizarBusqueda() {
             var query = $('#search-input').val().toLowerCase();
 
@@ -127,9 +170,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+
+
         // Asigna la función al evento input del campo de búsqueda
         $('#search-input').on('input', function () {
             realizarBusqueda();
+        });
+        $('#search-input-info').on('input', function () {
+            realizarBusquedaInfografias();
         });
 
         // Captura el cambio en el filtro de categorías

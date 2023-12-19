@@ -1,0 +1,231 @@
+{% extends 'cursos/cursos.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+{% endblock %}
+
+{% block content %}
+  <section class="EspacioVideos">
+    <div class="container px-lg-4 px-sm-2">
+      <div class="mt-n10">
+        <div class="row">
+          <nav aria-label="breadcrumb" class="breadcrumbAlineado">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'Infografias' %}" style="color: #333B45;">Infografías</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">{{ infografia.title }}</li>
+            </ol>
+          </nav>
+
+          <!-- elemento 1 -->
+          <div class="col-md-9 cursos_info centered-element">
+            <div class="mt-4">
+              <h1 class="display-6 fw-bold mt-4" style="color: black;"><i data-feather="globe" class="icon-lg"></i> &nbsp;{{ vid_data.title }}</h1>
+            </div>
+            <div class="VideoMuestra">
+              <img src="{{ infografia.file.url }}" alt="{{ infografia.title }}" class="infografia-thumbnail" />
+            </div>
+          </div>
+
+          <!-- elemento 2 -->
+          <div class="col-md-3 videosExtras">
+            <h3 class="tituloVideosExtras">Más contenido...</h3>
+
+            <div class="scrollmasContenido">
+              {% for i in infografias_relacionadas %}
+                <br />
+                <a href="{% url 'detallesInfografia' id=i.id %}" class="video-link2">
+                  <div class="gallery2">
+                    <img style="border-radius: 5px; width: 20%;" src="{{ i.file.url }}" />
+                    <div class="text-container2">
+                      <div class="video-title2">{{ i.title }}</div>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-comments-tab" data-bs-toggle="tab" data-bs-target="#nav-comments" type="button" role="tab" aria-controls="nav-comments" aria-selected="true">Comentarios</button>
+          <button class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="false">Descripción</button>
+          <button class="nav-link" id="nav-material-tab" data-bs-toggle="tab" data-bs-target="#nav-material" type="button" role="tab" aria-controls="nav-material" aria-selected="false">Material Complementario</button>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active p-3" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+          {% if user.is_authenticated %}
+            <form method="post" action="{% if infografia.id %}{% url 'detallesInfografia' id=infografia.id %}{% endif %}">
+              {% csrf_token %}
+              <div class="input-group">
+                <span class="input-group-text" style=" padding-left: 0; border: none;  background-color: transparent;"><i class="bi bi-person-circle" style="font-size: 2em; margin-right: 3%; color: azure;"></i></span>
+                {{ comment_form.text }}
+              </div>
+              <div class="d-flex justify-content-end" style="margin-top: 1%;">
+                <button type="submit" class="acciones-button">Comentar</button>
+              </div>
+            </form>
+          {% else %}
+            <div class="alert alert-light" role="alert">
+              <h6>Se requiere iniciar sesión para realizar comentarios.</h6>
+            </div>
+          {% endif %}
+
+          <hr />
+
+          {% for comment in comments %}
+            <div>
+              {% if not comment.parent_comment %}
+                <span style="display: flex; align-items: center;">
+                  <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
+                  <div style="margin-right: 4%;">
+                    <strong>{{ comment.user.username }}</strong> &nbsp; {{ comment.timestamp }}
+                    <br />
+                    {{ comment.text }}
+                    <br />
+                    <p class="mostrarTexto" data-target="{{ comment.id }}">Respuestas</p>
+                  </div>
+                </span>
+
+                <div id="Mcontenido-{{ comment.id }}" style="display: none;">
+                  {% for reply in comment.commentinfo_set.all %}
+                    <div style="margin-left: 3%;">
+                      <span style="display: flex; align-items: center;">
+                        <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
+                        <div style="margin-right: 4%;">
+                          <strong>{{ reply.user.username }}</strong> &nbsp; {{ reply.timestamp }}
+                          <br />
+                          {{ reply.text }}
+                        </div>
+                      </span>
+                    </div>
+                  {% endfor %}
+
+                  <br />
+                  {% if user.is_authenticated %}
+                    <div style="margin-left: 3%;">
+                      <form method="post" action="{% url 'reply-comment-info' id=infografia.id comment_id=comment.id %}">
+                        {% csrf_token %}
+                        {{ comment_form.text }}
+                        <div class="d-flex justify-content-end">
+                          <button type="submit" class="acciones-button">Responder</button>
+                        </div>
+                      </form>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <div class="pagination2">
+            <span class="step-links linkspaginaciones">
+              {% if comments.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ comments.previous_page_number }}">previous</a>
+              {% endif %}
+
+              <span class="current">Página {{ comments.number }} de {{ comments.paginator.num_pages }}.</span>
+
+              {% if comments.has_next %}
+                <a href="?page={{ comments.next_page_number }}">next</a>
+                <a href="?page={{ comments.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+          <h5 class="display-6 fw-bold mt-4">{{ infografia.title }}</h5>
+          {{ infografia.description }}
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-material" role="tabpanel" aria-labelledby="nav-material-tab">
+          <h6>El autor recomienda el siguiente contenido para entender más sobre el tema:</h6>
+          <div class="scrollMaterialComplementario">
+            {% for v in videos %}
+              {% if v.id != vid_data.id %}
+                {% if v.categoria == vid_data.categoria %}
+                  <a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
+                    <div class="gallery">
+                      <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail" />
+                      <div class="text-container">
+                        <div class="video-title">{{ v.title }}</div>
+                        <div class="video-description">{{ v.description }}</div>
+                      </div>
+                    </div>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="scrollMaterialComplementario">
+            <!-- Muestra supplementary_videos -->
+
+            {% for v in videos %}
+              <a href="{% url 'play-video' vid_id=v.id %}" class="video-link">
+                <div class="gallery">
+                  <img src="{{ v.thumbnail }}" alt="YouTube Video {{ v.id }}" class="video-thumbnail" />
+                  <div class="text-container">
+                    <div class="video-title">{{ v.title }}</div>
+                    <div class="video-description">{{ v.description }}</div>
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+
+            {% for info in infografia.supplementary_Infographics.all %}
+              <a href="{% url 'detallesInfografia' id=info.id %}" class="video-link">
+                <div class="gallery">
+                  <img src="{{ info.file.url }}" alt="{{ info.title }}" style="width: 5%;" class="infografia-thumbnail" />
+                  <div class="text-container">
+                    <div class="video-title">{{ info.title }}</div>
+                    <div class="video-description">{{ info.description }}</div>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Puedes mostrar otros campos según tus necesidades -->
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include '../footer.html' %}
+
+  <script>
+    var iframe = document.querySelector('iframe')
+    
+    // Verificar si el iframe existe
+    
+    function ajustarTamanoIframe() {
+      var anchoVentana = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+    
+      // Ajustar el tamaño del iframe en función del ancho de la ventana
+      if (anchoVentana >= 768) {
+        // Ajusta este valor según tus necesidades
+        iframe.width = 900
+        iframe.height = 500
+      } else {
+        // Puedes establecer diferentes dimensiones para pantallas más pequeñas
+        iframe.width = 370
+        iframe.height = 310
+      }
+    }
+    
+    // Llamar a la función inicialmente
+    ajustarTamanoIframe()
+    
+    // Vincular la función al evento de cambio de tamaño de ventana
+    window.addEventListener('resize', ajustarTamanoIframe)
+  </script>
+{% endblock %}

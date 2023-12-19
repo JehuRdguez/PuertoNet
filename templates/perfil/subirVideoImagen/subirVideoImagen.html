@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-
+ 
 <section class="seccionPerfil">
     <div class="container-fluid">
         <div class="row">
@@ -18,7 +18,46 @@
                 </div>
                 <br>
                 <div class="contenidoSubirVideoImagen">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus soluta quam repellendus dolor obcaecati nam? Id molestias, dolorem quas in quo consectetur quisquam praesentium commodi officia facilis explicabo tempora itaque?</p>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <label>Título </label>
+                    {{form.title}}
+                    <label>Descripción</label>
+                    {{form.description}}
+                    <label>Formato</label>
+                        {{form.format}}
+                        <label>Archivo</label>
+                        {{form.file}}
+                        <label>Categoria</label>
+                    {{form.category}}
+                    
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Contenido complementario</h5>
+                        </div>
+                        
+                        <div class="card-body card-contenidoComplementario">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="searchInfographics" placeholder="Buscar infografías">
+                                    {{ form.supplementary_Infographics }}
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="searchVideos" placeholder="Buscar Videos">
+                                    {{ form.supplementary_videos }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                  
+                   
+                    <button type="submit" class="acciones-button">Comentar</button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -26,5 +65,92 @@
 </section>
 
 {% include '../../footer.html' %}
+
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" style="float: right;">
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          <div id="box" class="alert alerta alert-success alert-dismissible fade show shadow custom-messages fixed-bottom">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong class="text-dark">{{ message }}</strong>
+          </div>
+        {% elif message.tags == 'error' %}
+          <div id="box" class="alert alerta alert-danger alert-dismissible fade show shadow custom-messages fixed-bottom">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong class="text-dark">{{ message }}</strong>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () { 
+        var supplementaryInfographicsField = document.getElementById('id_supplementary_Infographics');
+        var searchInput = document.getElementById('searchInfographics');
+
+        // Copia original de los elementos para su restauración
+        var originalInfographicsOptions = Array.from(supplementaryInfographicsField.children);
+
+        searchInput.addEventListener('input', function () {
+            var searchValue = searchInput.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryInfographicsField.children.length; i++) {
+                var optionLabel = supplementaryInfographicsField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryInfographicsField.children[i].style.display = optionLabel.includes(searchValue) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInput.addEventListener('blur', function () {
+            if (searchInput.value === '') {
+                for (var i = 0; i < originalInfographicsOptions.length; i++) {
+                    originalInfographicsOptions[i].style.display = 'block';
+                }
+            }
+        });
+    });
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        var supplementaryVideosField = document.getElementById('id_supplementary_videos');
+        var searchInputVideos = document.getElementById('searchVideos');
+
+        // Copia original de los elementos para su restauración
+        var originalVideosOptions = Array.from(supplementaryVideosField.children);
+
+        searchInputVideos.addEventListener('input', function () {
+            var searchValueVideos = searchInputVideos.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryVideosField.children.length; i++) {
+                var optionLabelVideos = supplementaryVideosField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryVideosField.children[i].style.display = optionLabelVideos.includes(searchValueVideos) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInputVideos.addEventListener('blur', function () {
+            if (searchInputVideos.value === '') {
+                for (var i = 0; i < originalVideosOptions.length; i++) {
+                    originalVideosOptions[i].style.display = 'block';
+                }
+            }
+        });
+    });
+
+    window.setTimeout(function () {
+        $('.alerta')
+          .fadeTo(500, 0)
+          .slideUp(500, function () {
+            $(this).remove()
+          })
+      }, 2000)
+</script>
+
 
 {% endblock %}
