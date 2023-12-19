@@ -6,3 +6,12 @@ py -m pip freeze > requirements.txt
 
 INSTALAR ARCHIVO requirements.txt:
 pip install -r requirements.txt
+
+
+
+Instalar de cero
+py -m venv venv
+.\venv\Scripts\activate
+pip install django
+pip install -r requirements.txt
+python manage.py runserver

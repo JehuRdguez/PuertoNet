@@ -22,7 +22,9 @@ urlpatterns = [
     path('reply-comment/<str:vid_id>/<int:comment_id>/', ReplyComment.as_view(), name='reply-comment'),
     path('conocenos/', views.conocenos, name='Conocenos'),
     path('ComentarioPagina/', views.comentarioPagina, name='ComentarioPagina'),
-    path('editarUsuario/', views.editarUsuario, name='editarUsuario'),
+    
+     path('editarUsuario/',views.editarUsuario, name='editarUsuario'),
+
     path('subirVideoImagen/', views.subirVideoImagen, name='subirVideoImagen'),
     path('subirBlog/', views.subirBlog, name='subirBlog'),
     path('administrarContenido/', views.administrarContenido, name='administrarContenido'),

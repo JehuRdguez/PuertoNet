@@ -6,15 +6,84 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
+<<<<<<< HEAD
 from .models import Comment, ComentariosPagina, Blogs
+=======
+from .models import Comment, ComentariosPagina,Profile
+>>>>>>> e9872931c88987ba409439a8467c20b623eedacf
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.urls import reverse
 from itertools import chain
 from operator import itemgetter
+<<<<<<< HEAD
 from .forms import BlogForm
 from django.contrib.auth.models import User
+=======
+from django.views.generic.edit import  UpdateView
+from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.db import IntegrityError
+from django.core.files.storage import default_storage
+from django.conf import settings
+import os
+
+
+@login_required
+def editarUsuario(request):
+    user = request.user
+    if request.method == 'POST':
+        new_name = request.POST.get('name')
+        new_lastname = request.POST.get('lastname')
+        new_email = request.POST.get('email')
+        new_password1 = request.POST.get('password1')
+        new_password2 = request.POST.get('password2')
+        new_image = request.FILES.get('image')
+        
+        user.first_name = new_name
+        user.last_name = new_lastname
+        user.save()
+
+        if new_email != user.email:
+            try:
+                User.objects.exclude(pk=user.pk).get(email=new_email)
+                messages.error(request, 'El correo electrónico ya está en uso.')
+            except User.DoesNotExist:
+                user.email = new_email
+                user.save()
+                messages.success(request, 'Cambios guardados exitosamente.')
+
+        if new_image:
+            try:
+                profile = Profile.objects.get(user=user)
+            except Profile.DoesNotExist:
+                usuario = request.user.id
+                cuenta = Profile.objects.create(user_id=usuario, image=new_image)
+                messages.success(request, 'Cambios guardados exitosamente.')
+            else:
+                if profile.image:
+                    file_path = os.path.join(settings.MEDIA_ROOT, str(profile.image))
+                    default_storage.delete(file_path)
+
+                profile.image = new_image
+                profile.save()
+                messages.success(request, 'Cambios guardados exitosamente.')
+            
+        if new_password1:
+            if new_password1 == new_password2:
+                user.set_password(new_password1)
+                user.save()
+                messages.success(request, 'Los cambios se aplicaron, inicia sesión')
+                return redirect('/')
+            else: 
+                messages.error(request, 'Las contraseñas no coinciden')
+        else:
+            messages.success(request, 'Se aplicaron los cambios correctamente')
+        return redirect('editarUsuario')  
+    return render(request, 'perfil/editarUsuario/editarUsuario.html')
+
+
+>>>>>>> e9872931c88987ba409439a8467c20b623eedacf
 
 class inicio(View):
    def get(self, request):
@@ -224,10 +293,11 @@ def signup(request):
                 user.first_name = name
                 user.last_name = lastname
                 user.save()
-               
+
                 authenticated_user = authenticate(request, username=username, password=form.cleaned_data['password1'])
                 login(request, authenticated_user)
-                
+                usuario = request.user.id
+                profile = Profile.objects.create(user_id=usuario)
                 return redirect('/')
     else:
         form = CustomUserCreationForm()
@@ -259,10 +329,11 @@ def comentarioPagina(request):
     return redirect('/')
 
 
-# Perfil
-def editarUsuario(request):
-    return render(request, 'perfil/editarUsuario/editarUsuario.html')
 
+
+
+    
+    
 def subirVideoImagen(request):
     return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html')
 
