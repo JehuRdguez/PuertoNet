@@ -75,7 +75,7 @@ class Notifications(models.Model):
    
 class LogMultimedia(models.Model):
     title = models.CharField(max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     video_id = models.CharField(max_length=20)
     category = models.IntegerField(choices=CourseCategory, default="0")
     timestamp = models.DateTimeField(auto_now_add=True)
