@@ -66,23 +66,15 @@
 
 {% include '../../footer.html' %}
 
-<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" style="float: right;">
-    {% if messages %}
-      {% for message in messages %}
-        {% if message.tags == 'success' %}
-          <div id="box" class="alert alerta alert-success alert-dismissible fade show shadow custom-messages fixed-bottom">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong class="text-dark">{{ message }}</strong>
-          </div>
-        {% elif message.tags == 'error' %}
-          <div id="box" class="alert alerta alert-danger alert-dismissible fade show shadow custom-messages fixed-bottom">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong class="text-dark">{{ message }}</strong>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  </div>
+{% if messages %}
+{% for message in messages %}
+<div class= {% if message.tags == 'alert-success' %} "alert alert-success alerta alert-dismissible fade show shadow custom-messages fixed-bottom" {% else %} "alert alert-danger alerta  alert-dismissible fade show shadow custom-messages fixed-bottom" {% endif %}>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{ message }} 
+    </div>
+{% endfor %}
+{% endif %}
+
 
 
 <script type="text/javascript">
@@ -143,13 +135,7 @@
         });
     });
 
-    window.setTimeout(function () {
-        $('.alerta')
-          .fadeTo(500, 0)
-          .slideUp(500, function () {
-            $(this).remove()
-          })
-      }, 2000)
+  
 </script>
 
 

@@ -499,6 +499,7 @@ header {
     margin: 0; 
 }
 
+
 .contenido-comentario h3 {
     font-size: 1.5em;
     margin-bottom: 5px;
@@ -895,7 +896,7 @@ height: auto;
 }
 .custom-messages {
     width: 350px;
-    left: 72%;
+    left: 80%;
 }
 /* CSS Aviso de privacidad */
 

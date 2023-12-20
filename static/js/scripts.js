@@ -1,3 +1,10 @@
+window.setTimeout(function () {
+    $('.alerta')
+      .fadeTo(500, 0)
+      .slideUp(500, function () {
+        $(this).remove()
+      })
+  }, 4000)
 
 // Efecto parallax
 let titulo = document.getElementById('titulo');
