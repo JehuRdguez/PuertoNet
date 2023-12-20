@@ -27,6 +27,7 @@ class Blogs(models.Model):
     contenido = models.TextField()
     autor = models.TextField(null=True, blank=True)  # Permitir nulo o configurar un valor predeterminado
     fecha = models.DateTimeField(default=datetime.now)
+    
 category=[0,'Admin'],[1,'Usuario']
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

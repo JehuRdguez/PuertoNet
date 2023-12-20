@@ -34,5 +34,6 @@ urlpatterns = [
     path('reply-comment-info/<int:id>/<int:comment_id>/', ReplyCommentInfo.as_view(), name='reply-comment-info'),    path('tinymce/', include('tinymce.urls')),
     path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
     path('tinymce/', include('tinymce.urls')),
+    path('vaciarNotificaciones', views.vaciarNotificaciones, name='vaciarNotificaciones'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

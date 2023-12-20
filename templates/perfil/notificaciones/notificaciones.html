@@ -18,11 +18,44 @@
                 </div>
                 <br>
                 <div class="contenidoNotificaciones">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus soluta quam repellendus dolor obcaecati nam? Id molestias, dolorem quas in quo consectetur quisquam praesentium commodi officia facilis explicabo tempora itaque?</p>
+                    <a href="{% url 'vaciarNotificaciones' %}" >Eliminar</a>
+
+                    
+                    <div class="table-responsive py-2 "> <!--Hacemos responsiva -->
+                        <table class="cell-border display" cellspacing="0" width="100%" id="ControladorTabla">
+                          <thead> <!--Encabezados -->
+                            <tr class="text-center">
+                              <th>Descripción</th>
+                              <th>Fecha</th>
+                             
+   
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for noti in notificaciones%} <!-- Usamos ciclo for para imrpimir tarjas-->
+                            <tr >
+                              <td> {{noti.description}}</td>
+                              <td>{{noti.timestamp}}</td> <!--Imprimimos lo de la tabla -->
+                            
+                            
+                            </tr>
+                            {% endfor %} <!--Termina ciclo for -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {% if messages %}
+{% for message in messages %}
+<div class= {% if message.tags == 'alert-success' %} "alert alert-success alerta alert-dismissible fade show shadow custom-messages fixed-bottom" {% else %} "alert alert-danger alerta  alert-dismissible fade show shadow custom-messages fixed-bottom" {% endif %}>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{ message }} 
+    </div>
+{% endfor %}
+{% endif %}
 </section>
 
 {% include '../../footer.html' %}

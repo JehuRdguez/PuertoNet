@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
 
-from .models import Comment, ComentariosPagina,Profile, Infographics,CommentInfo,LogMultimedia, Blogs
+from .models import Comment, ComentariosPagina,Profile, Infographics,CommentInfo,LogMultimedia, Blogs, Notifications
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -387,7 +387,11 @@ class DetallesInfografias(View):
         
             new_comment = CommentInfo(user=request.user, info_id_id=id, text=text)
             new_comment.save()
-
+            infografia = Infographics.objects.filter(id=id).first()
+            description= "Hay nuevos comentarios en " + infografia.title
+            admin= infografia.user
+            new_notification= Notifications(user=request.user, description=description, admin=admin)
+            new_notification.save()
             return redirect(reverse('detallesInfografia', kwargs={'id': id}))
 
         return redirect('detalles-infografia', id=id)
@@ -404,6 +408,11 @@ class ReplyCommentInfo(View):
 
             new_reply = CommentInfo(user=request.user, info_id_id=id, text=text, parent_comment=comment)
             new_reply.save()
+            infografia = Infographics.objects.filter(id=id).first()
+            description= "Hay nuevos comentarios en " + infografia.title
+            admin= infografia.user
+            new_notification= Notifications(user=request.user, description=description, admin=admin)
+            new_notification.save()
        
         return redirect(reverse('detallesInfografia', kwargs={'id': id}))
 
@@ -633,7 +642,17 @@ def subirBlog(request):
 def administrarContenido(request):
     return render(request, 'perfil/administrarContenido/administrarContenido.html')
 
+
 def notificaciones(request):
+    notificaciones=Notifications.objects.filter(admin = request.user)
+    context = {'notificaciones': notificaciones}
+    return render(request, 'perfil/notificaciones/notificaciones.html', context)
+
+@login_required
+def vaciarNotificaciones(request):
+    notificaciones = Notifications.objects.filter(admin=request.user)
+    notificaciones.delete()
+    messages.success(request, "Eliminadas correctamente")
     return render(request, 'perfil/notificaciones/notificaciones.html')
 
 def infografias(request):

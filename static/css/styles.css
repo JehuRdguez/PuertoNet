@@ -1029,6 +1029,18 @@ height: auto;
    }
 }
 
+.btn-Acciones{
+    text-align: center;
+    background-color: #428789;
+    width: 10em;
+    height: 2.5em;
+    color: white;
+    border-color: transparent;
+    border-radius: 1em;
+    text-align: center;
+
+
+}
                                                 /* caja de comentarios de videos */
 
 .nav-tabs .nav-link.active {
