@@ -37,5 +37,6 @@ urlpatterns = [
     path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
     path('tinymce/', include('tinymce.urls')),
     path('vaciarNotificaciones', views.vaciarNotificaciones, name='vaciarNotificaciones'),
+     path('eliminarInfografia/<int:id>', views.EliminarInfografia, name='eliminarInfografia'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

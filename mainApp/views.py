@@ -672,12 +672,18 @@ def subirBlog(request):
 #            return render(request, 'perfil/subirBlog/subirBlog.html')
 #    return render(request, 'perfil/subirBlog/subirBlog.html')
 #
-
+@login_required
 def administrarContenido(request):
     infografias=Infographics.objects.all()
     context = {'infografias': infografias}
     return render(request, 'perfil/administrarContenido/administrarContenido.html',context)
 
+@login_required
+def EliminarInfografia(request, id):
+    infografia = Infographics.objects.filter(id=id)
+    infografia.delete()
+    messages.success(request, "Eliminada correctamente")
+    return redirect('administrarContenido')
 
 def notificaciones(request):
     notificaciones=Notifications.objects.filter(admin = request.user)
@@ -689,7 +695,11 @@ def vaciarNotificaciones(request):
     notificaciones = Notifications.objects.filter(admin=request.user)
     notificaciones.delete()
     messages.success(request, "Eliminadas correctamente")
-    return render(request, 'perfil/notificaciones/notificaciones.html')
+    return redirect('notificaciones')
+
+
+
+
 
 def infografias(request):
     infografias_list = Infographics.objects.order_by('-timestamp')

@@ -3,31 +3,61 @@
 {% load static %}
 
 {% block content %}
-
-<section class="seccionPerfil">
+  <section class="seccionPerfil">
     <div class="container-fluid">
-        <div class="row">
+      <div class="row">
+        <!-- Menú lateral -->
+        {% include '../menuLateral.html' %}
 
-            <!-- Menú lateral -->
-            {% include '../menuLateral.html' %}
-
-            <!-- Contenido -->
-            <div class="col-10">
-                <div class="tituloPerfil text-center">
-                    <h1 style="color: #357678;">Administrar contenido</h1>
-                </div>
-                <br>
-                <div class="contenidoAdministrarContenido">
-
-
-
-                    
-                </div>
+        <!-- Contenido -->
+        <div class="col-10">
+          <div class="tituloPerfil text-center">
+            <h1 style="color: #357678;">Administrar contenido</h1>
+          </div>
+          <br />
+          <div class="contenidoAdministrarContenido">
+            <div class="table-responsive py-2">
+              <!-- Hacemos responsiva -->
+              <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarTabla">
+                <thead>
+                  <!-- Encabezados -->
+                  <tr class="text-center">
+                    <th>Miniatura</th>
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Formato</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for info in infografias %}
+                    <!-- Usamos ciclo for para imrpimir tarjas -->
+                    <tr>
+                      <td><img src="{{ info.file.url }}"  alt="{{ info.title }}" style="width: 20%;"  ></img></td>
+                      <td>{{ info.title }}</td>
+                      <td>{{ info.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
+                      <td>{{ info.get_format_display }}</td>
+                      <td>
+                        <a href="{% url 'eliminarInfografia' id=info.id %}" class="bi bi-trash text-danger"></a>
+                      </td>
+                    </tr>
+                  {% endfor %} <!-- Termina ciclo for -->
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+    {% if messages %}
+    {% for message in messages %}
+    <div class= {% if message.tags == 'alert-success' %} "alert alert-success alerta alert-dismissible fade show shadow custom-messages fixed-bottom" {% else %} "alert alert-danger alerta  alert-dismissible fade show shadow custom-messages fixed-bottom" {% endif %}>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ message }} 
+        </div>
+    {% endfor %}
+    {% endif %}
+  </section>
 
-{% include '../../footer.html' %}
-
+  {% include '../../footer.html' %}
 {% endblock %}

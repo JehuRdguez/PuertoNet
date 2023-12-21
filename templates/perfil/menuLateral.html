@@ -17,7 +17,7 @@
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'editarUsuario' %}"><i class="fa-solid fa-user-pen me-2"></i><span>Mi perfil</span></a>
             </li>
-            {% if  user.profile_set.first.type_user == 0%} 
+            {% if  user.profile_set.first.type_user == 0 %} 
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'subirVideoImagen' %}"><i class="fa-solid fa-photo-film me-2"></i><span>Subir video / imagen</span></a>
             </li>
