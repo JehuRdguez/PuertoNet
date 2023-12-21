@@ -61,7 +61,16 @@ class CommentInfo(models.Model):
     parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.user.username} - {self.timestamp}'  
-     
+
+class CommentBlog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog_id = models.ForeignKey( Blogs, on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return f'{self.user.username} - {self.timestamp}'  
+
 class Notifications(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
