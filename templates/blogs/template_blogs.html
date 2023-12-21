@@ -5,7 +5,7 @@
 {% block content %} 
 
 <section class="seccionSoporte">
-    <div class="container text-center">
+    <div class="container">
         <div class="row">
             <div class="col-2">
             </div>
@@ -24,11 +24,101 @@
                         {{ datos.contenido|safe }}
                     </p>
                 </div>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active p-3" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+                      {% if user.is_authenticated %}
+                        <form method="post" action="{% if datos.id %}{% url 'Blog' blog_id=datos.id   %}{% endif %}">
+                          {% csrf_token %}
+                          <div class="input-group">
+                            <span class="input-group-text" style=" padding-left: 0; border: none;  background-color: transparent;"><i class="bi bi-person-circle" style="font-size: 2em; margin-right: 3%; color: azure;"></i></span>
+                            {{ comment_form.text }}
+                          </div>
+                          <div class="d-flex justify-content-end" style="margin-top: 1%;">
+                            <button type="submit" class="acciones-button">Comentar</button>
+                          </div>
+                        </form>
+                      {% else %}
+                        <div class="alert alert-light" role="alert">
+                          <h6>Se requiere iniciar sesión para realizar comentarios.</h6>
+                        </div>
+                      {% endif %}
+            
+                      <hr />
+                      {% for comment in comments %}
+                        <div>
+                          {% if not comment.parent_comment %}
+                            <span style="display: flex; align-items: center;">
+                              <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
+                              <div style="margin-right: 4%;">
+                                <strong>{{ comment.user.username }}</strong> &nbsp; {{ comment.timestamp }}
+                                <br />
+                                {{ comment.text }}
+                                <br />
+                                <p class="mostrarTexto" data-target="{{ comment.id }}">Respuestas</p>
+                              </div>
+                            </span>
+
+                            <div id="Mcontenido-{{ comment.id }}" style="display: none;">
+                                {% for reply in comentarioReplay %}
+                                    {%if reply.parent_comment == comment %}
+                                        <div style="margin-left: 3%;">
+                                        <span style="display: flex; align-items: center;">
+                                            <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
+                                            <div style="margin-right: 4%;">
+                                            <strong>{{ reply.user.username }}</strong> &nbsp; {{ reply.timestamp }}
+                                            <br />
+                                            {{ reply.text }}
+                                            </div>
+                                        </span>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                              <br />
+                              {% if user.is_authenticated %}
+                                <div style="margin-left: 3%;">
+                                  <form method="post" action="{% url 'reply-comment-blog' id=datos.id comment_id=comment.id %}">
+                                    {% csrf_token %}
+                                    {{ comment_form.text }}
+                                    <div class="d-flex justify-content-end">
+                                      <button type="submit" class="acciones-button">Responder</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+            
+                      <div class="pagination2">
+                        <span class="step-links linkspaginaciones">
+                          {% if comments.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ comments.previous_page_number }}">previous</a>
+                          {% endif %}
+            
+                          <span class="current">Página {{ comments.number }} de {{ comments.paginator.num_pages }}.</span>
+            
+                          {% if comments.has_next %}
+                            <a href="?page={{ comments.next_page_number }}">next</a>
+                            <a href="?page={{ comments.paginator.num_pages }}">last &raquo;</a>
+                          {% endif %}
+                        </span>
+                      </div>
+                    </div>
+            
+                    <div class="tab-pane fade p-3" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+                      <h5 class="display-6 fw-bold mt-4">{{ infografia.title }}</h5>
+                      {{ infografia.description }}
+                    </div>
+            
+                  </div>
             </div>
             <br>       
           <div class="col-2">
           </div>
         </div>
+        
 </section>
 
 

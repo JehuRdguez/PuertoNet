@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm,CommentForm
 
-from .models import Comment, ComentariosPagina,Profile, Infographics,CommentInfo,LogMultimedia, Blogs, Notifications
+from .models import Comment, ComentariosPagina,Profile, Infographics,CommentInfo,LogMultimedia, Blogs, Notifications, CommentBlog
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -186,9 +186,65 @@ class BlogsPagina(View):
 class TemplateBlog(View):
     def get(self, request, blog_id):
         blogs = Blogs.objects.get(id=blog_id)
-        return render(request, 'blogs/template_blogs.html',{'datos':blogs})
+        comments = CommentBlog.objects.filter(blog_id=blog_id).order_by('timestamp')
+        comment_form = CommentForm()
+        main_comments = CommentBlog.objects.filter(blog_id=blog_id, parent_comment=None).order_by('timestamp')
+        paginator = Paginator(main_comments, 3)
+        page = request.GET.get('page')
+        
+        comentarioReplay = CommentBlog.objects.filter(blog_id=blog_id).exclude(parent_comment=None)
+        print(comentarioReplay)
+        try:
+            comments = paginator.page(page)
+        except PageNotAnInteger:
+            comments = paginator.page(1)
+        except EmptyPage:
+            comments = paginator.page(paginator.num_pages)
 
+        contextUno = {
+            'datos':blogs,
+            "comments": comments,
+            "comentarioReplay":comentarioReplay,
+            "comment_form": comment_form,
+        }
+        return render(request, 'blogs/template_blogs.html',contextUno)
+    
+    def post(self, request, blog_id):
+        comment_form = CommentForm(request.POST)
+        
+        if comment_form.is_valid() and request.user.is_authenticated:
+            text = comment_form.cleaned_data['text']
+            # Obtén la instancia del blog usando get_object_or_404
+            blog_instance = get_object_or_404(Blogs, pk=blog_id)
+            new_comment = CommentBlog(user=request.user, blog_id=blog_instance, text=text)
+            new_comment.save()
+
+            return redirect(reverse('Blog', kwargs={'blog_id': blog_id}))
+
+        return redirect('Blog', blog_id=blog_id)
      
+class ReplyCommentBlog(View):
+    def post(self, request, id, comment_id):
+        comment = get_object_or_404(CommentBlog, id=comment_id)
+
+        reply_form = CommentForm(request.POST)
+
+        if reply_form.is_valid() and request.user.is_authenticated:
+            text = reply_form.cleaned_data['text']
+            
+            # Obtén la instancia del blog usando get_object_or_404
+            blog_instance = get_object_or_404(Blogs, pk=id)
+
+            new_reply = CommentBlog(user=request.user, blog_id=blog_instance, text=text, parent_comment=comment)
+            new_reply.save()
+            
+            Blog = Blogs.objects.filter(id=id).first()
+            description = "Hay nuevos comentarios en " + Blog.titulo
+            admin = request.user
+            new_notification = Notifications(user=request.user, description=description, admin=admin)
+            new_notification.save()
+       
+        return redirect(reverse('Blog', kwargs={'blog_id': id}))
 class cursos(View):
     def get(self, request):
         categoria = request.GET.get('categoria', None)
@@ -253,26 +309,6 @@ def videos(request):
 	context = {"videos": videos}
 	return render(request, 'videos.html', context)
 
- 
-'''
-Basic view for showing a video in an iframe 
-'''
-# def play_video(request):
-#     videos = YouTube().get_data()
-#     vid_id = request.GET.get("vid_id")
-
-#     vid_data = YouTube(vid_id=vid_id).get_video()
-
-#     contextUno = {
-#         "vid_data": vid_data,
-#     	"videos": videos
-#     }
-
-
-
-#     return render(request, 'play_video.html', contextUno)
-
-
 class play_video(View):
     def get(self, request, vid_id):
 
@@ -315,11 +351,6 @@ class play_video(View):
             return redirect(reverse('play-video', kwargs={'vid_id': vid_id}))
 
         return redirect('play-video', vid_id=vid_id)
-
-
-
-
-
 
 class ReplyComment(View):
     def post(self, request, vid_id, comment_id):
