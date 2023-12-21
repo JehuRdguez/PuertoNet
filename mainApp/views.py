@@ -643,7 +643,9 @@ def subirBlog(request):
 #
 
 def administrarContenido(request):
-    return render(request, 'perfil/administrarContenido/administrarContenido.html')
+    infografias=Infographics.objects.all()
+    context = {'infografias': infografias}
+    return render(request, 'perfil/administrarContenido/administrarContenido.html',context)
 
 
 def notificaciones(request):

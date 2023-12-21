@@ -152,7 +152,14 @@
   src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 
 <script>
-    $('#ControladorTabla').DataTable({
+    $('#NotificacionesTabla').DataTable({
+        responsive: true,
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'//cambiamos lenguaje a español
+        }
+      })
+
+      $('#AdministrarTabla').DataTable({
         responsive: true,
         language: {
           url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'//cambiamos lenguaje a español
