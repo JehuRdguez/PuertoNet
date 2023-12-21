@@ -347,6 +347,15 @@ class play_video(View):
             text = comment_form.cleaned_data['text']
             new_comment = Comment(user=request.user, video_id=vid_id, text=text)
             new_comment.save()
+            vid_data = YouTube(vid_id=vid_id).get_video()
+            video_title = vid_data["title"]
+            video_id = vid_data["id"]
+            video = LogMultimedia.objects.filter(video_id=video_id).first()
+            description= "Hay nuevos comentarios en " + video_title
+            admin = video.user if video else None
+            new_notification= Notifications(user=request.user, description=description, admin=admin)
+            new_notification.save()
+            
 
             return redirect(reverse('play-video', kwargs={'vid_id': vid_id}))
 
@@ -513,17 +522,11 @@ def comentarioPagina(request):
 
 def is_valid_video(file):
     try:
-            # Ejemplo: Validar que el archivo tiene una extensión de video permitida
             allowed_extensions = ['.mp4', '.avi', '.mkv']
             _, file_extension = os.path.splitext(file.name)
             if file_extension.lower() not in allowed_extensions:
                 return False
-
-            # Ejemplo adicional: Validar el contenido del archivo (puedes ajustar según tus necesidades)
             video_content = file.read()
-            # Implementa tu lógica de validación aquí
-
-            # Retorna True si el archivo es válido
             return True
     except Exception as e:
         print(f"Error al validar el video: {e}")
