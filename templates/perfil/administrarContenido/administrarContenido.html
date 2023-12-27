@@ -14,8 +14,13 @@
           <div class="tituloPerfil text-center">
             <h1 style="color: #357678;">Administrar contenido</h1>
           </div>
+       
           <br />
-          <div class="contenidoAdministrarContenido">
+          <div class="contenidoAdministrarContenido"> 
+            <button onclick="window.location.href='{% url 'subirVideo' %}'" class="btn-Acciones">Subir video</button>
+
+            <button onclick="window.location.href='{% url 'subirImagen' %}'" class="btn-Acciones">Subir infografía</button>
+
             <div class="table-responsive py-2">
               <!-- Hacemos responsiva -->
               <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarTabla">

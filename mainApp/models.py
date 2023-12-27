@@ -27,6 +27,8 @@ class Blogs(models.Model):
     contenido = models.TextField()
     autor = models.TextField(null=True, blank=True)  # Permitir nulo o configurar un valor predeterminado
     fecha = models.DateTimeField(default=datetime.now)
+    def __str__(self):
+            return f'{self.titulo} '
     
 category=[0,'Admin'],[1,'Usuario']
 class Profile(models.Model):
@@ -49,6 +51,7 @@ class Infographics(models.Model):
         category = models.IntegerField(choices=CourseCategory, default="0")
         supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True)
         supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
+        supplementary_Blogs = models.ManyToManyField('Blogs', blank=True)       
         timestamp = models.DateTimeField(auto_now_add=True)
         def __str__(self):
             return f'{self.title} '
@@ -90,6 +93,7 @@ class LogMultimedia(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     supplementary_videos = models.ManyToManyField('LogMultimedia', blank=True)
     supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
+    supplementary_Blogs = models.ManyToManyField('Blogs', blank=True) 
     format = models.IntegerField(choices=FormatCategory, default="1")
     def __str__(self):
         return f'{self.title}'

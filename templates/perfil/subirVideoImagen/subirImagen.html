@@ -14,7 +14,7 @@
             <!-- Contenido -->
             <div class="col-10">
                 <div class="tituloPerfil text-center">
-                    <h1 style="color: #357678;">Subir video/imagen</h1>
+                    <h1 style="color: #357678;">Subir infografía</h1>
                 </div>
                 <br>
                 <div class="contenidoSubirVideoImagen">
@@ -24,8 +24,7 @@
                     {{form.title}}
                     <label>Descripción</label>
                     {{form.description}}
-                    <label>Formato</label>
-                        {{form.format}}
+               
                         <label>Archivo</label>
                         {{form.file}}
                         <label>Categoria</label>
@@ -40,22 +39,25 @@
                         
                         <div class="card-body card-contenidoComplementario">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input type="text" id="searchInfographics" placeholder="Buscar infografías">
                                     {{ form.supplementary_Infographics }}
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input type="text" id="searchVideos" placeholder="Buscar Videos">
                                     {{ form.supplementary_videos }}
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="searchBlogs" placeholder="Buscar blogs">
+                                    {{ form.supplementary_Blogs}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
                   
                    
-                    <button type="submit" class="btn-Acciones ">Comentar</button>
+                    <button type="submit" class="btn-Acciones ">Subir</button>
                     </form>
 
                 </div>
@@ -74,7 +76,6 @@
     </div>
 {% endfor %}
 {% endif %}
-
 
 
 <script type="text/javascript">
@@ -104,10 +105,7 @@
                 }
             }
         });
-    });
 
-    
-    document.addEventListener('DOMContentLoaded', function () {
         var supplementaryVideosField = document.getElementById('id_supplementary_videos');
         var searchInputVideos = document.getElementById('searchVideos');
 
@@ -130,6 +128,33 @@
             if (searchInputVideos.value === '') {
                 for (var i = 0; i < originalVideosOptions.length; i++) {
                     originalVideosOptions[i].style.display = 'block';
+                }
+            }
+        });
+
+
+        var supplementaryBlogsField = document.getElementById('id_supplementary_Blogs');
+        var searchInputBlogs = document.getElementById('searchBlogs');
+
+        // Copia original de los elementos para su restauración
+        var originalBlogsOptions = Array.from(supplementaryBlogsField.children);
+
+        searchInputBlogs.addEventListener('input', function () {
+            var searchValueBlogs = searchInputBlogs.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryBlogsField.children.length; i++) {
+                var optionLabelBlogs = supplementaryBlogsField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryBlogsField.children[i].style.display = optionLabelBlogs.includes(searchValueBlogs) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInputBlogs.addEventListener('blur', function () {
+            if (searchInputBlogs.value === '') {
+                for (var i = 0; i < originalBlogsOptions.length; i++) {
+                    originalBlogsOptions[i].style.display = 'block';
                 }
             }
         });

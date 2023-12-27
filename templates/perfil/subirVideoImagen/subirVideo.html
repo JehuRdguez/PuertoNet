@@ -1,0 +1,168 @@
+{% extends '../../menu.html' %}
+
+{% load static %}
+
+{% block content %}
+ 
+<section class="seccionPerfil">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Menú lateral -->
+            {% include '../menuLateral.html' %}
+
+            <!-- Contenido -->
+            <div class="col-10">
+                <div class="tituloPerfil text-center">
+                    <h1 style="color: #357678;">Subir video</h1>
+                </div>
+                <br>
+                <div class="contenidoSubirVideoImagen">
+                    <form method="post">
+                        {% csrf_token %}
+               
+                        <label>Título </label>
+                        {{form.title}}
+                   
+                    
+                    <label>Identificador</label>
+                    {{form.video_id}}
+                 
+                    
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Contenido complementario</h5>
+                        </div>
+                        
+                        <div class="card-body card-contenidoComplementario">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" id="searchInfographics" placeholder="Buscar infografías">
+                                    {{ form.supplementary_Infographics }}
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="searchVideos" placeholder="Buscar Videos">
+                                    {{ form.supplementary_videos }}
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="searchBlogs" placeholder="Buscar blogs">
+                                    {{ form.supplementary_Blogs}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                  
+                   
+                    <button type="submit" class="btn-Acciones ">Subir</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '../../footer.html' %}
+
+{% if messages %}
+{% for message in messages %}
+<div class= {% if message.tags == 'alert-success' %} "alert alert-success alerta alert-dismissible fade show shadow custom-messages fixed-bottom" {% else %} "alert alert-danger alerta  alert-dismissible fade show shadow custom-messages fixed-bottom" {% endif %}>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{ message }} 
+    </div>
+{% endfor %}
+{% endif %}
+
+
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () { 
+        var supplementaryInfographicsField = document.getElementById('id_supplementary_Infographics');
+        var searchInput = document.getElementById('searchInfographics');
+
+        // Copia original de los elementos para su restauración
+        var originalInfographicsOptions = Array.from(supplementaryInfographicsField.children);
+
+        searchInput.addEventListener('input', function () {
+            var searchValue = searchInput.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryInfographicsField.children.length; i++) {
+                var optionLabel = supplementaryInfographicsField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryInfographicsField.children[i].style.display = optionLabel.includes(searchValue) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInput.addEventListener('blur', function () {
+            if (searchInput.value === '') {
+                for (var i = 0; i < originalInfographicsOptions.length; i++) {
+                    originalInfographicsOptions[i].style.display = 'block';
+                }
+            }
+        });
+
+        var supplementaryVideosField = document.getElementById('id_supplementary_videos');
+        var searchInputVideos = document.getElementById('searchVideos');
+
+        // Copia original de los elementos para su restauración
+        var originalVideosOptions = Array.from(supplementaryVideosField.children);
+
+        searchInputVideos.addEventListener('input', function () {
+            var searchValueVideos = searchInputVideos.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryVideosField.children.length; i++) {
+                var optionLabelVideos = supplementaryVideosField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryVideosField.children[i].style.display = optionLabelVideos.includes(searchValueVideos) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInputVideos.addEventListener('blur', function () {
+            if (searchInputVideos.value === '') {
+                for (var i = 0; i < originalVideosOptions.length; i++) {
+                    originalVideosOptions[i].style.display = 'block';
+                }
+            }
+        });
+
+
+        var supplementaryBlogsField = document.getElementById('id_supplementary_Blogs');
+        var searchInputBlogs = document.getElementById('searchBlogs');
+
+        // Copia original de los elementos para su restauración
+        var originalBlogsOptions = Array.from(supplementaryBlogsField.children);
+
+        searchInputBlogs.addEventListener('input', function () {
+            var searchValueBlogs = searchInputBlogs.value.toLowerCase();
+
+            for (var i = 0; i < supplementaryBlogsField.children.length; i++) {
+                var optionLabelBlogs = supplementaryBlogsField.children[i].textContent.toLowerCase();
+
+                // Mostrar u ocultar según la coincidencia de búsqueda
+                supplementaryBlogsField.children[i].style.display = optionLabelBlogs.includes(searchValueBlogs) ? 'block' : 'none';
+            }
+        });
+
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInputBlogs.addEventListener('blur', function () {
+            if (searchInputBlogs.value === '') {
+                for (var i = 0; i < originalBlogsOptions.length; i++) {
+                    originalBlogsOptions[i].style.display = 'block';
+                }
+            }
+        });
+    });
+
+  
+</script>
+
+
+{% endblock %}

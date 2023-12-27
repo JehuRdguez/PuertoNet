@@ -78,12 +78,13 @@
                               </div>
                         </a>
                         {% if  user.profile_set.first.type_user == 0%} 
-                        <a class="dropdown-item" href="{% url 'subirVideoImagen' %}">
+                        
+                        {% comment %} <a class="dropdown-item" href="{% url 'subirVideoImagen' %}">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-photo-film me-2"></i>
                                 Subir video / imagen
                               </div>
-                        </a>
+                        </a> {% endcomment %}
                         <a class="dropdown-item" href="{% url 'subirBlog' %}">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-file-lines me-2"></i>

@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <div class="col-2">
     <div class="menuLateral">
         <div class="text-center">
@@ -18,9 +19,9 @@
                 <a class="opcionesMenu" href="{% url 'editarUsuario' %}"><i class="fa-solid fa-user-pen me-2"></i><span>Mi perfil</span></a>
             </li>
             {% if  user.profile_set.first.type_user == 0 %} 
-            <li class="itemMenu">
+            {% comment %} <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'subirVideoImagen' %}"><i class="fa-solid fa-photo-film me-2"></i><span>Subir video / imagen</span></a>
-            </li>
+            </li> {% endcomment %}
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'subirBlog' %}"><i class="fa-solid fa-file-lines me-2"></i><span>Subir blog</span></a>
             </li>
@@ -30,6 +31,17 @@
             <li class="itemMenu">
                 <a class="opcionesMenu" href="{% url 'notificaciones' %}"><i class="fa-solid fa-bell me-2"></i><span>Notificaciones</span></a>
             </li>
+            {% comment %} <li class="itemMenu" id="subirVideoImagen">
+                <a class="opcionesMenu" href="#">
+                    <i class="fa-solid fa-photo-film me-2"></i>
+                    <span>Subir contenido</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="">Subir video</a></li>
+                    <li><a href="{% url 'subirImagen' %}">Subir infografía</a></li>
+                </ul>
+            </li> {% endcomment %}
+            
             {% endif %}
             <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #000000; margin-top: 20px;"></div>
             <li class="itemMenu">
@@ -40,3 +52,12 @@
         </ul>
     </div>
 </div>
+
+<script>
+    // Script para manejar el clic y mostrar/ocultar el submenú
+    $(document).ready(function() {
+        $("#subirVideoImagen").on("click", function() {
+            $(this).find(".submenu").toggle();
+        });
+    });
+    </script>

@@ -164,9 +164,7 @@
                 {% endif %}
               {% endif %}
             {% endfor %}
-          </div>
-
-          <div class="scrollMaterialComplementario">
+            
             <!-- Muestra supplementary_videos -->
 
             {% for v in videos %}
@@ -192,8 +190,22 @@
                 </div>
               </a>
 
-              <!-- Puedes mostrar otros campos según tus necesidades -->
             {% endfor %}
+
+            {% for info in infografia.supplementary_Blogs.all %}
+            <a href="{% url 'Blog' blog_id=info.id %}" class="video-link">
+              <div class="gallery">
+                <img src="{{ info.imagenPortada.url }}" alt="{{ info.titulo }}" style="width: 5%;" class="Blog-thumbnail" />
+                <div class="text-container">
+                  <div class="video-title">{{ info.titulo }}</div>
+                  <div class="video-description">{{ info.introduccion }}</div>
+                </div>
+              </div>
+            </a>
+
+            <!-- Puedes mostrar otros campos según tus necesidades -->
+            {% endfor %}
+            
           </div>
         </div>
       </div>

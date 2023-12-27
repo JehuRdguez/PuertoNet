@@ -25,7 +25,8 @@ urlpatterns = [
     
     path('editarUsuario/',views.editarUsuario, name='editarUsuario'),
 
-    path('subirVideoImagen/', views.subirVideoImagen, name='subirVideoImagen'),
+    path('subirVideo/', views.subirVideo, name='subirVideo'),
+    path('subirImagen/', views.subirImagen, name='subirImagen'),
     path('subirBlog/', views.subirBlog, name='subirBlog'),
     path('administrarContenido/', views.administrarContenido, name='administrarContenido'),
     path('notificaciones/', views.notificaciones, name='notificaciones'),

@@ -33,7 +33,7 @@ from io import BytesIO
 from django.core.exceptions import ValidationError
 from django.core.files import File
 from django.shortcuts import render, redirect
-from .forms import LogMultimediaForm
+from .forms import LogImagenForm, LogVideoForm
 from django.conf import settings
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
@@ -314,10 +314,26 @@ class play_video(View):
 
         videos = YouTube().get_data()  
         vid_data = YouTube(vid_id=vid_id).get_video()
-       
+        InfoVideos=get_object_or_404(LogMultimedia,video_id=vid_id)
         comments = Comment.objects.filter(video_id=vid_id).order_by('timestamp')
         comment_form = CommentForm()
+        videos_relacionados = LogMultimedia.objects.filter(category=InfoVideos.category).exclude(id=InfoVideos.id).values_list('video_id', flat=True)
         
+        
+        video_ids_relacionados =InfoVideos.supplementary_videos.values_list('video_id', flat=True)
+
+        # Obtener datos de YouTube para un video específico
+        videos_data = []
+        for video_id in video_ids_relacionados:
+            video_data = YouTubeApi().get_data(video_id)
+            if video_data:
+                videos_data.append(video_data)
+                
+        videos_data_relacionados = []
+        for video_id in videos_relacionados:
+            video_data_relacionados = YouTubeApi().get_data(video_id)
+            if video_data_relacionados:
+                videos_data_relacionados.append(video_data_relacionados)
       
         main_comments = Comment.objects.filter(video_id=vid_id, parent_comment=None).order_by('timestamp')
         paginator = Paginator(main_comments, 3)
@@ -335,6 +351,9 @@ class play_video(View):
             "videos": videos,
             "comments": comments,
             "comment_form": comment_form,
+            "InfoVideos":InfoVideos,
+            "videos_data":videos_data,
+            "videos_relacionados": videos_data_relacionados
         }
         
 
@@ -389,10 +408,9 @@ class DetallesInfografias(View):
         main_comments = CommentInfo.objects.filter(info_id=infografia, parent_comment=None).order_by('timestamp')
         paginator = Paginator(main_comments, 3)
         page = request.GET.get('page')
-
+        
 
         # Obtener los videos relacionados
-        infografia = get_object_or_404(Infographics, id=id)
         video_ids_relacionados = infografia.supplementary_videos.values_list('video_id', flat=True)
 
         # Obtener datos de YouTube para un video específico
@@ -543,19 +561,19 @@ def is_valid_image(file):
 
 
     
-def subirVideoImagen(request):
+def subirImagen(request):
     if request.method == 'POST':
-        form = LogMultimediaForm(request.POST, request.FILES)
+        form = LogImagenForm(request.POST, request.FILES)
         if form.is_valid():
             multimedia_instance = form.save(commit=False)
           
-            # Verifica si el formato es 'video'
-            if multimedia_instance.format == 1:  # 1 representa 'Video' en FormatCategory
-                # Validar que el archivo sea un video
-                if not is_valid_video(form.cleaned_data['file']):
-                    messages.error(request, 'El archivo no es un video válido.')
-                    return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html', {'form': form})
-              # Configuración de la conexión con la API de YouTube
+            # # Verifica si el formato es 'video'
+            # if multimedia_instance.format == 1:  # 1 representa 'Video' en FormatCategory
+            #     # Validar que el archivo sea un video
+            #     if not is_valid_video(form.cleaned_data['file']):
+            #         messages.error(request, 'El archivo no es un video válido.')
+            #         return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html', {'form': form})
+            #   # Configuración de la conexión con la API de YouTube
                 # youtube = build(
                 #     settings.API_SERVICE_NAME,
                 #     settings.API_VERSION,
@@ -597,41 +615,68 @@ def subirVideoImagen(request):
 
             # Verifica si el formato es 'imagen'
         
-            elif multimedia_instance.format == 0:  # 0 representa 'Imagen' en FormatCategory
+            # elif multimedia_instance.format == 0:  # 0 representa 'Imagen' en FormatCategory
                 # Validar que el archivo sea una imagen
-                file = form.cleaned_data['file']
-                if not is_valid_image(file):
+            file = form.cleaned_data['file']
+            if not is_valid_image(file):
                     messages.error(request, 'El archivo no es una imagen válida.')
-                    return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html', {'form': form})
+                    return render(request, 'perfil/subirVideoImagen/subirImagen.html', {'form': form})
               
                 # Guarda la información en Infographics
-                infographics_instance = Infographics(
+            infographics_instance = Infographics(
                     user=User.objects.get(id=request.user.id),
                     title= form.cleaned_data['title'],
                     description=form.cleaned_data['description'],
-                    format=form.cleaned_data['format'],
                     file=form.cleaned_data['file'],
                     category=form.cleaned_data['category'],
                    
                 )
-                infographics_instance.save()
+            infographics_instance.save()
 
-                supplementary_videos = form.cleaned_data['supplementary_videos']
-                supplementary_Infographics = form.cleaned_data['supplementary_Infographics']
+            supplementary_videos = form.cleaned_data['supplementary_videos']
+            supplementary_Infographics = form.cleaned_data['supplementary_Infographics']
+            supplementary_Blogs = form.cleaned_data['supplementary_Blogs']
                 
-                infographics_instance.supplementary_videos.set(supplementary_videos)
-                infographics_instance.supplementary_Infographics.set(supplementary_Infographics)
-                infographics_instance.save() 
+            infographics_instance.supplementary_videos.set(supplementary_videos)
+            infographics_instance.supplementary_Infographics.set(supplementary_Infographics)
+            infographics_instance.supplementary_Blogs.set(supplementary_Blogs)
+            infographics_instance.save() 
 
             messages.success(request, 'Se creo el contenido correctamente')
-            return redirect('subirVideoImagen')  
+            return redirect('subirImagen')  
     else:
-       form = LogMultimediaForm(request.POST, request.FILES)
+       form = LogImagenForm(request.POST, request.FILES)
     
-    return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html', {'form': form})
+    return render(request, 'perfil/subirVideoImagen/subirImagen.html', {'form': form})
 
 
 
+def subirVideo(request):
+    if request.method == 'POST':
+        form = LogVideoForm(request.POST)
+        if form.is_valid():
+            multimedia_instance = form.save(commit=False)
+            videos_instance = LogMultimedia(
+                    user=User.objects.get(id=request.user.id),
+                    title= form.cleaned_data['title'],
+                    video_id=form.cleaned_data['video_id'],
+
+                   
+                )
+            videos_instance.save()
+            supplementary_videos = form.cleaned_data['supplementary_videos']
+            supplementary_Infographics = form.cleaned_data['supplementary_Infographics']
+            supplementary_Blogs = form.cleaned_data['supplementary_Blogs']
+            videos_instance.supplementary_videos.set(supplementary_videos)
+            videos_instance.supplementary_Infographics.set(supplementary_Infographics)
+            videos_instance.supplementary_Blogs.set(supplementary_Blogs)
+            videos_instance.save() 
+
+            messages.success(request, 'Se creo el contenido correctamente')
+            return redirect('subirVideo')  
+    else:
+       form = LogVideoForm(request.POST)
+    return render(request, 'perfil/subirVideoImagen/subirVideo.html', {'form': form})
 
     
     
