@@ -703,7 +703,7 @@ def subirBlog(request):
     else:
         form = BlogForm()
 
-    return render(request, 'perfil/subirBlog/subirBlog.html', {'form': form, 'datos': blogs,'user':usuario})
+    return render(request, 'perfil/subirBlog/subirBlog.html', {'form': form, 'datos': blogs})
 
 
 #def subirBlog(request):    

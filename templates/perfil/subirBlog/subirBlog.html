@@ -35,7 +35,7 @@
                             <label for="exampleFormControlTextarea2" class="form-label">Contenido</label>
                             <textarea class="form-control" id="contenido" rows="100" name="contenido"></textarea>
                         </div>
-                        <input type="text" class="form-control" id="autor" aria-describedby="emailHelp" name="autor" value="{{user}}" style="display: none;">
+                        <input type="text" class="form-control" id="autor" aria-describedby="emailHelp" name="autor" value="{{request.user.first_name}} {{request.user.last_name}}" style="display: none;">
                         <div class="mx-auto text-center">
                             <button type="submit" class="btn-Enviar ">Publicar</button>
                         </div>
