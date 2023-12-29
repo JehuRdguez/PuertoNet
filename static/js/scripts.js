@@ -1,3 +1,9 @@
+
+
+
+
+
+
 window.setTimeout(function () {
     $('.alerta')
       .fadeTo(500, 0)
@@ -117,9 +123,12 @@ window.addEventListener('resize', () => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+
+
     $(document).ready(function () {
 
-       
+
+
         // Función para realizar la búsqueda
         function realizarBusquedaInfografias() {
             var query = $('#search-input-info').val().toLowerCase();

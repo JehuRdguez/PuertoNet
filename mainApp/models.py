@@ -53,6 +53,10 @@ class Infographics(models.Model):
         supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
         supplementary_Blogs = models.ManyToManyField('Blogs', blank=True)       
         timestamp = models.DateTimeField(auto_now_add=True)
+        def nombreCompleto(self):
+            texto = "{0} {1}"
+            return texto.format(self.user.first_name, self.user.last_name)
+    
         def __str__(self):
             return f'{self.title} '
    
@@ -95,5 +99,8 @@ class LogMultimedia(models.Model):
     supplementary_Infographics = models.ManyToManyField('Infographics', blank=True)
     supplementary_Blogs = models.ManyToManyField('Blogs', blank=True) 
     format = models.IntegerField(choices=FormatCategory, default="1")
+    def nombreCompleto(self):
+        texto = "{0} {1}"
+        return texto.format(self.user.first_name, self.user.last_name)
     def __str__(self):
         return f'{self.title}'

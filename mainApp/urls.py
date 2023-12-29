@@ -38,6 +38,9 @@ urlpatterns = [
     path('Blog/<int:blog_id>/', TemplateBlog.as_view(), name='Blog'),
     path('tinymce/', include('tinymce.urls')),
     path('vaciarNotificaciones', views.vaciarNotificaciones, name='vaciarNotificaciones'),
-     path('eliminarInfografia/<int:id>', views.EliminarInfografia, name='eliminarInfografia'),
+    path('eliminarInfografia/<int:id>', views.EliminarInfografia, name='eliminarInfografia'),
+    path('eliminarVideo/<int:id>', views.EliminarVideo, name='eliminarVideo'),
+    path('infographics/<int:pk>/update/', InfographicsUpdateView.as_view(), name='editarInfografias'),
+    path('videos/<int:pk>/update/', LogMultimediaUpdateView.as_view(), name='editarVideos'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Blogs, Profile
+from .models import Blogs, Profile, Infographics
 from tinymce.widgets import TinyMCE
 from .models import Profile, LogMultimedia
 
@@ -70,3 +70,22 @@ class LogVideoForm(forms.ModelForm):
                 'supplementary_Infographics': forms.CheckboxSelectMultiple(),
                  'supplementary_Blogs': forms.CheckboxSelectMultiple(),
             }
+class EditInfographicsForm(forms.ModelForm):
+    class Meta:
+        model = Infographics
+        fields = ['title', 'description', 'file', 'category', 'supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
+        widgets = {
+            'supplementary_videos': forms.CheckboxSelectMultiple(),
+            'supplementary_Infographics': forms.CheckboxSelectMultiple(),
+            'supplementary_Blogs': forms.CheckboxSelectMultiple(),
+        }
+
+class EditLogMultimediaForm(forms.ModelForm):
+    class Meta:
+        model = LogMultimedia
+        fields = ['title',  'video_id', 'category', 'supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
+        widgets = {
+            'supplementary_videos': forms.CheckboxSelectMultiple(),
+            'supplementary_Infographics': forms.CheckboxSelectMultiple(),
+            'supplementary_Blogs': forms.CheckboxSelectMultiple(),
+        }

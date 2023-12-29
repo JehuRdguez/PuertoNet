@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 from operator import itemgetter
-from .forms import BlogForm
+from .forms import BlogForm,EditInfographicsForm, EditLogMultimediaForm
 from django.contrib.auth.models import User
 from django.views.generic.edit import  UpdateView
 from django.urls import reverse_lazy
@@ -38,6 +38,19 @@ from django.conf import settings
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 
+
+class InfographicsUpdateView(UpdateView):
+    model = Infographics
+    form_class=EditInfographicsForm
+    template_name = 'infografias/editarInfografia.html'  # Cambia esto al nombre de tu plantilla
+    success_url = reverse_lazy('administrarContenido')
+
+class LogMultimediaUpdateView(UpdateView):
+    model = LogMultimedia
+    form_class = EditLogMultimediaForm  # Reemplaza con el nombre de tu formulario
+    template_name = 'cursos/editarVideo.html'  # Reemplaza con el nombre de tu plantilla
+    success_url = reverse_lazy('administrarContenido')
+    
 @login_required
 def editarUsuario(request):
     user = request.user
@@ -435,7 +448,7 @@ class DetallesInfografias(View):
             "videos": videos_data
         }
 
-        return render(request, 'cursos/detallesInfografias.html', context)
+        return render(request, 'infografias/detallesInfografias.html', context)
 
     def post(self, request, id):
         comment_form = CommentForm(request.POST)
@@ -452,7 +465,7 @@ class DetallesInfografias(View):
             new_notification.save()
             return redirect(reverse('detallesInfografia', kwargs={'id': id}))
 
-        return redirect('detalles-infografia', id=id)
+        return redirect('detallesInfografia', id=id)
 
 
 class ReplyCommentInfo(View):
@@ -720,7 +733,10 @@ def subirBlog(request):
 @login_required
 def administrarContenido(request):
     infografias=Infographics.objects.all()
-    context = {'infografias': infografias}
+    videos=LogMultimedia.objects.all()
+    blogs=Blogs.objects.all()
+    
+    context = {'infografias': infografias, 'videos':videos, 'blogs':blogs}
     return render(request, 'perfil/administrarContenido/administrarContenido.html',context)
 
 @login_required
@@ -729,6 +745,14 @@ def EliminarInfografia(request, id):
     infografia.delete()
     messages.success(request, "Eliminada correctamente")
     return redirect('administrarContenido')
+
+@login_required
+def EliminarVideo(request, id):
+    video = LogMultimedia.objects.filter(id=id)
+    video.delete()
+    messages.success(request, "Registro eliminado correctamente")
+    return redirect('administrarContenido')
+
 
 def notificaciones(request):
     notificaciones=Notifications.objects.filter(admin = request.user)
@@ -758,5 +782,5 @@ def infografias(request):
     except EmptyPage:
         infografias = paginator.page(paginator.num_pages)
     context = {'infografias': infografias}
-    return render(request, 'cursos/infografias.html', context)
+    return render(request, 'infografias/infografias.html', context)
 

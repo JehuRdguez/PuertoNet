@@ -1,7 +1,7 @@
 {% extends '../../menu.html' %}
 
 {% load static %}
-
+ 
 {% block content %}
   <section class="seccionPerfil">
     <div class="container-fluid">
@@ -17,39 +17,137 @@
        
           <br />
           <div class="contenidoAdministrarContenido"> 
-            <button onclick="window.location.href='{% url 'subirVideo' %}'" class="btn-Acciones">Subir video</button>
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#nav-info" type="button" role="tab" aria-controls="nav-info" aria-selected="true">Infografías</button>
+                <button class="nav-link" id="nav-videos-tab" data-bs-toggle="tab" data-bs-target="#nav-videos" type="button" role="tab" aria-controls="nav-videos" aria-selected="false">Videos</button>
+                <button class="nav-link" id="nav-blogs-tab" data-bs-toggle="tab" data-bs-target="#nav-blogs" type="button" role="tab" aria-controls="nav-blogs" aria-selected="false">Blogs</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active p-3" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                
+                <button onclick="window.location.href='{% url 'subirImagen' %}'" class="btn-Acciones mt-2">Subir infografía</button>
 
-            <button onclick="window.location.href='{% url 'subirImagen' %}'" class="btn-Acciones">Subir infografía</button>
+                <div class="table-responsive py-2 mt-2">
+                  <!-- Hacemos responsiva -->
+                  <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarInfografiasTabla">
+                    <thead>
+                      <!-- Encabezados -->
+                      <tr class="text-center">
+                        <th>Miniatura</th>
+                        <th>Título</th>
+                        <th>Fecha</th>
+                        <th>Formato</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for info in infografias %}
+                        <!-- Usamos ciclo for para imrpimir tarjas -->
+                        <tr>
+                          <td><img src="{{ info.file.url }}"  alt="{{ info.title }}" style="width: 20%;"  ></img></td>
+                          <td>{{ info.title }}</td>
+                          <td>{{ info.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
+                          <td>{{ info.get_format_display }}</td>
+                          <td>{{info.nombreCompleto}}</td>
+                          <td>
+                            <a href="{% url 'eliminarInfografia' id=info.id %}" class="bi bi-trash text-danger"></a>
+                            <a href="{% url 'editarInfografias' pk=info.id %}" class="bi bi-pencil-square text-info-emphasis"></a>
+                          </td>
+                        </tr>
+                      {% endfor %} <!-- Termina ciclo for -->
+                    </tbody>
+                  </table>
+                </div>
 
-            <div class="table-responsive py-2">
-              <!-- Hacemos responsiva -->
-              <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarTabla">
-                <thead>
-                  <!-- Encabezados -->
-                  <tr class="text-center">
-                    <th>Miniatura</th>
-                    <th>Título</th>
-                    <th>Fecha</th>
-                    <th>Formato</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for info in infografias %}
-                    <!-- Usamos ciclo for para imrpimir tarjas -->
-                    <tr>
-                      <td><img src="{{ info.file.url }}"  alt="{{ info.title }}" style="width: 20%;"  ></img></td>
-                      <td>{{ info.title }}</td>
-                      <td>{{ info.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
-                      <td>{{ info.get_format_display }}</td>
-                      <td>
-                        <a href="{% url 'eliminarInfografia' id=info.id %}" class="bi bi-trash text-danger"></a>
-                      </td>
-                    </tr>
-                  {% endfor %} <!-- Termina ciclo for -->
-                </tbody>
-              </table>
+
+
+              </div>
+              <div class="tab-pane fade p-3" id="nav-videos" role="tabpanel" aria-labelledby="nav-videos-tab">
+                <button onclick="window.location.href='{% url 'subirVideo' %}'" class="btn-Acciones">Subir video</button>
+                <div class="table-responsive py-2 mt-2">
+                  <!-- Hacemos responsiva -->
+                  <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarVideosTabla">
+                    <thead>
+                      <!-- Encabezados -->
+                      <tr class="text-center">
+                        {% comment %} <th>Miniatura</th> {% endcomment %}
+                        <th>Título</th>
+                        <th>Fecha</th>
+                        <th>Formato</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for video in videos %}
+                        <!-- Usamos ciclo for para imrpimir tarjas -->
+                        <tr>
+                          {% comment %} <td><img src="{{ video.file.url }}"  alt="{{ video.title }}" style="width: 20%;"  ></img></td> {% endcomment %}
+                          <td>{{ video.title }}</td>
+                          <td>{{ video.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
+                          <td>{{ video.get_format_display }}</td>
+                          <td>{{ video.nombreCompleto }}</td>
+                          <td>
+                            <a href="{% url 'eliminarVideo' id=video.id %}" class="bi bi-trash text-danger"></a>
+                            <a href="{% url 'editarVideos' pk=video.id %}" class="bi bi-pencil-square text-info-emphasis"></a>
+                          </td>
+                        </tr>
+                      {% endfor %} <!-- Termina ciclo for -->
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+                
+              </div> 
+
+
+
+              <div class="tab-pane fade p-3" id="nav-blogs" role="tabpanel" aria-labelledby="nav-blogs-tab">
+
+                <div class="table-responsive py-2 mt-2"> 
+                  <!-- Hacemos responsiva -->
+                  <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarBlogsTabla">
+                    <thead>
+                      <!-- Encabezados -->
+                      <tr class="text-center">
+                        <th>Miniatura</th>
+                        <th>Título</th>
+                        <th>Fecha</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for blog in blogs %}
+                        <!-- Usamos ciclo for para imrpimir tarjas -->
+                        <tr>
+                          <td><img src="{{ blog.imagenPortada.url }}"  alt="{{ blog.titulo }}" style="width: 20%;"  ></img></td>
+                          <td>{{ blog.titulo }}</td>
+                          <td>{{ blog.fecha }}</td> <!-- Imprimimos lo de la tabla -->
+                          <td>{{ blog.autor }}</td>
+                          <td>
+                            <a href="" class="bi bi-trash text-danger"></a>
+                            <a href="" class="bi bi-pencil-square text-info-emphasis"></a>
+                          </td>
+                        </tr>
+                      {% endfor %} <!-- Termina ciclo for -->
+                    </tbody>
+                  </table>
+                </div>
+
             </div>
+          </div>
+
+            
+
+
+
+
           </div>
         </div>
       </div>
