@@ -40,6 +40,8 @@ urlpatterns = [
     path('vaciarNotificaciones', views.vaciarNotificaciones, name='vaciarNotificaciones'),
     path('eliminarInfografia/<int:id>', views.EliminarInfografia, name='eliminarInfografia'),
     path('eliminarVideo/<int:id>', views.EliminarVideo, name='eliminarVideo'),
+    path('eliminarBlog/<int:id>', views.EliminarBlog, name='eliminarBlog'),
+    path('editarBlog/<int:id>/update', views.editarBlog, name='editarBlog'),
     path('infographics/<int:pk>/update/', InfographicsUpdateView.as_view(), name='editarInfografias'),
     path('videos/<int:pk>/update/', LogMultimediaUpdateView.as_view(), name='editarVideos'),
 

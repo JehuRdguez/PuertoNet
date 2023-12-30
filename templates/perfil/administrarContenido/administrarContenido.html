@@ -108,7 +108,7 @@
 
 
               <div class="tab-pane fade p-3" id="nav-blogs" role="tabpanel" aria-labelledby="nav-blogs-tab">
-
+                <button onclick="window.location.href='{% url 'subirBlog' %}'" class="btn-Acciones">Subir blog</button>
                 <div class="table-responsive py-2 mt-2"> 
                   <!-- Hacemos responsiva -->
                   <table class="cell-border display" cellspacing="0" width="100%" id="AdministrarBlogsTabla">
@@ -131,8 +131,8 @@
                           <td>{{ blog.fecha }}</td> <!-- Imprimimos lo de la tabla -->
                           <td>{{ blog.autor }}</td>
                           <td>
-                            <a href="" class="bi bi-trash text-danger"></a>
-                            <a href="" class="bi bi-pencil-square text-info-emphasis"></a>
+                            <a href="{% url 'eliminarBlog' id=blog.id %}" class="bi bi-trash text-danger"></a>
+                            <a href="{% url 'editarBlog' id=blog.id %}" class="bi bi-pencil-square text-info-emphasis"></a>
                           </td>
                         </tr>
                       {% endfor %} <!-- Termina ciclo for -->

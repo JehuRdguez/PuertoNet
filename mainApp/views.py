@@ -718,6 +718,27 @@ def subirBlog(request):
 
     return render(request, 'perfil/subirBlog/subirBlog.html', {'form': form, 'datos': blogs})
 
+def editarBlog(request, id):
+    blog = Blogs.objects.get(id=id)
+    usuario_autenticado = request.user
+
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+
+        if form.is_valid():
+            # Actualiza los campos del blog existente con los datos del formulario
+            form.save()
+
+            messages.success(request, "Blog actualizado exitosamente.")
+            return redirect('subirBlog')  # Ajusta según tu aplicación
+        else:
+            print(form.errors)
+            messages.error(request, "Error al actualizar el blog. Verifica los datos.")
+    else:
+        # Pasa la instancia del blog al formulario para prellenar los campos existentes
+        form = BlogForm(instance=blog)
+
+    return render(request, 'perfil/subirBlog/editarBlog.html', {'form': form, 'datos': blog})
 
 #def subirBlog(request):    
 #    if request.method == 'POST':
@@ -753,6 +774,12 @@ def EliminarVideo(request, id):
     messages.success(request, "Registro eliminado correctamente")
     return redirect('administrarContenido')
 
+@login_required
+def EliminarBlog(request, id):
+    Blog = Blogs.objects.filter(id=id)
+    Blog.delete()
+    messages.success(request, "Blog eliminado correctamente")
+    return redirect('administrarContenido')
 
 def notificaciones(request):
     notificaciones=Notifications.objects.filter(admin = request.user)
