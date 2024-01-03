@@ -24,29 +24,27 @@
                     <form id="ItemForm" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
+                        <h3>Información básica:</h3>
+                        <label for="id_name">Nombre:</label><br>
+                        <input class="form-control" type="text" name="name" id="name" maxlength="150" required value="{{user.first_name}}"> <br>
+                        
+                        <label for="id_lastname">Apellidos:</label><br>
+                        <input class="form-control" type="text" name="lastname" id="lastname" maxlength="150" required value="{{user.last_name}}"><br>
+                        
+                        <label for="id_email">Email:</label><br>
+                        <input class="form-control" type="email" name="email" id="email" maxlength="254" required value="{{user.email}}"><br>
 
+                        <h3>Añadir ó cambiar imágen de perfil:</h3>
+                        <input type="file" class="form-control" name="image" id="image" accept="image/*" ><br>
                     
-                    
-                        <label for="id_name">Nombre:</label>
-                        <input type="text" name="name" id="name" maxlength="150" required value="{{user.first_name}}"> 
+                        <h3>Cambio de contraseña:</h3>
+                        <label for="id_password1">Nueva contraseña:</label><br>
+                        <input type="password" class="form-control" name="password1" id="password1"><br>
                         
-                        <label for="id_lastname">Apellidos:</label>
-                        <input type="text" name="lastname" id="lastname" maxlength="150" required value="{{user.last_name}}">
-                        
-                        <label for="id_email">Email:</label>
-                        <input type="email" name="email" id="email" maxlength="254" required value="{{user.email}}">
-                    
-                        <label for="id_password1">Nueva contraseña:</label>
-                        <input type="password" name="password1" id="password1">
-                        
-                        <label for="id_password2">Confirmar contraseña:</label>
-                        <input type="password" name="password2" id="password2" >
-                    
-         
-                        <input type="file" name="image" id="image" accept="image/*" >
-                    
+                        <label for="id_password2">Confirmar contraseña:</label><br> 
+                        <input type="password" class="form-control" name="password2" id="password2" ><br>
 
-                        <button type="submit" class="btn-Acciones " style="margin-top: 10px;">Guardar</button>
+                        <button type="submit" class="btn-Acciones " style="margin-top: 10px;">Guardar</button><br>
                     </form>
                     
                 </div>

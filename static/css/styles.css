@@ -1135,10 +1135,10 @@ height: auto;
     background-color: #F0F8FF;
     opacity: 90%;
     border-radius: 2em;
-    padding: 2em;
-    text-align: justify;    
+    text-align: justify;
     position: relative;
     margin-bottom: 5em;
+    padding: 2em 20% 2em 20%;
 }
 
                                                       /* Subir video/imagen */
