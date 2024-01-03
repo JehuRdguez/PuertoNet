@@ -18,27 +18,30 @@
                 </div>
                 <br>
                 <div class="contenidoSubirBlog">
-                    <form method="post" enctype="multipart/form-data">{% csrf_token %} 
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Título</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="titulo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Imagen de portada</label><br>
-                            <input type="file" class="form-control" id="imagenPortada"name="imagenPortada">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea3" class="form-label">Introducción</label>
-                            <textarea class="form-control" id="introduccion" rows="2" name="introduccion"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea2" class="form-label">Contenido</label>
-                            <textarea class="form-control" id="contenido" rows="100" name="contenido"></textarea>
-                        </div>
-                        <input type="text" class="form-control" id="autor" aria-describedby="emailHelp" name="autor" value="{{request.user.first_name}} {{request.user.last_name}}" style="display: none;">
-                        <div class="mx-auto text-center">
-                            <button type="submit" class="btn-Enviar ">Publicar</button>
-                        </div>
+                    <form id="ItemForm" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <h3>Información básica:</h3>
+                        <label for="id_name">Nombre:</label><br>
+                        <input class="form-control" type="text" name="name" id="name" maxlength="150" required value="{{user.first_name}}"> <br>
+                        
+                        <label for="id_lastname">Apellidos:</label><br>
+                        <input class="form-control" type="text" name="lastname" id="lastname" maxlength="150" required value="{{user.last_name}}"><br>
+                        
+                        <label for="id_email">Email:</label><br>
+                        <input class="form-control" type="email" name="email" id="email" maxlength="254" required value="{{user.email}}"><br>
+
+                        <h3>Añadir ó cambiar imágen de perfil:</h3>
+                        <input type="file" class="form-control" name="image" id="image" accept="image/*" ><br>
+                    
+                        <h3>Cambio de contraseña:</h3>
+                        <label for="id_password1">Nueva contraseña:</label><br>
+                        <input type="password" class="form-control" name="password1" id="password1"><br>
+                        
+                        <label for="id_password2">Confirmar contraseña:</label><br> 
+                        <input type="password" class="form-control" name="password2" id="password2" ><br>
+
+                        <button type="submit" class="btn-Acciones " style="margin-top: 10px;">Guardar</button><br>
                     </form>
                 </div>
             </div>
