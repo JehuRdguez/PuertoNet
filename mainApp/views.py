@@ -124,6 +124,8 @@ class terminoscondiciones(View):
     def get(self, request):
         return render(request, 'terminos/terminos_condiciones.html')   
 
+
+
 class soporte(View):
     def get(self, request):
         return render(request, 'soporte/soporte.html')  
@@ -793,7 +795,8 @@ def vaciarNotificaciones(request):
     messages.success(request, "Eliminadas correctamente")
     return redirect('notificaciones')
 
-
+def subirContenido(request):
+    return render(request, 'perfil/subirContenido/subirContenido.html')
 
 
 
