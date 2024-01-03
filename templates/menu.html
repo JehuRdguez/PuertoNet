@@ -18,8 +18,8 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    <script src="https://cdn.tiny.cloud/1/6cjbryyi360nr4x12yj6l7qwniq2jgw28lyln45h85b63dg1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdn.tiny.cloud/1/6cjbryyi360nr4x12yj6l7qwniq2jgw28lyln45h85b63dg1/tinymce/5/langs/es_MX.js"></script> <!-- Carga el paquete de idioma español -->
+    <script src="https://cdn.tiny.cloud/1/aiyjal9rkxmkdh2pspzhe00g5qivpgfuftkrh9xp2ick9fr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/6cjbryyi360nr4x12yj6l7qwniq2jgw28lyln45h85b63dg1/tinymce/6/langs/es_MX.js"></script> <!-- Carga el paquete de idioma español -->
 <!--DT -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css" />
@@ -84,13 +84,13 @@
                                 <i class="fa-solid fa-photo-film me-2"></i>
                                 Subir video / imagen
                               </div>
-                        </a> 
+                        </a> {% endcomment %}
                         <a class="dropdown-item" href="{% url 'subirBlog' %}">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-file-lines me-2"></i>
                                 Subir blog
                               </div>
-                        </a>{% endcomment %}
+                        </a>
                         <a class="dropdown-item" href="{% url 'administrarContenido' %}">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-list me-2"></i>
