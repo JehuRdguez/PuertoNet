@@ -1,2 +1,5 @@
+*.pyc
+__pycache__/
 venv
-mainApp/__pycache__
+mainApp\__pycache__
+mainApp\migrations\__pycache__
