@@ -277,7 +277,7 @@ header {
 .seccionCursos {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -614,7 +614,7 @@ header {
 
   .background_container {
     background-image: url('../assets/img/inicio/fondoMarNuevo.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
   }
 
@@ -764,8 +764,9 @@ margin-right: auto;
         
 .EspacioVideos {
     /* margin-top: 5em; */
-    background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-image: url('../assets/img/cursos/Marfondoalt.jpg');
+    /* background-attachment: fixed; */
+    background-size: 100% 100%;
     background-position: center;
     padding-bottom: 3%;
 }
@@ -840,7 +841,7 @@ margin-right: auto;
 .seccionhistoria {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -869,7 +870,14 @@ height: auto;
 .seccionBlogs {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.paginaBlogs {
+    /* margin-top: 5em; */
+    background-image: url('../assets/img/cursos/Marfondoalt.jpg');
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -879,7 +887,7 @@ height: auto;
 .seccionConocenos {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -903,7 +911,7 @@ height: auto;
 .seccionprivacidad {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 .aviso{
@@ -926,7 +934,7 @@ height: auto;
 .seccionterminos {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -995,7 +1003,7 @@ height: auto;
 .seccionSoporte {
     /* margin-top: 5em; */
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -1029,7 +1037,7 @@ height: auto;
    }
 }
 
-.btn-Acciones{
+.btnGuardar{
     text-align: center;
     background-color: #428789;
     width: 10em;
@@ -1039,29 +1047,31 @@ height: auto;
     border-radius: 1em;
     text-align: center;
 
+   .card img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;  
+   }
+}
 
+.btn-Acciones{
+    text-align: center;
+    background-color: #428789;
+    width: 10em;
+    height: 2.5em;
+    color: white;
+    border-color: transparent;
+    border-radius: 1em;
+    text-align: center;
 }
                                                 /* caja de comentarios de videos */
 
-.nav-tabs .nav-link.active {
-    background-color: #00132dda;
-    font-size: medium;
-    color: #ffffff; 
-    border-radius: 15px;
-    transition: 0.3s all;
-    box-shadow: none;
-    border: none;
-}
 
-.nav-tabs .nav-link {
-    background-color: #ffffffb0;
-    color: black; 
-    font-size: medium;
-    box-shadow: none;
-    border-radius: 10px;
-    transition: 0.3s all;
-}
 
+                                                                                                    /* ? */
 .tab-pane.fade.show.active {
     background-color: #00132dda;
     /* font-size: medium; */
@@ -1075,7 +1085,7 @@ height: auto;
 
 .seccionPerfil {
     background-image: url('../assets/img/cursos/Marfondogeneral.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
