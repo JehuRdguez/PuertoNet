@@ -780,15 +780,15 @@ margin-right: auto;
     align-items: flex-start;
     align-items: flex-start; 
     color: black;
-    background-color: #ffffffb0;
+    /* background-color: #ffffffb0; */
     border-radius: 15px;
 }
 
-.tituloVideosExtra {
-    color: black; 
-    text-align: left; 
+.tituloVideosExtras {
+    /* color: rgb(252, 252, 252);  */
+    /* text-align: left; 
     margin-left: 9.5em; 
-    margin-top: 1.4em;
+    margin-top: 1.4em; */
 }
 
 
@@ -1676,7 +1676,7 @@ height: auto;
     }
 
 
-    .tituloVideosExtra {
+    .tituloVideosExtras {
         display: none;
     }
 
