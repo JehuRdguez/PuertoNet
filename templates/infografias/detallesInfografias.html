@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div><br>
 
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -240,4 +240,40 @@
     // Vincular la función al evento de cambio de tamaño de ventana
     window.addEventListener('resize', ajustarTamanoIframe)
   </script>
+  <style>
+    .nav-tabs .nav-link.active {
+      margin-left: 1em;
+      background-color: #00132dda;
+      font-size: medium;
+      color: #ffffff; 
+      border-radius: 15px 15px 0 0;
+      transition: 0.3s all;
+      box-shadow: none;
+      border: none;
+  }
+  
+  .nav-tabs .nav-link {
+      /* background-color: #ffffffb0; */
+      margin-left: 0.8em;
+      color: rgb(255, 255, 255);
+      font-weight: 600;
+      font-size: medium;
+      box-shadow: none;
+      border-radius: 15px 15px 0 0;
+      transition: 0.3s all;
+  }
+  
+  .nav-tabs .nav-link:hover {
+      background-color: #00132dda;
+  }
+  
+  .tab-pane.fade.show.active {
+      background-color: #00132dda;
+      /* font-size: medium; */
+      color: #ffffff; 
+      border-radius: 15px;
+      box-shadow: none;
+      transition: 0.3s all;
+  }
+  </style>
 {% endblock %}
