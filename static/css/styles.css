@@ -860,7 +860,7 @@ height: 15em;
     width: 56em;
     height: 65em;
     border-radius: 5%;
-    opacity: 90%;
+    opacity: 95%;
     width: 100%;
 height: auto;
 }
@@ -922,7 +922,7 @@ height: auto;
 }
 .avisoyprivacidad{
     background-color: #F0F8FF;
-    opacity: 80%;
+    opacity: 95%;
     border-radius: 2%;
 }
 .textoaviso{
@@ -946,7 +946,7 @@ height: auto;
 }
 .terminosycondiciones{
     background-color: #F0F8FF;
-    opacity: 80%;
+    opacity: 95%;
     border-radius: 2%;
 }
 .textoterminos{
@@ -1009,7 +1009,7 @@ height: auto;
 
 .soporte{
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
 }
 .soporte{
@@ -1072,14 +1072,7 @@ height: auto;
 
 
                                                                                                     /* ? */
-.tab-pane.fade.show.active {
-    background-color: #00132dda;
-    /* font-size: medium; */
-    color: #ffffff; 
-    border-radius: 15px;
-    box-shadow: none;
-    transition: 0.3s all;
-}
+
 
                                                         /* Perfil */
 
@@ -1092,7 +1085,7 @@ height: auto;
 .menuLateral {
     margin-top: 5em;    
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     padding: 1.5em;
     text-align: justify;    
@@ -1132,7 +1125,7 @@ height: auto;
 .tituloPerfil{
     margin-top: 5em;
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     padding: 2em;
     text-align: justify;    
@@ -1143,7 +1136,7 @@ height: auto;
 
 .contenidoEditarUsuario {
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     text-align: justify;
     position: relative;
@@ -1155,7 +1148,7 @@ height: auto;
 
 .contenidoSubirVideoImagen {
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     padding: 2em;
     text-align: justify;    
@@ -1167,19 +1160,30 @@ height: auto;
 
 .contenidoSubirBlog {
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
-    padding: 2em;
+    /* padding: 2em; */
     text-align: justify;    
     position: relative;
-    margin-bottom: 5em;
+    /* margin-bottom: 1em; */
 }
+
+.contenidoEditarBlog {
+    background-color: #F0F8FF;
+    opacity: 95%;
+    border-radius: 2em;
+    padding: 3.5em;
+    text-align: justify;    
+    position: relative;
+    /* margin-bottom: 1em; */
+}
+
 
                                                       /* Administrar contenido */
 
 .contenidoAdministrarContenido {
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     padding: 2em;
     text-align: justify;    
@@ -1191,7 +1195,7 @@ height: auto;
 
 .contenidoNotificaciones {
     background-color: #F0F8FF;
-    opacity: 90%;
+    opacity: 95%;
     border-radius: 2em;
     padding: 2em;
     text-align: justify;    

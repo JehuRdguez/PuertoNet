@@ -14,7 +14,7 @@
                     <h1 style="color: #357678;">{{ datos.titulo }}</h1>
                 </div>
                 <br>
-                <div class="soporte"  style="margin-bottom: 15%;">
+                <div class="soporte"  style="margin-bottom: 2em;">
                     <p class="textosoporte">
                         <p>
                             Autor: {{datos.autor}}<br>
@@ -24,7 +24,7 @@
                         {{ datos.contenido|safe }}
                     </p>
                 </div>
-                <div class="tab-content" id="nav-tabContent">
+                <div class="tab-content" id="nav-tabContent" style="margin-bottom: 2em;">
                     <div class="tab-pane fade show active p-3" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
                       {% if user.is_authenticated %}
                         <form method="post" action="{% if datos.id %}{% url 'Blog' blog_id=datos.id   %}{% endif %}">
@@ -120,7 +120,16 @@
         </div>
         
 </section>
-
+<style>
+  .tab-pane.fade.show.active {
+    background-color: #00132dda;
+    /* font-size: medium; */
+    color: #ffffff; 
+    border-radius: 15px;
+    box-shadow: none;
+    transition: 0.3s all;
+}
+</style>
 
 {% include '../footer.html' %}
 
