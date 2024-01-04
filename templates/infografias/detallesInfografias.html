@@ -85,7 +85,7 @@
                 <span style="display: flex; align-items: center;">
                   <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
                   <div style="margin-right: 4%;">
-                    <strong>{{ comment.user.username }}</strong> &nbsp; {{ comment.timestamp }}
+                    <strong>{{comment.user.first_name}} {{comment.user.last_name}}</strong> &nbsp; {{ comment.timestamp }}
                     <br />
                     {{ comment.text }}
                     <br />
@@ -99,7 +99,7 @@
                       <span style="display: flex; align-items: center;">
                         <i class="bi bi-person-circle" style="font-size: 2em; margin-right: 1%;"></i>
                         <div style="margin-right: 4%;">
-                          <strong>{{ reply.user.username }}</strong> &nbsp; {{ reply.timestamp }}
+                          <strong>{{reply.user.first_name}} {{reply.user.last_name}}</strong> &nbsp; {{ reply.timestamp }}
                           <br />
                           {{ reply.text }}
                         </div>

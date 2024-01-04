@@ -131,7 +131,7 @@
               {% for comentario in comentarios %}
                   <div class="card">
                       <img src="static/assets/img/inicio/user.png" class="card-img-top mx-auto"/>
-                      <h3 class="text-center">{{ comentario.user.username }}</h3>
+                      <h3 class="text-center">{{comentario.user.first_name}} {{comentario.user.last_name}}</h3>
                       <p>{{ comentario.text }}</p>
                   </div>
               {% endfor %}

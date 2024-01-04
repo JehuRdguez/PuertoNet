@@ -10,8 +10,8 @@
         {% else %}
         <img src="../../static/assets/img/inicio/user.png" class="mx-auto" style="width: 50%;"/>
         {% endif %}
-
-            <h3 style="word-wrap: break-word;" class="nombreUsuario">{{request.user.username}}</h3>
+ 
+            <h3 style="word-wrap: break-word;" class="nombreUsuario">{{request.user.first_name}} {{request.user.last_name}}</h3>
         </div>
         <ul class="contenedorOpcionesMenuLateral nav flex-column">
             <div class="dropdown-divider" style="height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #000000;"></div>
