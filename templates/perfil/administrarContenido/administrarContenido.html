@@ -35,28 +35,29 @@
                     <thead>
                       <!-- Encabezados -->
                       <tr class="text-center">
-                        <th>Miniatura</th>
-                        <th>Título</th>
-                        <th>Fecha</th>
-                        <th>Formato</th>
-                        <th>Autor</th>
-                        <th>Acciones</th>
+                        <th style="text-align: center;">Miniatura</th>
+                        <th style="text-align: center;">Título</th>
+                        <th style="text-align: center;">Fecha</th>
+                        <th style="text-align: center;">Formato</th>
+                        <th style="text-align: center;">Autor</th>
+                        <th style="text-align: center;">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for info in infografias %}
-                        <!-- Usamos ciclo for para imrpimir tarjas -->
-                        <tr>
-                          <td><img src="{{ info.file.url }}"  alt="{{ info.title }}" style="width: 20%;"  ></img></td>
-                          <td>{{ info.title }}</td>
-                          <td>{{ info.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
-                          <td>{{ info.get_format_display }}</td>
-                          <td>{{info.nombreCompleto}}</td>
-                          <td>
-                            <a href="{% url 'eliminarInfografia' id=info.id %}" class="bi bi-trash text-danger"></a>
-                            <a href="{% url 'editarInfografias' pk=info.id %}" class="bi bi-pencil-square text-info-emphasis"></a>
-                          </td>
-                        </tr>
+                      <tr style="text-align: center;">
+                        <td style="padding: 0; text-align: center;">
+                          <img src="{{ info.file.url }}" alt="{{ info.title }}" style="max-width: 200px; width: 100%; height: auto; display: block; margin: 10px auto;"></img>
+                        </td>
+                        <td>{{ info.title }}</td>
+                        <td>{{ info.timestamp }}</td>
+                        <td>{{ info.get_format_display }}</td>
+                        <td>{{ info.nombreCompleto }}</td>
+                        <td>
+                          <a href="{% url 'eliminarInfografia' id=info.id %}" class="bi bi-trash text-danger"></a>
+                          <a href="{% url 'editarInfografias' pk=info.id %}" class="bi bi-pencil-square text-info-emphasis"></a>
+                        </td>
+                      </tr>
                       {% endfor %} <!-- Termina ciclo for -->
                     </tbody>
                   </table>
@@ -74,17 +75,17 @@
                       <!-- Encabezados -->
                       <tr class="text-center">
                         {% comment %} <th>Miniatura</th> {% endcomment %}
-                        <th>Título</th>
-                        <th>Fecha</th>
-                        <th>Formato</th>
-                        <th>Autor</th>
-                        <th>Acciones</th>
+                        <th style="text-align: center;">Título</th>
+                        <th style="text-align: center;">Fecha</th>
+                        <th style="text-align: center;">Formato</th>
+                        <th style="text-align: center;">Autor</th>
+                        <th style="text-align: center;">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for video in videos %}
                         <!-- Usamos ciclo for para imrpimir tarjas -->
-                        <tr>
+                        <tr style="text-align: center;">
                           {% comment %} <td><img src="{{ video.file.url }}"  alt="{{ video.title }}" style="width: 20%;"  ></img></td> {% endcomment %}
                           <td>{{ video.title }}</td>
                           <td>{{ video.timestamp }}</td> <!-- Imprimimos lo de la tabla -->
@@ -114,17 +115,17 @@
                     <thead>
                       <!-- Encabezados -->
                       <tr class="text-center">
-                        <th>Miniatura</th>
-                        <th>Título</th>
-                        <th>Fecha</th>
-                        <th>Autor</th>
-                        <th>Acciones</th>
+                        <th style="text-align: center;">Miniatura</th>
+                        <th style="text-align: center;">Título</th>
+                        <th style="text-align: center;">Fecha</th>
+                        <th style="text-align: center;">Autor</th>
+                        <th style="text-align: center;">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for blog in blogs %}
                         <!-- Usamos ciclo for para imrpimir tarjas -->
-                        <tr>
+                        <tr style="text-align: center;">
                           <td><img src="{{ blog.imagenPortada.url }}"  alt="{{ blog.titulo }}" style="width: 20%;"  ></img></td>
                           <td>{{ blog.titulo }}</td>
                           <td>{{ blog.fecha }}</td> <!-- Imprimimos lo de la tabla -->
