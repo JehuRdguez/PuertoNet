@@ -73,10 +73,14 @@
                 
                 <form method="post">
                   {% csrf_token %}
+
+       
                   <label>Título </label></br>
                   {{form2.title}}</br>
                <label>Identificador</label></br>
               {{form2.video_id}}</br>
+              <label>Categoria</label></br>
+              {{form2.category}}</br>
               <div class="card">
                   <div class="card-header">
                       <h5 class="card-title">Contenido complementario</h5>

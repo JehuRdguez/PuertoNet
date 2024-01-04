@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     // Oculta todas las infografías
                     $('.infografia-container').hide();
-                    
+                     
                     // Muestra solo las infografías con la categoría seleccionada
                     $('.infografia-container[data-categoria="' + categoriaSeleccionada + '"]').show();
                 }
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 $('.video-item').each(function () {
                     var categoriasVideo = $(this).data('categorias');
-
+ 
                     if (categoriasVideo.includes(selectedCategoria)) {
                         $(this).show();
                     }

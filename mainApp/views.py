@@ -42,14 +42,28 @@ from googleapiclient.http import MediaIoBaseUpload
 class InfographicsUpdateView(UpdateView):
     model = Infographics
     form_class=EditInfographicsForm
-    template_name = 'infografias/editarInfografia.html'  # Cambia esto al nombre de tu plantilla
+    template_name = 'infografias/editarInfografia.html'  
     success_url = reverse_lazy('administrarContenido')
+    def form_valid(self, form):
+        messages.success(self.request, '¡Actualización exitosa!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error en la actualización. Por favor, verifica los datos.')
+        return super().form_invalid(form)
 
 class LogMultimediaUpdateView(UpdateView):
     model = LogMultimedia
-    form_class = EditLogMultimediaForm  # Reemplaza con el nombre de tu formulario
-    template_name = 'cursos/editarVideo.html'  # Reemplaza con el nombre de tu plantilla
+    form_class = EditLogMultimediaForm  
+    template_name = 'cursos/editarVideo.html'  
     success_url = reverse_lazy('administrarContenido')
+    def form_valid(self, form):
+        messages.success(self.request, '¡Actualización exitosa!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error en la actualización. Por favor, verifica los datos.')
+        return super().form_invalid(form)
     
 @login_required
 def editarUsuario(request):
@@ -610,6 +624,7 @@ def subirContenido(request):
                     user=User.objects.get(id=request.user.id),
                     title=form.cleaned_data['title'],
                     video_id=form.cleaned_data['video_id'],
+                    category=form.cleaned_data['category'],
                 )
                 videos_instance.save()
 
