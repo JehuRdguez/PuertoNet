@@ -574,6 +574,78 @@ def is_valid_image(file):
         return False
 
 
+def subirContenido(request):
+    if request.method == 'POST':
+        if 'file' in request.FILES:
+            form = LogImagenForm(request.POST, request.FILES)
+        elif 'video_id' in request.POST:
+            form = LogVideoForm(request.POST)
+        else:
+            # Manejar el caso en que no se proporcione un formulario válido
+            return render(request, 'perfil/subirContenido/subirContenido.html')
+
+        if form.is_valid():
+            multimedia_instance = form.save(commit=False)
+
+
+            if 'file' in request.FILES:
+                # Es un formulario de imagen
+                if not is_valid_image(form.cleaned_data['file']):
+                    messages.error(request, 'El archivo no es una imagen válida.')
+                    return render(request, 'perfil/subirContenido/subirContenido.html', {'form': form})
+
+                infographics_instance = Infographics(
+                    user=User.objects.get(id=request.user.id),
+                    title=form.cleaned_data['title'],
+                    description=form.cleaned_data['description'],
+                    file=form.cleaned_data['file'],
+                    category=form.cleaned_data['category'],
+                )
+                infographics_instance.save()
+
+
+            elif 'video_id' in request.POST:
+                # Es un formulario de video
+                videos_instance = LogMultimedia(
+                    user=User.objects.get(id=request.user.id),
+                    title=form.cleaned_data['title'],
+                    video_id=form.cleaned_data['video_id'],
+                )
+                videos_instance.save()
+
+
+
+
+            supplementary_videos = form.cleaned_data['supplementary_videos']
+            supplementary_Infographics = form.cleaned_data['supplementary_Infographics']
+            supplementary_Blogs = form.cleaned_data['supplementary_Blogs']
+
+            if 'file' in request.FILES:
+                infographics_instance.supplementary_videos.set(supplementary_videos)
+                infographics_instance.supplementary_Infographics.set(supplementary_Infographics)
+                infographics_instance.supplementary_Blogs.set(supplementary_Blogs)
+                infographics_instance.save() 
+
+
+            elif 'video_id' in request.POST:
+                videos_instance.supplementary_videos.set(supplementary_videos)
+                videos_instance.supplementary_Infographics.set(supplementary_Infographics)
+                videos_instance.supplementary_Blogs.set(supplementary_Blogs)
+                videos_instance.save() 
+
+
+
+            messages.success(request, 'Se creó el contenido correctamente')
+            return redirect('subirContenido')
+
+    else:
+        # Renderizar el formulario adecuado según la URL o cualquier otro criterio
+        form1 = LogImagenForm()
+        form2 = LogVideoForm()
+        
+        return render(request, 'perfil/subirContenido/subirContenido.html', {'form1': form1, 'form2': form2})
+
+    return render(request, 'perfil/subirContenido/subirContenido.html', {'form1': form1, 'form2': form2})
 
     
 def subirImagen(request):
@@ -581,57 +653,6 @@ def subirImagen(request):
         form = LogImagenForm(request.POST, request.FILES)
         if form.is_valid():
             multimedia_instance = form.save(commit=False)
-          
-            # # Verifica si el formato es 'video'
-            # if multimedia_instance.format == 1:  # 1 representa 'Video' en FormatCategory
-            #     # Validar que el archivo sea un video
-            #     if not is_valid_video(form.cleaned_data['file']):
-            #         messages.error(request, 'El archivo no es un video válido.')
-            #         return render(request, 'perfil/subirVideoImagen/subirVideoImagen.html', {'form': form})
-            #   # Configuración de la conexión con la API de YouTube
-                # youtube = build(
-                #     settings.API_SERVICE_NAME,
-                #     settings.API_VERSION,
-                #     developerKey=settings.GOOGLE_API_KEY
-                # )
-
-                # # Información del video a subir
-                # video_info = {
-                #     'snippet': {
-                #         'title': form.cleaned_data['title'],
-                #         'description':form.cleaned_data['description'],
-                #         'tags': [],  # Suponiendo que las etiquetas están separadas por comas en el formulario
-                #         'categoryId': '27',  # Categoría de YouTube (puedes cambiarla según tus necesidades)
-                #     },
-                #     'status': {
-                #         'privacyStatus': 'public',  # Puedes cambiar esto según tus necesidades (public, private, unlisted)
-                #     },
-                # }
-
-                #  # Contenido del archivo
-                # file_content = form.cleaned_data['file'].read()
-
-                # # Subir el video
-                # media_body = MediaIoBaseUpload(BytesIO(file_content), mimetype='video/*', chunksize=-1, resumable=True)
-                # request = youtube.videos().insert(
-                #     part=','.join(video_info.keys()),
-                #     body=video_info,
-                #     media_body=media_body
-                # )
-
-                # response = None
-                # while response is None:
-                #     status, response = request.next_chunk()
-                #     if status:
-                #         print(f'Subida del {int(status.progress() * 100)}% completada.')
-
-                # print(f'Video subido exitosamente: {response["id"]}')
-
-
-            # Verifica si el formato es 'imagen'
-        
-            # elif multimedia_instance.format == 0:  # 0 representa 'Imagen' en FormatCategory
-                # Validar que el archivo sea una imagen
             file = form.cleaned_data['file']
             if not is_valid_image(file):
                     messages.error(request, 'El archivo no es una imagen válida.')
@@ -795,8 +816,6 @@ def vaciarNotificaciones(request):
     messages.success(request, "Eliminadas correctamente")
     return redirect('notificaciones')
 
-def subirContenido(request):
-    return render(request, 'perfil/subirContenido/subirContenido.html')
 
 
 

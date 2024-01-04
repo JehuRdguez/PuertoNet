@@ -44,6 +44,9 @@ urlpatterns = [
     path('editarBlog/<int:id>/update', views.editarBlog, name='editarBlog'),
     path('infographics/<int:pk>/update/', InfographicsUpdateView.as_view(), name='editarInfografias'),
     path('videos/<int:pk>/update/', LogMultimediaUpdateView.as_view(), name='editarVideos'),
-    path('subirContenido/',views.subirContenido,name='subirContenido')
+    path('subirContenido/',views.subirContenido,name='subirContenido'),
+
+    
+    
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
