@@ -33,17 +33,24 @@
     <div class="barra-superior">
         <header class="header-flex">
 
-            <h2 class="logo"><img src="\static\assets\img\logo\logoAzul.png" class="imagenLogo"> PuertoNet</h2>            
-            <div class="hamburguesa" id="menuHamburguesa">&#9776;</div>
-
-            <nav class="navegacion">
-                <a href="{% url 'inicio' %}" class="linea-hover">Inicio</a>
-                <a href="{% url 'Cursos' %}" class="linea-hover">Cursos</a>
-                <a href="{% url 'Blogs' %}" class="linea-hover">Blogs</a>
-                <a href="{% url 'Historia' %}" class="linea-hover">Historia</a>
-                <a href="{% url 'Conocenos' %}" class="linea-hover">Conócenos</a>
+          <h2 class="logo"><img src="\static\assets\img\logo\logoAzul.png" class="imagenLogo"> PuertoNet</h2>
+          <div class="hamburguesa" id="menuHamburguesa">&#9776;</div>
+  
+          <nav class="navegacion">
+              <a href="{% url 'inicio' %}" class="linea-hover">Inicio</a>
+  
+              <a href="#" class="linea-hover" id="contenidoDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Contenido
+            </a>
+            <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="contenidoDropdown">
+                <li><a id="cursosPrimerFila" href="{% url 'Cursos' %}" class="dropdown-item {% if request.path == '/cursos/' %}active{% endif %}" aria-current="{% if request.path == '/cursos/' %}page{% endif %}"><i class="fa-solid fa-video me-2"></i>Videos</a></li>
+                <li><a href="{% url 'Infografias' %}" class="dropdown-item {% if request.path == '/infografias/' %}active{% endif %}" aria-current="{% if request.path == '/infografias/' %}page{% endif %}"><i class="fa-regular fa-images me-2"></i>Infografías</a></li>
+                <li><a href="{% url 'Blogs' %}" class="dropdown-item {% if request.path == '/blogs/' %}active{% endif %}" aria-current="{% if request.path == '/blogs/' %}page{% endif %}"><i class="fa-solid fa-file-lines me-2"></i>Blogs</a></li>
+            </div>
             
-               
+              <a href="{% url 'Historia' %}" class="linea-hover">Historia</a>
+              <a href="{% url 'Conocenos' %}" class="linea-hover">Conócenos</a>
+  
 
 
                 {% if user.is_authenticated and user.id  %}  
@@ -87,7 +94,7 @@
                         </a> {% endcomment %}
                         <a class="dropdown-item" href="{% url 'subirContenido' %}">
                             <div class="d-flex align-items-center">
-                                <i class="fa-solid fa-file-lines me-2"></i>
+                              <i class="fa-solid fa-arrow-up-from-bracket me-2"></i>
                                 Subir contenido
                               </div>
                         </a>

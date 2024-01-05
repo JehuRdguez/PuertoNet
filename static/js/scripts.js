@@ -94,14 +94,14 @@ function toggleMenu() {
     }
 }
 
-function closeMenu() {
-    allowScrollFunction = true; 
-    navegacion.classList.remove('mostrar-menu');
-    barraFondoMenu.classList.remove('mostrar-fondo');
-    menuHamburguesa.style.color = '';
-    logo.forEach(opcion => opcion.classList.remove('barra-activa'));
-    logoImg.src = '/static/assets/img/logo/logoAzul.png';
-}
+// function closeMenu() {
+//     allowScrollFunction = true; 
+//     navegacion.classList.remove('mostrar-menu');
+//     barraFondoMenu.classList.remove('mostrar-fondo');
+//     menuHamburguesa.style.color = '';
+//     logo.forEach(opcion => opcion.classList.remove('barra-activa'));
+//     logoImg.src = '/static/assets/img/logo/logoAzul.png';
+// }
 
 const menuHamburguesa = document.getElementById('menuHamburguesa');
 const navegacion = document.querySelector('.navegacion');

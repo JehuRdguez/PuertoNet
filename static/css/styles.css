@@ -1132,6 +1132,8 @@ height: auto;
     position: relative;
 }
 
+
+
                                                       /* Editar Usuario */
 
 .contenidoEditarUsuario {
@@ -1694,6 +1696,22 @@ height: auto;
         margin-bottom: 2em;
         max-height: 15em;
     }
+}
+
+@media screen and (max-width: 800px) {
+    .dropdown-menu {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    .dropdown-item {
+        padding: 2px 10px; 
+    }
+
+    #cursosPrimerFila {
+        padding: 20px 10px 3px 10px; 
+    }
+
 }
 
 @media screen and (max-width: 1000px) {
