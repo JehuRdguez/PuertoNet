@@ -64,7 +64,7 @@ class LogImagenForm(forms.ModelForm):
 class LogVideoForm(forms.ModelForm):
     class Meta:
         model = LogMultimedia
-        fields = ['title','video_id', 'supplementary_videos', 'supplementary_Infographics','supplementary_Blogs']
+        fields = ['title','video_id', 'supplementary_videos', 'category', 'supplementary_Infographics','supplementary_Blogs']
         widgets = {
                 'supplementary_videos': forms.CheckboxSelectMultiple(),
                 'supplementary_Infographics': forms.CheckboxSelectMultiple(),
