@@ -42,7 +42,7 @@
                       <div class="card-header">
                           <h5 class="card-title">Contenido complementario</h5>
                       </div>
-
+                      <div class="formContainer form1Container">
                       <div class="card-body card-contenidoComplementario">
                         <div class="row">
                           <div class="col-md-4">
@@ -62,6 +62,7 @@
                           </div>
                         </div>
                       </div>
+                    </div>
                   </div>
                   <div class="mx-auto text-center">
                     <button type="submit" class="btn-Enviar">Publicar</button>
@@ -84,25 +85,26 @@
                       <div class="card-header">
                           <h5 class="card-title">Contenido complementario</h5>
                       </div>
-
+                      <div class="formContainer form2Container">
                       <div class="card-body card-contenidoComplementario">
                         <div class="row">
                           <div class="col-md-4">
                               <label class="form-label d-block text-center" style="color: white; font-weight: 700;">Infografías</label>
-                              <input type="text" id="searchInfographics" class="form-control" placeholder="Buscar infografías">
+                              <input type="text" id="searchInfographics2" class="form-control" placeholder="Buscar infografías">
                               {{ form2.supplementary_Infographics }}
                           </div>
                           <div class="col-md-4">
                               <label class="form-label d-block text-center" style="color: white; font-weight: 700;">Videos</label>
-                              <input type="text" id="searchVideos" class="form-control" placeholder="Buscar videos">
+                              <input type="text" id="searchVideos2" class="form-control" placeholder="Buscar videos">
                               {{ form2.supplementary_videos }}
                           </div>
                           <div class="col-md-4">
                               <label class="form-label d-block text-center" style="color: white; font-weight: 700;">Blogs</label>
-                              <input type="text" id="searchBlogs" class="form-control" placeholder="Buscar blogs">
+                              <input type="text" id="searchBlogs2" class="form-control" placeholder="Buscar blogs">
                               {{ form2.supplementary_Blogs }}
                           </div>
                         </div>
+                      </div>
                       </div>
                   </div>
                   <div class="mx-auto text-center">
@@ -231,87 +233,61 @@
 
 
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function () { 
-      var supplementaryInfographicsField = document.getElementById('id_supplementary_Infographics');
-      var searchInput = document.getElementById('searchInfographics');
+  document.addEventListener('DOMContentLoaded', function () {
+    function setupSearchFunctionality(searchInput, supplementaryId) {
+        // Encontrar el contenedor del campo de búsqueda
+        var container = searchInput.closest('.formContainer');
 
-      // Copia original de los elementos para su restauración
-      var originalInfographicsOptions = Array.from(supplementaryInfographicsField.children);
+        // Encontrar el campo suplementario dentro del mismo contenedor usando el ID específico
+        var supplementaryField = container.querySelector('#' + supplementaryId);
 
-      searchInput.addEventListener('input', function () {
-          var searchValue = searchInput.value.toLowerCase();
+        if (!supplementaryField) {
+            console.error('Campo suplementario no encontrado para el ID: ' + supplementaryId);
+            return;
+        }
 
-          for (var i = 0; i < supplementaryInfographicsField.children.length; i++) {
-              var optionLabel = supplementaryInfographicsField.children[i].textContent.toLowerCase();
+        // Copia original de los elementos para su restauración
+        var originalOptions = Array.from(supplementaryField.children);
 
-              // Mostrar u ocultar según la coincidencia de búsqueda
-              supplementaryInfographicsField.children[i].style.display = optionLabel.includes(searchValue) ? 'block' : 'none';
-          }
-      });
+        searchInput.addEventListener('input', function () {
+            var searchValue = searchInput.value.toLowerCase();
 
-      // Restaurar la visibilidad al borrar el campo de búsqueda
-      searchInput.addEventListener('blur', function () {
-          if (searchInput.value === '') {
-              for (var i = 0; i < originalInfographicsOptions.length; i++) {
-                  originalInfographicsOptions[i].style.display = 'block';
-              }
-          }
-      });
+            originalOptions.forEach(function (option) {
+                var optionLabel = option.textContent.toLowerCase();
+                option.style.display = optionLabel.includes(searchValue) ? 'block' : 'none';
+            });
+        });
 
-      var supplementaryVideosField = document.getElementById('id_supplementary_videos');
-      var searchInputVideos = document.getElementById('searchVideos');
+        // Restaurar la visibilidad al borrar el campo de búsqueda
+        searchInput.addEventListener('blur', function () {
+            if (searchInput.value === '') {
+                originalOptions.forEach(function (option) {
+                    option.style.display = 'block';
+                });
+            }
+        });
+    }
 
-      // Copia original de los elementos para su restauración
-      var originalVideosOptions = Array.from(supplementaryVideosField.children);
+    // Configuración para el primer formulario
+    var searchInput1 = document.getElementById('searchInfographics');
+    setupSearchFunctionality(searchInput1, 'id_supplementary_Infographics');
 
-      searchInputVideos.addEventListener('input', function () {
-          var searchValueVideos = searchInputVideos.value.toLowerCase();
+    var searchInputBlogs1 = document.getElementById('searchBlogs');
+    setupSearchFunctionality(searchInputBlogs1, 'id_supplementary_Blogs');
 
-          for (var i = 0; i < supplementaryVideosField.children.length; i++) {
-              var optionLabelVideos = supplementaryVideosField.children[i].textContent.toLowerCase();
+    var searchInputVideo1 = document.getElementById('searchVideos');
+    setupSearchFunctionality(searchInputVideo1, 'id_supplementary_videos');
 
-              // Mostrar u ocultar según la coincidencia de búsqueda
-              supplementaryVideosField.children[i].style.display = optionLabelVideos.includes(searchValueVideos) ? 'block' : 'none';
-          }
-      });
+    // Configuración para el segundo formulario
+    var searchInput2 = document.getElementById('searchInfographics2');
+    setupSearchFunctionality(searchInput2, 'id_supplementary_Infographics');
 
-      // Restaurar la visibilidad al borrar el campo de búsqueda
-      searchInputVideos.addEventListener('blur', function () {
-          if (searchInputVideos.value === '') {
-              for (var i = 0; i < originalVideosOptions.length; i++) {
-                  originalVideosOptions[i].style.display = 'block';
-              }
-          }
-      });
+    var searchInputBlogs2 = document.getElementById('searchBlogs2');
+    setupSearchFunctionality(searchInputBlogs2, 'id_supplementary_Blogs');
 
-
-      var supplementaryBlogsField = document.getElementById('id_supplementary_Blogs');
-      var searchInputBlogs = document.getElementById('searchBlogs');
-
-      // Copia original de los elementos para su restauración
-      var originalBlogsOptions = Array.from(supplementaryBlogsField.children);
-
-      searchInputBlogs.addEventListener('input', function () {
-          var searchValueBlogs = searchInputBlogs.value.toLowerCase();
-
-          for (var i = 0; i < supplementaryBlogsField.children.length; i++) {
-              var optionLabelBlogs = supplementaryBlogsField.children[i].textContent.toLowerCase();
-
-              // Mostrar u ocultar según la coincidencia de búsqueda
-              supplementaryBlogsField.children[i].style.display = optionLabelBlogs.includes(searchValueBlogs) ? 'block' : 'none';
-          }
-      });
-
-      // Restaurar la visibilidad al borrar el campo de búsqueda
-      searchInputBlogs.addEventListener('blur', function () {
-          if (searchInputBlogs.value === '') {
-              for (var i = 0; i < originalBlogsOptions.length; i++) {
-                  originalBlogsOptions[i].style.display = 'block';
-              }
-          }
-      });
-  });
-
+    var searchInputVideo2 = document.getElementById('searchVideos2');
+    setupSearchFunctionality(searchInputVideo2, 'id_supplementary_videos');
+});
 
 </script>
   {% include '../../footer.html' %}
