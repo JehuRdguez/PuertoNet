@@ -45,15 +45,17 @@ class ProfileForm(forms.ModelForm):
         self.fields['image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Selecciona una imagen'})
         
 class LogImagenForm(forms.ModelForm):
-    title = forms.CharField(max_length=255)
-    description = forms.CharField(widget=forms.Textarea)
-    file = forms.FileField()
+    title = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+    file = forms.FileField(widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
+
     
 
     class Meta:
         model = LogMultimedia
         fields = ['file', 'category', 'supplementary_videos', 'supplementary_Infographics','supplementary_Blogs']
         widgets = {
+                'category': forms.Select(attrs={'class': 'form-select'}),
                 'supplementary_videos': forms.CheckboxSelectMultiple(),
                 'supplementary_Infographics': forms.CheckboxSelectMultiple(),
                 'supplementary_Blogs': forms.CheckboxSelectMultiple(),
@@ -64,12 +66,15 @@ class LogImagenForm(forms.ModelForm):
 class LogVideoForm(forms.ModelForm):
     class Meta:
         model = LogMultimedia
-        fields = ['title','video_id', 'supplementary_videos', 'category', 'supplementary_Infographics','supplementary_Blogs']
+        fields = ['title', 'video_id', 'supplementary_videos', 'category', 'supplementary_Infographics', 'supplementary_Blogs']
         widgets = {
-                'supplementary_videos': forms.CheckboxSelectMultiple(),
-                'supplementary_Infographics': forms.CheckboxSelectMultiple(),
-                 'supplementary_Blogs': forms.CheckboxSelectMultiple(),
-            }
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'video_id': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'supplementary_videos': forms.CheckboxSelectMultiple(),
+            'supplementary_Infographics': forms.CheckboxSelectMultiple(),
+            'supplementary_Blogs': forms.CheckboxSelectMultiple(),
+        }
 class EditInfographicsForm(forms.ModelForm):
     class Meta:
         model = Infographics
