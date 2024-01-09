@@ -545,6 +545,7 @@ def signup(request):
                 login(request, authenticated_user)
                 usuario = request.user.id
                 profile = Profile.objects.create(user_id=usuario)
+                messages.success(request, '¡Bienvenido a PuertoNet!')
                 return redirect('/')
     else:
         form = CustomUserCreationForm()
@@ -782,6 +783,8 @@ def editarBlog(request, id):
         form = BlogForm(instance=blog)
 
     return render(request, 'perfil/subirBlog/editarBlog.html', {'form': form, 'datos': blog})
+
+
 
 #def subirBlog(request):    
 #    if request.method == 'POST':

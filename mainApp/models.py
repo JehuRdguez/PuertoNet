@@ -33,7 +33,7 @@ class Blogs(models.Model):
 category=[0,'Admin'],[1,'Usuario']
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(null=True,blank=True)
+    image = models.ImageField(null=True,blank=True, upload_to='profile/')
     type_user=models.IntegerField(choices=category, default="1")
     def __str__(self):
         mapping_tipo_usuario = dict(category)
