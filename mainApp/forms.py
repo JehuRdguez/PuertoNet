@@ -76,10 +76,14 @@ class LogVideoForm(forms.ModelForm):
             'supplementary_Blogs': forms.CheckboxSelectMultiple(),
         }
 class EditInfographicsForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+
     class Meta:
         model = Infographics
-        fields = ['title', 'description', 'file', 'category', 'supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
+        fields = ['title', 'file','category', 'supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
         widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+                # description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
             'supplementary_videos': forms.CheckboxSelectMultiple(),
             'supplementary_Infographics': forms.CheckboxSelectMultiple(),
             'supplementary_Blogs': forms.CheckboxSelectMultiple(),
