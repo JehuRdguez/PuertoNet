@@ -80,7 +80,7 @@ class EditInfographicsForm(forms.ModelForm):
 
     class Meta:
         model = Infographics
-        fields = ['title', 'file','category', 'supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
+        fields = ['title', 'file','category', 'description','supplementary_videos', 'supplementary_Infographics', 'supplementary_Blogs']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
                 # description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
@@ -88,6 +88,7 @@ class EditInfographicsForm(forms.ModelForm):
             'supplementary_Infographics': forms.CheckboxSelectMultiple(),
             'supplementary_Blogs': forms.CheckboxSelectMultiple(),
         }
+ 
 
 class EditLogMultimediaForm(forms.ModelForm):
     class Meta:

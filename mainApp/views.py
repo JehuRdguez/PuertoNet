@@ -37,14 +37,25 @@ from .forms import LogImagenForm, LogVideoForm
 from django.conf import settings
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
-
-
+ 
+def is_valid_image(file):
+    try:
+        file_contents = file.read()
+        img = Image.open(BytesIO(file_contents))
+        return True
+    except Exception as e:
+        return False
+    
 class InfographicsUpdateView(UpdateView):
     model = Infographics
     form_class=EditInfographicsForm
     template_name = 'infografias/editarInfografia.html'  
     success_url = reverse_lazy('administrarContenido')
     def form_valid(self, form):
+        file = self.request.FILES.get('file')
+        if file and not is_valid_image(file):
+            return self.form_invalid(form)
+      
         messages.success(self.request, '¡Actualización exitosa!')
         return super().form_valid(form)
 
@@ -579,13 +590,7 @@ def is_valid_video(file):
         print(f"Error al validar el video: {e}")
         return False
 
-def is_valid_image(file):
-    try:
-        file_contents = file.read()
-        img = Image.open(BytesIO(file_contents))
-        return True
-    except Exception as e:
-        return False
+
 
 
 def subirContenido(request):

@@ -16,16 +16,22 @@
           </div>
           <br />
           <div class="contenidoSubirVideoImagen">
-            <form method="post">
+            <a class="bi bi-arrow-90deg-left" href="{% url 'administrarContenido' %}"></a>
+            <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
 
               <label>Título</label><br>
               {{form.title}} <br>
               <label>Descripción</label><br>
               {{form.description}} <br>
-         
-                  <label>Archivo</label> <br>
-                  {{form.file}} <br>
+
+              <label>Archivo actual</label> <br>
+              <img src="{{ object.file.url }}" alt="Imagen seleccionada" width="200px"><br>
+
+              <label>Cambiar:</label> <br>
+              <input type="file" name="file" id="id_file"><br>
+          
+
                   <label>Categoria</label> <br>
               {{form.category}} <br>
               
@@ -66,13 +72,22 @@
                 </ul>
               </div>
             {% endif %}
-            
+           
               <button type="submit">Guardar cambios</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+
+    {% if messages %}
+{% for message in messages %}
+<div class= {% if message.tags == 'alert-success' %} "alert alert-success alerta alert-dismissible fade show shadow custom-messages fixed-bottom" {% else %} "alert alert-danger alerta  alert-dismissible fade show shadow custom-messages fixed-bottom" {% endif %}>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{ message }} 
+    </div>
+{% endfor %}
+{% endif %}
   </section>
 
   <script type="text/javascript">
