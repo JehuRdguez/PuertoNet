@@ -104,3 +104,10 @@ class LogMultimedia(models.Model):
         return texto.format(self.user.first_name, self.user.last_name)
     def __str__(self):
         return f'{self.title}'
+
+class APIKey(models.Model):
+    service_name = models.CharField(max_length=100, unique=True)
+    key = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.service_name} API Key"
