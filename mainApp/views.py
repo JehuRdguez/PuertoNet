@@ -150,7 +150,6 @@ class terminoscondiciones(View):
         return render(request, 'terminos/terminos_condiciones.html')   
 
 
-
 class soporte(View):
     def get(self, request):
         return render(request, 'soporte/soporte.html')  
@@ -158,7 +157,8 @@ class soporte(View):
     def post(self, request, *args, **kwargs):
         try:
             subject = 'Soporte PuertoNet'
-            template = get_template('soporte/templateCorreo.html')
+            template_usuario = get_template('soporte/templateCorreo.html')
+            template_host = get_template('soporte/templateSoporte.html')  # Nueva plantilla para el host
             correo = request.POST['correo']
             descripcion = request.POST['descripcion']
             imagen = request.FILES.get('imagen')
@@ -177,10 +177,18 @@ class soporte(View):
                 # Obtén la URL de la imagen guardada
                 imagen_url = default_storage.url(ruta_archivo)
 
-            content = template.render(
+            # Renderizar el contenido para el usuario
+            content_usuario = template_usuario.render(
                 {'problema': descripcion, 'imagen_url': imagen_url}
             )
-            message = EmailMultiAlternatives(
+
+            # Renderizar el contenido para el host
+            content_host = template_host.render(
+                {'problema': descripcion, 'correo': correo, 'imagen_url': imagen_url}
+            )
+
+            # Crear el mensaje para el usuario
+            message_usuario = EmailMultiAlternatives(
                 subject,
                 '',  # Dejé el campo en blanco porque estás adjuntando HTML
                 settings.EMAIL_HOST_USER,
@@ -189,14 +197,26 @@ class soporte(View):
 
             # Adjunta la imagen al correo si se proporcionó
             if imagen_url:
-                message.attach_file(default_storage.path(ruta_archivo))
+                message_usuario.attach_file(default_storage.path(ruta_archivo))
 
-            message.attach_alternative(content, 'text/html')
-            message.send()
+            message_usuario.attach_alternative(content_usuario, 'text/html')
+            message_usuario.send()
+
+            # Crear el mensaje para el host
+            message_host = EmailMultiAlternatives(
+                subject,
+                '',  # Dejé el campo en blanco porque estás adjuntando HTML
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER]  # Solo al host
+            )
+
+            message_host.attach_alternative(content_host, 'text/html')
+            message_host.send()
 
             # Borra la imagen del servidor si se proporcionó
             if imagen_url:
                 default_storage.delete(ruta_archivo)
+
             messages.success(request, "Correo enviado con éxito.")
             return redirect('Soporte')  # Redirigir a una página de éxito después de enviar el correo
         except ValidationError as e:
@@ -207,6 +227,8 @@ class soporte(View):
             # Manejar otros errores
             messages.error(request, "Error al enviar el correo")
             return render(request, 'soporte/soporte.html', {'error': 'Error al enviar el correo'})
+
+
 
 class BlogsPagina(View):
     def get(self, request):

@@ -1,0 +1,26 @@
+<!-- templateSoporte.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuevo Ticket de Soporte - PuertoNet</title>
+</head>
+<body>
+    <h1>Nuevo Ticket de Soporte</h1>
+    <p>Un nuevo usuario ha contactado al soporte de PuertoNet.</p>
+    <p><strong>Correo del usuario:</strong> {{ correo }}</p>
+    <p><strong>Descripción del problema:</strong></p>
+    <p style="color: gray;">{{ problema }}</p>
+
+    {% if imagen_url %}
+        <p><strong>Imagen adjunta:</strong></p>
+        <img src="{{ imagen_url }}" alt="Imagen del problema" style="max-width: 600px; height: auto;">
+    {% else %}
+        <p>No se ha adjuntado ninguna imagen.</p>
+    {% endif %}
+
+    <p>Por favor, asegúrate de atender este ticket a la brevedad.</p>
+    <p>Gracias,</p>
+    <p>El equipo de soporte de PuertoNet</p>
+</body>
+</html>
